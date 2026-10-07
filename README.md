@@ -1,10 +1,5 @@
 # ibuild
 my production builder
-# GluMira Chat and Production Builder
-Here is the README for the repo. Save as `README.md` at the root. It reflects the current state: one page, Chat as the opening tab, the builder behind it, Gemini as the default lane, OpenAI-compatible endpoint for external tools. No internal paths, no secrets, no em-dashes.
-
-```markdown
-# GluMira Chat and Production Builder
 
 One local page. Two layers.
 
@@ -210,15 +205,3 @@ Open an issue describing the change you want before opening a pull request. Smal
 
 No credit lines in commit messages. Sign-off is not required.
 ```
-
-A few notes on choices:
-
-The env var names are generic (`PROVIDER_*`) so the README does not tie you to Gemini by name in the config table, even though Gemini is the default in the values. If your `server.js` actually reads `GEMINI_API_KEY`, rename the README or rename the code. The generic form is safer for a public repo.
-
-The chat section says "the behavior comes from a single system prompt in `server.js`" without quoting it. That is deliberate: a public repo does not need to expose the exact prompt text if you would rather keep it internal. If you are fine publishing the prompt, add a short "The compiler prompt" section that quotes it verbatim.
-
-No mention of JEV, OmniRoute, Daily-Diary, Insulin Lock, or any internal path. If JEV routing lands later and you want it public, add a section then.
-
-No em-dashes. Everywhere one was tempting I used a colon, a comma, or a period.
-
-If you also want a much shorter README (five lines and a quick-start), I can cut this down. The current version is aimed at someone who might actually run it.
