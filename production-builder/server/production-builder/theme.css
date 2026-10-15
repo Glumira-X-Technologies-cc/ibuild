@@ -1,0 +1,612 @@
+/* Builder theme. GluMira colour method: navy is the world, shiny gold is the light, bone is the
+   ground. Every gold gradient runs top to bottom and never moves (founder 2026-10-08: "Lock the
+   gradient from top to bottom"). The wordmark is the star: it alone carries the bright sheen.
+   Primary buttons carry a calmer gold. Body text stays solid.
+   Source: glumira-color-method canon-swatches/Living-Color-System_v1.0.md. */
+/* One navy ramp (council 2026-10-12, founder: "your blue is not from the same base color dark blue"). Every blue in
+   the Builder is a step of #102347. Deep steps lower the navy's own lightness at its own hue (never black or grey);
+   lifted steps mix the navy with bone #F7F6F1 (the percentage is the bone share). The same ramp serves both themes. */
+:root, :root[data-theme="light"] {
+  --pb-navy-950: #070F1F; --pb-navy-900: #09152A; --pb-navy-850: #0D1C38; --pb-navy-800: #102347;
+  --pb-navy-750: #1E3051; /* 6% bone */ --pb-navy-700: #2C3C5B; /* 12% */ --pb-navy-600: #3E4D69; /* 20% */
+  --pb-navy-550: #55627A; /* 30% */ --pb-navy-500: #636F84; /* 36% */ --pb-navy-450: #848D9C; /* 50% */
+  --pb-navy-300: #ABB0B9; /* 67% */ --pb-navy-150: #D4D6D8; /* 85% */ --pb-navy-100: #E5E5E3; /* 92% */
+  --pb-navy-050: #EEEEEA; /* 96% */
+}
+:root {
+  color-scheme: dark;
+  --gm-navy: #102347; --gm-navy-deep: #09152A; --gm-gold: #C9A24B; --gm-bone: #F7F6F1;
+  --gm-gold-ink: #7A5C0A; --gm-hairline: #E0DBCF;
+  /* THE ONE GOLD everywhere: the founder's locked shiny gold, 2026-10-12 (card 01-36). Render-identical
+     3-layer token of his 6-layer lock (the sparkle layers are alpha 0.00). Merged gold and custard retired. */
+  --gm-gold-shiny: linear-gradient(180deg,rgba(255,255,255,0.00) 4.50%,rgba(255,255,255,0.50) 4.85%,rgba(255,255,255,1.00) 5.00%,rgba(255,255,255,0.50) 5.15%,rgba(255,255,255,0.00) 5.50%),linear-gradient(180deg,rgba(255,255,255,0.60) 0%,rgba(255,255,255,0.25) 38%,rgba(255,255,255,0.05) 49%,rgba(255,255,255,0.00) 50%,rgba(255,255,255,0.00) 100%),linear-gradient(180deg,#BEA106 0%,#C3A609 4%,#C9AD0E 8%,#D0B414 12%,#D7BC1C 16%,#DFC526 20%,#E6CD32 24%,#ECD53F 28%,#F1DC4C 32%,#F5E259 36%,#F8E663 40%,#F9E96B 44%,#FAEB6F 48%,#FAEB6F 52%,#F9E96B 56%,#F8E663 60%,#F5E259 64%,#F1DC4C 68%,#ECD53F 72%,#E6CD32 76%,#DFC526 80%,#D7BC1C 84%,#D0B414 88%,#C9AD0E 92%,#C3A609 96%,#BEA106 100%);
+  --gm-gold-sheen: var(--gm-gold-shiny);
+  --gm-gold-button: var(--gm-gold-shiny);
+  --pb-dock-w: 400px;
+  --pb-read: 1120px;
+  /* Builder round 3 type system (founder reads with bifocals; readability is pass/fail).
+     One typeface, three sizes, two weights, one muted tone, spacing 4/8/16/24px.
+     Dark muted text is navy-300; it reads at least 4.5:1 on every dark surface up to navy-700 (tested). */
+  --fs-title: 1.5rem; --fs-head: 1.125rem; --fs-body: 1rem;
+  --font-ui: 'Segoe UI', system-ui, sans-serif;
+  --text-muted: var(--pb-navy-300); --text-dim: var(--pb-navy-300);
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg-deep: #F7F6F1; --bg-panel: #FFFFFF; --bg-card: #FFFFFF;
+  --bg-hover: #F1EDE2; --bg-active: #EFE6CC;
+  --text: var(--pb-navy-800); --text-dim: var(--pb-navy-550); --text-muted: var(--pb-navy-550);
+  /* Light muted text is navy-550; it reads at least 4.5:1 on bone, white and the warm hover and active tints (tested). */
+  --border: #E0DBCF; --gold: #7A5C0A; --gold-dim: #7A5C0A; --border-gold: #C9A24B;
+  /* The Library tree's cabinet and shelf marks are ramp steps (the old violet was periwinkle); dark on light here. */
+  --blue: var(--pb-navy-550); --purple: var(--pb-navy-800);
+}
+
+/* Shiny gold wordmark, the star of the page. Gradient locked top to bottom, no sweep. */
+.header .header-title {
+  background: var(--gm-gold-sheen) !important; background-size: 100% 100% !important;
+  -webkit-background-clip: text !important; background-clip: text !important;
+  -webkit-text-fill-color: transparent !important; color: transparent !important;
+  animation: none; font-size: var(--fs-title); font-weight: 600; letter-spacing: .2px;
+}
+
+body, .main-layout, .content-area { background: var(--bg-deep); color: var(--text); }
+.header, .nav-tabs { background: var(--gm-navy); border-color: var(--pb-navy-700); }
+.nav-menu { background: var(--bg-panel); border-color: var(--border); padding: 0.25rem; }
+.nav-tab, .nav-group-btn {
+  appearance: none; background: transparent; color: var(--text);
+  border: 0; border-bottom: 2px solid transparent; border-radius: 0;
+  font-family: inherit; cursor: pointer;
+}
+.nav-tab:hover, .nav-group-btn:hover { background: var(--pb-navy-750); color: var(--text); }
+.nav-tab.active, .nav-group.active > .nav-group-btn {
+  color: var(--text); background: var(--pb-navy-750); border-bottom-color: transparent;
+  box-shadow: inset 0 -2px 0 0 #C9A24B;
+}
+.nav-tab.active::after, .nav-group.active > .nav-group-btn::after { content: none; }
+.nav-menu .nav-tab { display: block; width: 100%; text-align: left; padding: 0.5rem 0.5rem; border-radius: 4px; color: var(--text-dim); box-shadow: none; }
+.nav-menu .nav-tab:hover { background: var(--bg-hover); color: var(--text); }
+.nav-menu .nav-tab.active { background: var(--bg-active); color: var(--text); }
+
+/* Header controls sit on navy in both modes: Debug, Fix and Scan as small icons right-aligned in the title bar, then
+   one sun or moon icon that switches the theme. Icons only, no circles (council 2026-10-12). */
+.header .header-meta { margin-left: auto; gap: 0.25rem; flex-shrink: 0; }
+.header .header-meta .pb-plus, .header .header-meta .pb-head-tool { width: 2rem; height: 2rem; border-radius: 6px; flex-shrink: 0; color: var(--text); background: transparent; border-color: transparent; }
+.header .header-meta .pb-plus:hover:not(:disabled), .header .header-meta .pb-plus[aria-expanded="true"], .header .header-meta .pb-head-tool:hover:not(:disabled) { color: var(--text); border-color: transparent; background: var(--pb-navy-750); }
+select, option { color-scheme: inherit; }
+
+/* Primary actions carry the calmer gold, top to bottom; navy text on gold passes AA. */
+.pb-btn.primary {
+  background: var(--gm-gold-button);
+  color: var(--gm-navy); border-color: #B8902F; font-weight: 400;
+}
+.pb-btn.primary:hover:not(:disabled) { background: var(--gm-gold-sheen); filter: brightness(1.06); }
+
+/* The next step is always on the right, on every page (founder 2026-10-08). */
+.pb-toolbar .pb-btn.primary, .pb-dock-row .pb-btn.primary { order: 99; margin-left: auto; }
+.page > .pb-btn.primary, .pb-panel > .pb-btn.primary, .pb-offline > .pb-btn.primary {
+  display: block; width: max-content; margin-left: auto;
+}
+.page > .pb-btn.primary { margin-right: max(0px, calc((100% - var(--pb-read)) / 2)); }
+
+/* Readable width: page content no wider than a comfortable measure, centred in the space left of the chat. */
+.page > * { max-width: var(--pb-read); margin-left: auto; margin-right: auto; }
+.page .section-desc, .page .pb-muted, .page .pb-card p { max-width: 78ch; }
+.page > .section-desc, .page > p, .page > .pb-muted { margin-left: max(0px, calc((100% - var(--pb-read)) / 2)); margin-right: auto; }
+.pb-library-page > * { max-width: none; }
+
+/* The chat is the right-hand column. The gold line between page and chat is draggable. */
+.main-layout { display: flex; flex-direction: row; min-height: 0; }
+.content-area { flex: 1 1 auto; min-width: 0; }
+.pb-dock {
+  width: var(--pb-dock-w); min-width: 280px; max-width: 60vw; height: auto; min-height: 0;
+  flex: 0 0 auto; border-top: 0; border-left: 0; padding: 1rem 1rem; gap: 0.5rem;
+  overflow: hidden;
+}
+/* Chat title line: Chat and a compact model picker at the right, nothing else (council 2026-10-12). Same height as the
+   Builder title line. */
+.pb-dock-head { height: 52px; min-height: 52px; flex-wrap: nowrap; gap: 0.5rem; }
+.pb-dock-head select { margin-left: auto; max-width: 150px; padding: 0.25rem 0.25rem; }
+.pb-dock-answer { flex: 1 1 auto; max-height: none; min-height: 60px; font-size: var(--fs-body); line-height: 1.5; }
+.pb-dock-input { min-height: 44px; max-height: 40vh; resize: vertical; }
+/* The gap between the two panes is the drag handle (BRIEF-UI-5: a small gap, a clean vertical divide). */
+.pb-dock-resizer {
+  flex: 0 0 10px; width: 10px; cursor: col-resize; position: relative; touch-action: none;
+  background: transparent; border-radius: 4px; transition: background .15s;
+}
+.pb-dock-resizer:hover, .pb-dock-resizer:focus-visible, body.pb-resizing .pb-dock-resizer { background: rgba(201,162,75,.22); outline: none; }
+body.pb-resizing { cursor: col-resize; user-select: none; }
+.pb-toast { bottom: 16px; left: calc((100vw - var(--pb-dock-w)) / 2); }
+
+/* One locked ground for the whole window: html carries the same colour as body, so no band shows
+   past the content or on overscroll. */
+html { background: var(--bg-deep); min-height: 100%; }
+
+/* Shared type rules (Builder round 3): body 1rem at line-height 1.5; weight 600 for headings only, 400 for
+   everything else, labels and buttons included; placeholders in the one muted grey; every button and +
+   at least 32px; reply and note text no wider than about 70ch. */
+body, button, input, textarea, select { font-family: var(--font-ui); font-size: var(--fs-body); line-height: 1.5; }
+strong, b, th, label, .pb-btn, button { font-weight: 400; }
+h1, h2, h3, h4, .section-title, .pb-card h3, .header .header-title { font-weight: 600; }
+input::placeholder, textarea::placeholder { color: var(--text-muted); opacity: 1; }
+.pb-btn, .pb-plus, .pb-dock-head select { min-height: 2rem; min-width: 2rem; }
+.pb-bubble, .pb-card p, .pb-message { max-width: 70ch; }
+
+/* Secondary options are small icons with a tooltip (Park, Save, Archive, Vent and similar).
+   Forward actions sit on the right after them. */
+.pb-btn.pb-icon { display: inline-flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; padding: 0; line-height: 0; }
+.pb-toolbar .pb-forward { order: 98; margin-left: auto; }
+.pb-toolbar .pb-forward ~ .pb-btn.primary, .pb-toolbar .pb-btn.primary ~ .pb-forward { margin-left: 0; }
+
+/* Conversation bubbles: the Ideas flow and the page chat. The founder's words sit right. */
+.pb-thread, .pb-dock-answer { display: flex; flex-direction: column; gap: 0.5rem; overflow: auto; }
+.pb-dock-answer { white-space: normal; }
+.pb-bubble { max-width: min(88%, 70ch); padding: 0.5rem 0.5rem; border-radius: 10px; border: 1px solid rgba(255,255,255,.14); background: var(--pb-navy-750); white-space: pre-wrap; line-height: 1.5; font-size: var(--fs-body); }
+.pb-bubble > small { display: block; font-size: var(--fs-body); letter-spacing: .3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.25rem; }
+.pb-bubble.user { align-self: flex-end; background: var(--pb-navy-750); border-color: var(--pb-navy-600); }
+.pb-bubble.assistant { align-self: flex-start; }
+.pb-dock-answer .pb-bubble { font-size: var(--fs-body); }
+
+/* Take it further, Kosmo style: one question, clickable options, a free answer, Next on the right. */
+.pb-flow { margin-top: 1rem; padding-top: 0.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.pb-flow-head { display: flex; align-items: center; gap: 0.5rem; }
+.pb-flow-head small { flex: 1 1 auto; }
+.pb-thread { max-height: 46vh; padding-right: 0.25rem; }
+.pb-flow-input { min-height: 44px; }
+.pb-playback blockquote { margin: 0.5rem 0; padding: 0.5rem 0.5rem; border-left: 3px solid #C9A24B; white-space: pre-wrap; }
+.pb-prompt-out .pb-pre { max-height: 50vh; overflow: auto; white-space: pre-wrap; }
+[data-theme="light"] .pb-bubble { background: #FFFFFF; color: var(--text); border-color: var(--border); }
+[data-theme="light"] .pb-bubble.user { background: #EFE6CC; border-color: #C9A24B; }
+[data-theme="light"] .pb-bubble > small { color: var(--text-muted); }
+
+/* Separation between tasks: white space plus a clear edge in dark mode. */
+.pb-card, .pb-phase summary, .pb-tree-child { border-color: rgba(255,255,255,.16); }
+.pb-card { margin: 0.5rem 0; }
+.pb-panel { border-color: rgba(255,255,255,.14); }
+.pb-table td { border-bottom-color: rgba(255,255,255,.12); }
+
+/* Light mode: bone ground, white task cards on a hairline, navy ink. */
+[data-theme="light"] .pb-panel, [data-theme="light"] .pb-tree-detail,
+[data-theme="light"] .pb-dialog { background: #FFFFFF; color: var(--text); border-color: var(--border); }
+[data-theme="light"] .pb-card, [data-theme="light"] .pb-role,
+[data-theme="light"] .pb-tree-child, [data-theme="light"] .pb-phase summary,
+[data-theme="light"] .pb-message, [data-theme="light"] .pb-tree-tabs {
+  background: #FFFFFF; color: var(--text); border-color: var(--border);
+  box-shadow: 0 1px 2px rgba(16,35,71,.06), 0 2px 8px rgba(16,35,71,.04);
+}
+[data-theme="light"] .pb-panel { box-shadow: 0 1px 3px rgba(16,35,71,.06); }
+[data-theme="light"] .pb-tree-side, [data-theme="light"] .pb-pre { background: var(--bg-deep); color: var(--text); border-color: var(--border); }
+[data-theme="light"] .pb-dock { background: #FFFFFF; color: var(--text); }
+[data-theme="light"] .pb-btn, [data-theme="light"] .pb-dock-head select {
+  background: #FFFFFF; color: var(--text); border-color: #CFC8B8;
+}
+[data-theme="light"] .pb-btn:hover:not(:disabled), [data-theme="light"] .pb-tree-child:hover,
+[data-theme="light"] .pb-tree-row:hover { background: var(--bg-hover); }
+[data-theme="light"] .pb-btn.primary { background: var(--gm-gold-button); color: var(--gm-navy); border-color: #B8902F; }
+[data-theme="light"] .pb-btn.primary:hover:not(:disabled) { background: var(--gm-gold-sheen); filter: brightness(1.06); }
+[data-theme="light"] .pb-input, [data-theme="light"] .pb-field input,
+[data-theme="light"] .pb-field textarea, [data-theme="light"] .pb-field select,
+[data-theme="light"] .pb-dock-input { background: #FFFFFF; color: var(--text); border-color: var(--pb-navy-450); }
+[data-theme="light"] input::placeholder, [data-theme="light"] textarea::placeholder { color: var(--text-muted); }
+[data-theme="light"] .pb-card p, [data-theme="light"] .pb-field > span,
+[data-theme="light"] .pb-path, [data-theme="light"] .pb-checklist,
+[data-theme="light"] .pb-tree-child small, [data-theme="light"] .pb-role button,
+[data-theme="light"] .pb-dock-answer,
+[data-theme="light"] .pb-dock-actions small, [data-theme="light"] .pb-table th,
+[data-theme="light"] .pb-empty, [data-theme="light"] .section-desc,
+[data-theme="light"] .pb-breadcrumb, [data-theme="light"] .pb-breadcrumb button,
+[data-theme="light"] .pb-tree-count, [data-theme="light"] .pb-tree-arrow { color: var(--text-dim); }
+[data-theme="light"] .pb-tag, [data-theme="light"] .pb-status,
+[data-theme="light"] .pb-dock-head strong, [data-theme="light"] .pb-message strong,
+[data-theme="light"] .pb-spinner, [data-theme="light"] .pb-attachment button { color: var(--gm-gold-ink); }
+[data-theme="light"] .pb-tag { border-color: #C9A24B; background: #FBF7EC; }
+[data-theme="light"] .pb-notice, [data-theme="light"] .pb-roster span { background: #FBF7EC; color: #3D3218; border-color: #C9A24B; }
+[data-theme="light"] .pb-tree-row[aria-selected="true"], [data-theme="light"] .pb-tree-row.selected { background: var(--bg-active); color: var(--text); border-color: #C9A24B; }
+[data-theme="light"] .pb-tree-work, [data-theme="light"] .pb-role-list,
+[data-theme="light"] .pb-table td, [data-theme="light"] .pb-table th,
+[data-theme="light"] .pb-attachment, [data-theme="light"] .pb-empty { border-color: var(--border); }
+[data-theme="light"] .pb-table tbody tr { background: #FFFFFF; }
+[data-theme="light"] .pb-table tbody tr:nth-child(even) { background: #FCFBF7; }
+
+@media (max-width: 900px) {
+  .main-layout { flex-direction: column; }
+  .pb-dock-resizer { display: none; }
+  .pb-shell { flex-direction: column; padding: 0.25rem; gap: 0.5rem; }
+  .pb-dock { width: auto; max-width: none; height: var(--pb-dock); min-height: var(--pb-dock); }
+  .pb-dock-input { min-height: 50px; max-height: 68px; resize: none; }
+  /* Stacked: the chat is tall enough to read its questions and answer them. */
+  :root { --pb-dock: 44vh; }
+  .pb-dock-answer { max-height: none; flex: 1 1 auto; min-height: 0; }
+  .pb-toast { left: 50%; bottom: calc(var(--pb-dock) + 12px); }
+}
+@media (max-width: 700px) {
+  .header { gap: 0.5rem; padding: 0.5rem 0.5rem; }
+  .header-meta { gap: 0.25rem; }
+}
+@media (max-width: 700px) { .header .header-title { font-size: var(--fs-head); } }
+/* Ideas is the one prompt view (fix round 2): the left column asks, the right column shows the brief as
+   it fills, then the prompt with a short Why, References and expert-next panel beside it. */
+.pb-prompt-panel h2 { margin-top: 0; }
+.pb-brief { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0.25rem 1rem; margin: 0.5rem 0 0.25rem; font-size: var(--fs-body); }
+.pb-brief dt { color: var(--text-muted); font-size: var(--fs-body); letter-spacing: .3px; text-transform: uppercase; padding-top: 0.25rem; }
+.pb-brief dd { margin: 0; white-space: pre-wrap; line-height: 1.5; }
+.pb-prompt-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(190px, 32%); gap: 1rem; align-items: start; }
+.pb-prompt-view { padding: 0.25rem 1rem 0.5rem; border: 1px solid var(--border); border-radius: 8px; max-height: 70vh; overflow: auto; line-height: 1.5; font-size: var(--fs-body); }
+.pb-prompt-view h3 { margin: 1rem 0 0.25rem; font-size: var(--fs-head); }
+.pb-prompt-view h4 { margin: 1rem 0 0.25rem; font-size: var(--fs-body); letter-spacing: .4px; text-transform: uppercase; color: var(--text); }
+.pb-prompt-view p, .pb-prompt-view ul, .pb-prompt-view ol { margin: 0.25rem 0 0.5rem; }
+.pb-prompt-view ul, .pb-prompt-view ol { padding-left: 1rem; }
+.pb-prompt-view li { margin: 0.25rem 0; }
+.pb-prompt-view code { font-family: ui-monospace, Consolas, monospace; font-size: 0.875rem; padding: 0.25rem 0.25rem; border-radius: 4px; background: rgba(255,255,255,.08); word-break: break-all; }
+.pb-prompt-side { display: flex; flex-direction: column; gap: 0.5rem; }
+/* Prompt for Claude Code (2026-10-10): one plain block, body text 16px, bold only for headings, sources under it. */
+.pb-prompt-view, .pb-prompt-view p, .pb-prompt-view li, .pb-prompt-view code { font-size: var(--fs-body); font-weight: 400; }
+.pb-prompt-view h3, .pb-prompt-view h4 { font-weight: 600; }
+.pb-prompt-sources { margin-top: 0.75rem; font-size: var(--fs-body); }
+.pb-prompt-sources h3 { font-size: var(--fs-body); font-weight: 600; margin: 0 0 0.25rem; }
+.pb-prompt-sources li { margin: 0.25rem 0; }
+.pb-composer > .pb-btn.pb-clear:not(.pb-plus) { grid-column: 3; justify-self: end; }
+.pb-btn.pb-clear { min-height: 32px; height: 2rem; align-self: center; padding: 0 0.75rem; font-weight: 400; font-size: var(--fs-body); }
+.pb-toast .pb-undo { margin-left: 0.5rem; min-height: 32px; font-weight: 400; }
+.pb-side-card, .pb-next-step { padding: 0.5rem 0.5rem; border: 1px solid var(--border); border-radius: 8px; font-size: var(--fs-body); line-height: 1.5; }
+.pb-side-card h4, .pb-next-step strong { display: block; margin: 0.25rem 0 0.25rem; font-size: var(--fs-body); letter-spacing: .3px; text-transform: uppercase; color: var(--text); }
+.pb-side-card ul { margin: 0; padding-left: 1rem; }
+.pb-side-card li { margin: 0.25rem 0; }
+.pb-side-card p { margin: 0 0 0.25rem; }
+.pb-refs a { color: inherit; text-decoration: underline; text-underline-offset: 2px; word-break: break-all; }
+.pb-refs { list-style: none; padding-left: 0!important; }
+.pb-refs li { margin: 0.25rem 0; }
+.pb-ref-n { color: var(--text); font-variant-numeric: tabular-nums; }
+.pb-ref-used { margin: 0.25rem 0; }
+.pb-sources li { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-sources a { word-break: normal; }
+.pb-sources .pb-notice { white-space: normal; }
+.pb-unread li { opacity: .8; word-break: break-all; }
+.pb-next-step { margin-top: 0.5rem; border-color: var(--gold); }
+.pb-next-step .pb-pre { white-space: pre-wrap; font-size: var(--fs-body); }
+.pb-saved { margin-top: 1rem; }
+.pb-prompt-panel { container-type: inline-size; }
+@container (max-width: 760px) { .pb-prompt-wrap { grid-template-columns: minmax(0, 1fr); } .pb-prompt-view { max-height: none; } }
+[data-theme="light"] .pb-prompt-view code { background: var(--bg-hover); }
+
+/* BRIEF-UI-5 (founder 2026-10-09): clean interface, choices behind one +.
+   Layout: the work pane and the chat pane are one unit, two rounded cards side by side with a small gap.
+   The header and the tab row live inside the work pane, so the chat title lines up with the Builder title. */
+.pb-shell { flex: 1 1 auto; min-height: 0; display: flex; padding: 0.5rem; background: var(--bg-deep); }
+.pb-work { flex: 1 1 auto; min-width: 0; min-height: 0; display: flex; flex-direction: column; border: 1px solid var(--pb-navy-700); border-radius: 12px; background: var(--bg-deep); }
+.pb-work > .header { position: relative; height: 52px; min-height: 52px; padding: 0 0.5rem 0 1rem; border-bottom: 0; border-radius: 12px 12px 0 0; backdrop-filter: none; }
+.pb-work > .nav-tabs { height: 34px; min-height: 34px; padding: 0 0.5rem; align-items: stretch; overflow: visible; }
+.pb-work > .nav-tabs > .nav-tab, .pb-work > .nav-tabs .nav-group-btn { padding: 0 1rem; height: 100%; }
+.pb-work > .main-layout { flex: 1 1 auto; min-height: 0; border-radius: 0 0 12px 12px; overflow: hidden; }
+.pb-nav-date { margin-left: auto; align-self: center; padding: 0 0.5rem; font-size: var(--fs-body); color: var(--text-muted); white-space: nowrap; }
+.pb-dock { border: 1px solid var(--pb-navy-700); border-radius: 12px; padding: 0 1rem 0.5rem; }
+.pb-heading { margin-bottom: 0.5rem; }
+.pb-heading h1 { font-size: var(--fs-title); }
+
+/* Composer, like the Claude desktop composer: the text box across the top, then the one control row under it (council
+   Rule 2, both composers): + far left, the aside (the idea hint), the secondary (Clear), the primary far right. */
+.pb-composer { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto auto; align-items: center; gap: 0.25rem 0.5rem; padding: 0.25rem 0.5rem; border: 1px solid var(--pb-navy-500); border-radius: 12px; background: var(--pb-navy-850); }
+.pb-composer:focus-within { border-color: var(--gm-gold); }
+.pb-composer-input { grid-column: 1 / -1; grid-row: 1; width: 100%; min-width: 0; min-height: 0; max-height: 40vh; padding: 0.25rem 0.25rem; border: 0 !important; outline: none !important; box-shadow: none !important; background: transparent !important; color: var(--text); font: 400 var(--fs-body)/1.5 'Segoe UI', sans-serif; resize: vertical; }
+.pb-composer > .pb-btn { grid-row: 2; margin-left: 0; order: 0; }
+.pb-composer > .pb-plus { grid-column: 1; }
+.pb-composer > .pb-btn:not(.pb-plus) { grid-column: 4; justify-self: end; }
+.pb-btn.pb-plus, .pb-btn.pb-send, .pb-btn.pb-stop { width: 2rem; height: 2rem; border-radius: 6px; }
+.pb-btn.pb-plus { background: transparent; }
+/* Builder round 3: the chat composer never clips at 1440x900 or 1280x800. In the dock column the composer keeps
+   its full height and the thread above gives way; the +, the text box and Send stay inside the composer border.
+   A long saved draft wraps and scrolls inside the text box. */
+@media (max-width: 900px) { .pb-dock .pb-dock-input { max-height: 68px; } }
+.pb-dock { box-sizing: border-box; min-width: 0; }
+.pb-dock-answer { min-height: 40px; }
+.pb-composer { box-sizing: border-box; min-width: 0; max-width: 100%; }
+.pb-dock > .pb-dock-row { flex: 0 0 auto; min-height: auto; width: 100%; }
+.pb-composer-input { box-sizing: border-box; max-width: 100%; overflow-x: hidden; overflow-y: auto; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; }
+.pb-composer > .pb-btn { flex-shrink: 0; min-width: 0; }
+.pb-dock-input { flex: 1 1 auto; width: 100%; min-height: calc(4.5em + 0.5rem); max-height: 40vh; resize: none; }
+.pb-dock:not(.is-busy) .pb-stop, .pb-dock.is-busy .pb-send { display: none; }
+.pb-actionbar { margin: 0.5rem 0 0; }
+.pb-actionbar > .pb-btn:not(.pb-plus) { margin-left: auto; }
+
+/* The + menu: one vertical list, a row per item (small icon, label, optional hint, > for a submenu). */
+.pb-menu { position: fixed; z-index: 1000; min-width: 220px; max-width: min(360px, calc(100vw - 16px)); max-height: 60vh; overflow: auto; padding: 0.25rem; border: 1px solid var(--pb-navy-600); border-radius: 12px; background: var(--pb-navy-800); box-shadow: 0 4px 16px rgba(7,15,31,.28); }
+.pb-menu-row { display: flex; align-items: center; gap: 0.5rem; width: 100%; padding: 0.5rem 0.5rem; border: 0; border-radius: 8px; background: transparent; color: var(--text); font: 400 var(--fs-body) 'Segoe UI', sans-serif; text-align: left; cursor: pointer; }
+.pb-menu-row svg { flex: 0 0 auto; opacity: .85; }
+.pb-menu-row > span { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pb-menu-row > small { max-width: 45%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--fs-body); color: var(--text-muted); }
+.pb-menu-more { font-weight: 400; color: var(--text-muted); }
+.pb-menu-row:hover:not(:disabled), .pb-menu-row:focus-visible { background: var(--bg-hover); outline: none; }
+.pb-menu-row:disabled { opacity: .45; cursor: not-allowed; }
+.pb-menu hr { margin: 0.25rem 0.25rem; border: 0; border-top: 1px solid var(--border); }
+.pb-menu-empty { margin: 0.25rem 0.5rem; font-size: var(--fs-body); color: var(--text-muted); }
+[data-theme="light"] .pb-work, [data-theme="light"] .pb-dock { border-color: var(--border); }
+[data-theme="light"] .pb-composer { background: #FFFFFF; border-color: var(--pb-navy-450); }
+[data-theme="light"] .pb-composer:focus-within { border-color: #B8902F; }
+[data-theme="light"] .pb-menu { background: #FFFFFF; border-color: var(--border); box-shadow: 0 8px 28px rgba(16,35,71,.16); }
+@media (max-width: 900px) { .pb-dock { padding-bottom: 0.5rem; } .pb-dock-head { height: 44px; min-height: 44px; } }
+/* Builder round 3 (c), per page. Fewer elements: no repeated status pills, forward actions alone on the right,
+   long card text folded to two lines, cards fold to their title line from the + menu. */
+.pb-btn.pb-solo { display: block; width: max-content; margin: 0.5rem 0 0 auto; }
+.pb-breadcrumb button, .pb-role button { min-height: 2rem; }
+.pb-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.pb-card.pb-open .pb-clamp { display: block; -webkit-line-clamp: unset; }
+.pb-card.pb-min > :not(.pb-card-head), .pb-card.pb-min .pb-tag { display: none; }
+.pb-card.pb-min { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.pb-card.pb-min .pb-card-head h3 { margin: 0; cursor: pointer; }
+.pb-card p code, .pb-md code { font-family: ui-monospace, Consolas, monospace; font-size: 0.875rem; }
+.pb-heading > h1 { margin-right: auto; }
+.pb-heading { gap: 0.5rem; }
+.pb-bubble .pb-md { white-space: normal; }
+.pb-md > :first-child { margin-top: 0; }
+.pb-md p, .pb-md ul, .pb-md ol { margin: 0 0 0.5rem; }
+.pb-md ul, .pb-md ol { padding-left: 1.5rem; }
+.pb-md .pb-md-h { margin: 0.5rem 0 0.25rem; font-size: var(--fs-body); }
+.pb-md .pb-md-code { margin: 0 0 0.5rem; padding: 0.5rem; white-space: pre-wrap; overflow-wrap: anywhere; font: 0.875rem/1.5 ui-monospace, Consolas, monospace; background: rgba(255,255,255,.06); border-radius: 6px; }
+.pb-md a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.pb-work > .nav-tabs { flex-wrap: nowrap; }
+.pb-nav-date { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.pb-draft-note { margin: 0 0 0.5rem; }
+
+/* Builder round 4 (a): a text box holds only text. The + (left) and the forward button (right) sit in one slim
+   row directly under the box; the box keeps no bottom strip for them. */
+.pb-composer { padding: 0; border: 0; border-radius: 0; background: transparent; gap: 0.25rem; }
+.pb-composer:focus-within { border-color: transparent; }
+.pb-composer-input { border: 1px solid var(--pb-navy-500) !important; border-radius: 12px; background: var(--pb-navy-850) !important; padding: 0.5rem !important; }
+.pb-composer-input:focus { border-color: var(--gm-gold) !important; }
+[data-theme="light"] .pb-composer, [data-theme="light"] .pb-composer:focus-within { background: transparent; border-color: transparent; }
+[data-theme="light"] .pb-composer-input { background: #FFFFFF !important; border-color: var(--pb-navy-450) !important; }
+[data-theme="light"] .pb-composer-input:focus { border-color: #B8902F !important; }
+
+/* Builder round 4 (b): founder default size 110% (root font size, no zoom or scale). The chat pane keeps at least
+   360px, the main column gives way; chat messages use the full pane width. */
+html { font-size: 110%; }
+.pb-dock { min-width: 360px; }
+.pb-dock-answer .pb-bubble { max-width: none; width: 100%; box-sizing: border-box; align-self: stretch; }
+@media (max-width: 900px) { .pb-dock { min-width: 0; } }
+
+/* Builder round 4 (c), changed by the council 2026-10-12: the title bar and tab row are one navy band in both themes,
+   light ink, the gold sheen wordmark. Light mode keeps bone and white below the band. Contrast of every bar icon and
+   tab against the bar is tested in both themes. */
+:root { --bar-bg: #102347; --bar-ink: #EEF0EF; --bar-line: var(--pb-navy-600); --bar-active: var(--pb-navy-750); }
+:root[data-theme="light"] { --bar-bg: #102347; --bar-ink: #EEF0EF; --bar-line: var(--pb-navy-600); --bar-active: var(--pb-navy-750); }
+.header, .nav-tabs, .pb-work > .header, .pb-work > .nav-tabs { background: var(--bar-bg); color: var(--bar-ink); }
+.pb-work > .nav-tabs .nav-tab, .pb-work > .nav-tabs .nav-group-btn, .pb-nav-date,
+.header .header-meta .pb-plus, .header .header-meta .pb-head-tool { color: var(--bar-ink); }
+.header .header-meta .pb-plus, .header .header-meta .pb-head-tool { border-color: transparent; background: transparent; }
+.pb-work > .nav-tabs .nav-tab:hover, .pb-work > .nav-tabs .nav-group-btn:hover,
+.pb-work > .nav-tabs .nav-tab.active, .pb-work > .nav-tabs .nav-group.active > .nav-group-btn,
+.header .header-meta .pb-plus:hover:not(:disabled), .header .header-meta .pb-plus[aria-expanded="true"],
+.header .header-meta .pb-head-tool:hover:not(:disabled) { background: var(--bar-active); color: var(--bar-ink); }
+.pb-work > .nav-tabs .nav-menu .nav-tab { color: var(--text); }
+[data-theme="light"] .pb-btn.primary, [data-theme="light"] .pb-btn.primary:hover:not(:disabled) { background: var(--gold); color: #FFFFFF; border-color: var(--gold); }
+/* Only the page body scrolls; the title bar and tabs never sit over page content. */
+html, body { overflow: hidden; }
+.pb-work > .header, .pb-work > .nav-tabs { position: relative; top: auto; flex: 0 0 auto; }
+.page { scroll-padding-top: 1rem; }
+
+/* Builder round 4 (d): Estate status on the repo path line; saved idea body only; the Unfiled pill is a muted grey
+   outline in light mode so the forward button is the one gold element. */
+.pb-path-line { display: flex; flex-wrap: nowrap; align-items: baseline; gap: 0 0.5rem; min-width: 0; }
+.pb-path-line > .pb-path-text { flex: 1 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pb-path-line > .pb-muted { flex: 0 0 auto; white-space: nowrap; font: 400 var(--fs-body)/1.5 var(--font-ui); color: var(--text-muted); }
+.pb-idea-card .pb-card-head > p { flex: 1 1 auto; min-width: 0; margin: 0; }
+[data-theme="light"] .pb-tag { color: var(--text-muted); border-color: var(--pb-navy-450); background: transparent; }
+/* The date on the tab row is always whole: short form (full date in its tooltip), never shrunk or cut; at narrower
+   widths the tabs give up some padding instead. */
+.pb-work > .nav-tabs .pb-nav-date { flex: 0 0 auto; min-width: max-content; overflow: visible; text-overflow: clip; }
+@media (max-width: 1200px) { .pb-work > .nav-tabs > .nav-tab, .pb-work > .nav-tabs .nav-group-btn { padding: 0 0.5rem; } }
+
+/* Design fixes (founder 2026-10-12). Colours by the GluMira colour method: navy is the world, gold the light, bone
+   the ground. No new hue: the surfaces are the canon navy steps already in this page (navy-900, the navy
+   primary #102347 and navy-750, all from the one ramp), and in light mode bone and white. */
+/* Layered surfaces: the canvas is the base; panels and the chat sit one step up, cards one more, so they read as
+   raised by tone and a soft shadow, not by heavy borders. */
+:root { --pb-surface-base: var(--pb-navy-900); --pb-surface-1: #102347; --pb-surface-2: var(--pb-navy-750); --pb-edge: rgba(247,246,241,.07); --pb-lift: 0 1px 2px rgba(7,15,31,.30), 0 4px 14px rgba(7,15,31,.18); }
+:root[data-theme="light"] { --pb-surface-base: #F7F6F1; --pb-surface-1: #FFFFFF; --pb-surface-2: #FFFFFF; --pb-edge: #E0DBCF; --pb-lift: 0 1px 2px rgba(16,35,71,.06), 0 2px 8px rgba(16,35,71,.04); }
+html, body, .pb-shell, .pb-work, .pb-work > .main-layout, .content-area { background: var(--pb-surface-base); }
+.pb-work, .pb-dock { border-color: var(--pb-edge); }
+.pb-panel, .pb-dock { background: var(--pb-surface-1); border-color: var(--pb-edge); box-shadow: var(--pb-lift); }
+.pb-card, .pb-phase summary, .pb-tree-child, .pb-menu { background: var(--pb-surface-2); border-color: var(--pb-edge); }
+.pb-panel .pb-card { box-shadow: none; }
+
+/* Take it further: a gold text link with an arrow, still the primary action and still a keyboard button. */
+.pb-btn.pb-link, .pb-btn.pb-link:hover:not(:disabled),
+[data-theme="light"] .pb-btn.pb-link, [data-theme="light"] .pb-btn.pb-link:hover:not(:disabled) {
+  background: transparent; border-color: transparent; box-shadow: none; color: var(--gold); padding: 0 0.25rem;
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+}
+.pb-btn.pb-link:hover:not(:disabled) { text-decoration-thickness: 2px; }
+.pb-link-arrow { display: inline-block; margin-left: 0.25rem; text-decoration: none; transition: transform .15s; }
+.pb-btn.pb-link:hover .pb-link-arrow, .pb-btn.pb-link:focus-visible .pb-link-arrow { transform: translateX(3px); }
+
+/* The idea + carries a short visible label of what it holds; the label opens the same menu. */
+.pb-composer > .pb-plus-label { grid-row: 2; grid-column: 2; justify-self: start; min-width: 0; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-muted); cursor: pointer; }
+.pb-composer > .pb-plus-label:hover { color: var(--text); }
+.pb-composer { container-type: inline-size; }
+@container (max-width: 20rem) { .pb-composer > .pb-plus-label { visibility: hidden; } }
+
+/* The divider between the idea pane and the prompt pane. */
+.pb-grid.pb-split { grid-template-columns: minmax(0, var(--pb-split, 50%)) 1rem minmax(0, 1fr); gap: 0; }
+.pb-split-bar { position: relative; cursor: col-resize; touch-action: none; border-radius: 4px; outline: none; transition: background .15s; }
+.pb-split-bar::before { content: ''; position: absolute; top: 0.5rem; bottom: 0.5rem; left: 50%; width: 1px; background: var(--pb-edge); }
+.pb-split-bar:hover, .pb-split-bar:focus-visible, body.pb-resizing .pb-split-bar { background: rgba(201,162,75,.22); }
+.pb-split-bar:focus-visible { outline: 2px solid var(--gm-gold); outline-offset: -2px; }
+
+/* Title bar: the IOB Hunter shield beside the name, the last scan time, and a slim scan bar on the lower edge. */
+.pb-work > .header .header-shield { display: block; width: auto; height: 1.75rem; flex: 0 0 auto; }
+.pb-work > .header .header-title { white-space: nowrap; }
+.pb-work > .header .header-meta { flex-shrink: 1; min-width: 0; }
+.pb-scan-stamp { color: var(--bar-ink); opacity: .8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; margin-right: 0.25rem; font-variant-numeric: tabular-nums; }
+.pb-scan { position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 3px; border-radius: 2px; background: var(--pb-edge); overflow: hidden; }
+.pb-scan[hidden] { display: none; }
+.pb-scan-fill { display: block; height: 100%; width: 0; background: var(--gm-gold-button); transition: width .25s; }
+@media (max-width: 700px) {
+  .pb-grid.pb-split { grid-template-columns: minmax(0, 1fr); gap: 0.5rem; }
+  .pb-split-bar { display: none; }
+  .pb-work > .header .header-shield { height: 1.5rem; }
+  /* A phone has no room for the stamp beside the name and four tools: the name wraps as before and the stamp
+     rests until the window is wider. The scan bar still shows on the title bar edge. */
+  .pb-work > .header .header-title { white-space: normal; }
+  .pb-work > .header .header-meta { flex-shrink: 0; }
+  .pb-scan-stamp { display: none; }
+}
+
+/* Colour carries meaning (founder 2026-10-12, verbatim: "more color better design", "better visual"). Desktop only.
+   By the GluMira colour method: navy is the world, gold is the light, bone is the neutral. Merged with the council
+   design (card 01-29): every blue below is a step of the one navy ramp at the top of this file, so the cool group is
+   the navy's own shadow and light, never a second blue; the warm group is yellow ochre and alizarin crimson for warning
+   and error; success may use the What-If emerald #2ECC71 sparingly. Shadows lean navy and are never black. Text on
+   every surface below is at least 4.5:1 in both themes (tested in test/builder-colour.test.js). */
+:root {
+  --pb-accent: var(--pb-navy-450); --pb-accent-ink: var(--pb-navy-300); --pb-accent-wash: var(--pb-navy-700); --pb-ring: var(--pb-navy-300);
+  --pb-ochre: #C7973F; --pb-alizarin: #C25E68; --pb-emerald: #2ECC71;
+  --pb-tab-ink: #CFCABD; --pb-tab-active-ink: #D9B866; --pb-tab-line: #C9A24B;
+  --pb-menu-ink: #CFCABD; --pb-menu-active-ink: #D9B866; --pb-menu-line: #C9A24B;
+  --pb-head-ink: #D9B866; --pb-head-rule: var(--pb-navy-700); --pb-head-mark: #C9A24B;
+  --pb-chat-you: var(--pb-navy-700); --pb-chat-you-edge: #C9A24B; --pb-chat-you-label: #D9B866;
+  --pb-chat-model: var(--pb-navy-750); --pb-chat-model-edge: var(--pb-navy-300); --pb-chat-model-label: var(--pb-navy-300);
+  --pb-note-info: var(--pb-navy-750); --pb-note-info-bar: var(--pb-navy-300);
+  --pb-note-ok: #133A33; --pb-note-ok-bar: #2ECC71;
+  --pb-note-warn: #3B3220; --pb-note-warn-bar: #C7973F;
+  --pb-note-error: #3D2227; --pb-note-error-bar: #C25E68;
+  --pb-empty-ink: #D3CCBB; --pb-empty-icon: #C9A24B;
+  --pb-dot-claude: #C9874B; --pb-dot-gemini: var(--pb-navy-300); --pb-dot-deepseek: #8FB39A;
+  --pb-highlight: rgba(247,246,241,.07); --pb-shade: rgba(7,15,31,.55); --pb-shade-soft: rgba(7,15,31,.32);
+}
+/* Light: the title band stays navy (council rule 1), so the tab inks match dark; the tab menu opens on white. */
+:root[data-theme="light"] {
+  --pb-accent: var(--pb-navy-550); --pb-accent-ink: var(--pb-navy-800); --pb-accent-wash: var(--pb-navy-050); --pb-ring: var(--pb-navy-550);
+  --pb-ochre: #C7973F; --pb-alizarin: #9E3B43; --pb-emerald: #2ECC71;
+  --pb-tab-ink: #CFCABD; --pb-tab-active-ink: #D9B866; --pb-tab-line: #C9A24B;
+  --pb-menu-ink: #5E5949; --pb-menu-active-ink: #7A5C0A; --pb-menu-line: #7A5C0A;
+  --pb-head-ink: #7A5C0A; --pb-head-rule: var(--pb-navy-150); --pb-head-mark: #C9A24B;
+  --pb-chat-you: #F6EEDB; --pb-chat-you-edge: #7A5C0A; --pb-chat-you-label: #7A5C0A;
+  --pb-chat-model: var(--pb-navy-050); --pb-chat-model-edge: var(--pb-navy-800); --pb-chat-model-label: var(--pb-navy-550);
+  --pb-note-info: var(--pb-navy-050); --pb-note-info-bar: var(--pb-navy-550);
+  --pb-note-ok: #E3F5EA; --pb-note-ok-bar: #2ECC71;
+  --pb-note-warn: #FBF1D9; --pb-note-warn-bar: #C7973F;
+  --pb-note-error: #F8E3E4; --pb-note-error-bar: #9E3B43;
+  --pb-empty-ink: #5E5949; --pb-empty-icon: #B8902F;
+  --pb-dot-claude: #B0702F; --pb-dot-gemini: var(--pb-navy-550); --pb-dot-deepseek: #4E7A5C;
+  --pb-highlight: rgba(255,255,255,.9); --pb-shade: rgba(16,35,71,.10); --pb-shade-soft: rgba(16,35,71,.06);
+}
+/* 6. Depth reads as light and shadow: a soft top highlight, a muted navy shadow, no heavy border. */
+:root, :root[data-theme="light"] {
+  --pb-lift: inset 0 1px 0 var(--pb-highlight), 0 1px 2px var(--pb-shade), 0 6px 18px var(--pb-shade-soft);
+  --pb-card-lift: inset 0 1px 0 var(--pb-highlight), 0 1px 3px var(--pb-shade-soft);
+}
+.pb-card, .pb-phase summary, .pb-tree-child, .pb-panel .pb-card,
+[data-theme="light"] .pb-card, [data-theme="light"] .pb-phase summary, [data-theme="light"] .pb-tree-child { box-shadow: var(--pb-card-lift); }
+.pb-menu, [data-theme="light"] .pb-menu { box-shadow: inset 0 1px 0 var(--pb-highlight), 0 8px 24px var(--pb-shade); }
+
+/* 1. The active tab and its menu: gold text and a gold underline. Inactive tabs are bone-muted. */
+.pb-work > .nav-tabs .nav-tab, .pb-work > .nav-tabs .nav-group-btn { color: var(--pb-tab-ink); }
+.pb-work > .nav-tabs .nav-tab:hover, .pb-work > .nav-tabs .nav-group-btn:hover { color: var(--bar-ink); }
+.pb-work > .nav-tabs > .nav-tab.active, .pb-work > .nav-tabs .nav-group.active > .nav-group-btn {
+  color: var(--pb-tab-active-ink); box-shadow: inset 0 -2px 0 0 var(--pb-tab-line);
+}
+.pb-work > .nav-tabs .nav-menu .nav-tab { color: var(--pb-menu-ink); }
+.pb-work > .nav-tabs .nav-menu .nav-tab:hover { color: var(--text); }
+.pb-work > .nav-tabs .nav-menu .nav-tab.active { color: var(--pb-menu-active-ink); box-shadow: inset 2px 0 0 0 var(--pb-menu-line); }
+
+/* 2. Panel headings in gold with a thin navy rule and a short gold mark. */
+.pb-panel > h2, .pb-flow-head > strong, .pb-dock-head > strong, .pb-saved > summary { color: var(--pb-head-ink); }
+.pb-panel > h2 { position: relative; padding-bottom: 0.25rem; border-bottom: 1px solid var(--pb-head-rule); }
+.pb-panel > h2::after { content: ''; position: absolute; left: 0; bottom: -1px; width: 2rem; height: 2px; border-radius: 1px; background: var(--pb-head-mark); }
+.pb-flow-head { padding-bottom: 0.25rem; border-bottom: 1px solid var(--pb-head-rule); }
+.pb-dock-head { border-bottom: 1px solid var(--pb-head-rule); }
+.pb-saved > summary, [data-theme="light"] .pb-saved > summary { border-left: 3px solid var(--pb-head-mark); }
+.pb-prompt-panel h3, .pb-side-card h4, .pb-next-step strong, .pb-prompt-sources h3 { color: var(--pb-accent-ink); }
+
+/* 3. Chat: your words on the warmer surface with a gold label, the model's on the cool navy surface with its colour dot.
+   The council bubble rules below draw these tokens as a left rule, with no border box. */
+.pb-bubble.user, [data-theme="light"] .pb-bubble.user { background: var(--pb-chat-you); border-color: var(--pb-chat-you-edge); color: var(--text); }
+.pb-bubble.assistant, [data-theme="light"] .pb-bubble.assistant { background: var(--pb-chat-model); border-color: var(--pb-chat-model-edge); color: var(--text); }
+.pb-bubble.user > small, [data-theme="light"] .pb-bubble.user > small { color: var(--pb-chat-you-label); }
+.pb-bubble.assistant > small, [data-theme="light"] .pb-bubble.assistant > small { color: var(--pb-chat-model-label); }
+.pb-bubble[data-model="claude"], .pb-model-dot[data-model="claude"] { --pb-dot: var(--pb-dot-claude); }
+.pb-bubble[data-model="gemini"], .pb-model-dot[data-model="gemini"] { --pb-dot: var(--pb-dot-gemini); }
+.pb-bubble[data-model="deepseek"], .pb-model-dot[data-model="deepseek"] { --pb-dot: var(--pb-dot-deepseek); }
+.pb-bubble[data-model] > small::before, .pb-model-dot {
+  content: ''; display: inline-block; width: 0.5rem; height: 0.5rem; border-radius: 999px; background: var(--pb-dot, var(--pb-accent));
+}
+.pb-bubble[data-model] > small::before { margin-right: 0.5rem; vertical-align: 0.0625rem; }
+/* The head's dot sits after the model picker, at the right edge, so it reads as the picker's colour. */
+.pb-model-dot { flex: 0 0 auto; order: 1; width: 0.625rem; height: 0.625rem; box-shadow: 0 0 0 2px var(--pb-surface-1); }
+
+/* 4. Notices: a tinted surface and a left accent bar. Info is navy, success emerald, warning ochre, error alizarin.
+   A toast sits in the tab row on the navy band (council rule 5) and keeps its kind as the left bar. */
+.pb-notice, [data-theme="light"] .pb-notice, .pb-toast {
+  background: var(--pb-note-info); color: var(--text); border: 0; border-left: 3px solid var(--pb-note-info-bar); border-radius: 0 6px 6px 0;
+}
+.pb-notice.is-ok, [data-theme="light"] .pb-notice.is-ok, .pb-toast[data-kind="ok"] { background: var(--pb-note-ok); border-left-color: var(--pb-note-ok-bar); }
+.pb-notice.is-warn, [data-theme="light"] .pb-notice.is-warn, .pb-toast[data-kind="warn"] { background: var(--pb-note-warn); border-left-color: var(--pb-note-warn-bar); }
+.pb-notice.is-error, [data-theme="light"] .pb-notice.is-error, .pb-toast[data-kind="error"] { background: var(--pb-note-error); border-left-color: var(--pb-note-error-bar); }
+.pb-save-error:not([hidden]) { padding: 0.25rem 0.5rem; background: var(--pb-note-error); color: var(--text); border-left: 3px solid var(--pb-note-error-bar); border-radius: 0 6px 6px 0; }
+.pb-toast { box-shadow: 0 6px 22px var(--pb-shade); }
+
+/* 5. Buttons: primary stays the gold fill; secondary is outlined in a navy ramp step; icon buttons have no circle and
+   no ring on hover (council rule 2), only a ring on keyboard focus. */
+.pb-btn, [data-theme="light"] .pb-btn { background: transparent; border-color: var(--pb-accent); color: var(--text); }
+.pb-btn:hover:not(:disabled), [data-theme="light"] .pb-btn:hover:not(:disabled) { background: var(--pb-accent-wash); }
+.pb-btn.pb-icon:focus-visible { border-color: var(--pb-ring); box-shadow: 0 0 0 2px var(--pb-ring); outline: none; }
+.pb-btn.pb-link, [data-theme="light"] .pb-btn.pb-link { border-color: transparent; }
+
+/* 7. Empty states: a small gold idea icon and warmer text. */
+.pb-empty, [data-theme="light"] .pb-empty { display: flex; align-items: flex-start; gap: 0.5rem; color: var(--pb-empty-ink); }
+.pb-empty::before {
+  content: ''; flex: 0 0 1.125rem; width: 1.125rem; height: 1.125rem; margin-top: 0.125rem; background: var(--pb-empty-icon);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9V16h7v-2.1A6 6 0 0 0 12 3z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* Council design (2026-10-12, card 01-29). The chair's one design: COUNCIL.md in the council record.
+   Rule 2 and 3: icons with no circles, one control placement in both composers and on every saved card.
+   Rule 5: notices in the tab row. Colours are ramp steps or the locked gold; nothing new. */
+/* Icons only: a 2rem hit area (35px at the 110% root), no border, no fill, a soft navy hover tint. The focus ring
+   shows on keyboard focus only (button:focus-visible). */
+.pb-btn.pb-icon, .pb-btn.pb-icon:hover:not(:disabled) { border-color: transparent; background: transparent; box-shadow: none; border-radius: 6px; }
+.pb-btn.pb-icon { color: var(--text-muted); }
+.pb-btn.pb-icon:hover:not(:disabled), .pb-btn.pb-icon[aria-expanded="true"] { background: var(--pb-navy-750); color: var(--text); }
+[data-theme="light"] .pb-btn.pb-icon { background: transparent; border-color: transparent; color: var(--text-muted); }
+[data-theme="light"] .pb-btn.pb-icon:hover:not(:disabled), [data-theme="light"] .pb-btn.pb-icon[aria-expanded="true"] { background: var(--bg-hover); color: var(--text); }
+.pb-btn.pb-icon:focus:not(:focus-visible) { outline: none; }
+/* The primary icon (send, Take it further, Send to prompt) is the gold arrow itself, never a filled square. */
+:is(html, html[data-theme="light"]) .pb-btn.pb-icon.pb-send, :is(html, html[data-theme="light"]) .pb-btn.pb-icon.pb-go,
+:is(html, html[data-theme="light"]) .pb-btn.pb-icon.pb-send:hover:not(:disabled), :is(html, html[data-theme="light"]) .pb-btn.pb-icon.pb-go:hover:not(:disabled) { background: transparent; border-color: transparent; box-shadow: none; color: var(--gold); }
+.pb-btn.pb-icon.pb-send:hover:not(:disabled) svg, .pb-btn.pb-icon.pb-go:hover:not(:disabled) svg { transform: translateY(-1px); }
+.pb-btn.pb-icon.pb-go:hover:not(:disabled) svg { transform: translateX(2px); }
+/* Header tools sit on the navy band in both themes, in the band's ink. */
+.header .header-meta .pb-btn.pb-icon { color: var(--bar-ink); }
+.header .header-meta .pb-btn.pb-icon:hover:not(:disabled), .header .header-meta .pb-btn.pb-icon[aria-expanded="true"] { background: var(--bar-active); color: var(--bar-ink); }
+
+/* Rule 2: the one control placement lives in the composer grid above (columns 2rem, 1fr, auto, auto). Clear is the
+   quiet secondary: text only, muted until hover. */
+:is(html, html[data-theme="light"]) .pb-composer > .pb-btn.pb-clear { background: transparent; border-color: transparent; box-shadow: none; color: var(--text-muted); }
+:is(html, html[data-theme="light"]) .pb-composer > .pb-btn.pb-clear:hover:not(:disabled) { background: transparent; color: var(--text); text-decoration: underline; text-underline-offset: 4px; }
+
+/* Rule 3: compact cards (ideas, notes, diary). Text first and widest, a small muted label, the icons at the right on
+   the same line in the Rule 2 order. */
+.pb-card.pb-compact { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 0.5rem; padding: 0.5rem 0.75rem; margin: 0.25rem 0; }
+.pb-card.pb-compact > :not(.pb-actionbar) { grid-column: 1; min-width: 0; }
+.pb-card.pb-compact > .pb-actionbar { grid-column: 2; grid-row: 1 / span 3; align-self: center; margin: 0; gap: 0.25rem; flex-wrap: nowrap; }
+.pb-card.pb-compact .pb-card-head { align-items: baseline; gap: 0.5rem; }
+.pb-card.pb-compact h3, .pb-card.pb-compact p { margin: 0; }
+.pb-card.pb-compact > p { color: var(--text-muted); }
+:is(html, html[data-theme="light"]) .pb-card .pb-tag { border: 0; border-radius: 0; background: transparent; padding: 0; color: var(--text-muted); flex: 0 0 auto; }
+
+/* Chat bubbles: no border box; a 3px rule on the left tells who speaks, in the colour-meaning tokens above (gold for
+   you, navy for the model). Labels in sentence case, weight 600; their colours come from the same tokens. */
+:is(html, html[data-theme="light"]) .pb-bubble { border: 0; border-left: 3px solid var(--pb-chat-model-edge); background: var(--pb-chat-model); color: var(--text); box-shadow: none; }
+:is(html, html[data-theme="light"]) .pb-bubble.user { border-left-color: var(--pb-chat-you-edge); background: var(--pb-chat-you); }
+.pb-bubble > small { text-transform: none; letter-spacing: 0; font-weight: 600; }
+
+/* The empty prompt column shows the brief it will fill and sits one step back from the idea column. */
+.pb-brief dt { text-transform: none; letter-spacing: 0; }
+.pb-prompt-panel > h3 { font-size: var(--fs-body); margin: 1rem 0 0.25rem; }
+:is(html, html[data-theme="light"]) .pb-panel.pb-prompt-panel { background: var(--pb-surface-base); box-shadow: none; border-color: var(--pb-edge); }
+
+/* Rule 5: notices sit at the right end of the tab row on the navy band, in gold, and never float over work. */
+.pb-work > .nav-tabs > .pb-toast { position: absolute; z-index: 40; top: 2px; bottom: 2px; right: 0.5rem; left: auto; transform: none; display: flex; align-items: center; gap: 0.5rem; max-width: 60%; padding: 0 0.75rem; border-radius: 6px; background: var(--bar-bg); color: #C9A24B; box-shadow: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-work > .nav-tabs > .pb-toast .pb-undo { min-height: 0; height: 26px; padding: 0 0.5rem; margin-left: 0; background: transparent; border-color: #C9A24B; color: #C9A24B; }
+.pb-toast[hidden] { display: none !important; }

@@ -1,0 +1,6 @@
+{
+  "name": "GluMira Production Builder",
+  "description": "Founder's private desktop cockpit for building GluMira diabetes education app.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

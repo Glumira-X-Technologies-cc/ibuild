@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" id="Layout-Panes--Builder">
+  <desc>
+    Layout panes: drawn for the Production Builder in the Streamline Core line style (not a Streamline file).
+  </desc>
+  <g id="layout-panes">
+    <path id="Rectangle" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M1.5 2.5h11c0.552 0 1 0.448 1 1v7c0 0.552 -0.448 1 -1 1h-11c-0.552 0 -1 -0.448 -1 -1v-7c0 -0.552 0.448 -1 1 -1Z" stroke-width="1"></path>
+    <path id="Divider 1" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M5 2.5v9" stroke-width="1"></path>
+    <path id="Divider 2" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M9 2.5v9" stroke-width="1"></path>
+  </g>
+</svg>

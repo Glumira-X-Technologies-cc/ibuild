@@ -1,0 +1,357 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* One spacing scale (4px base). Use these for padding, gaps and margins. */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+
+    /* Variation 16 Design System with GluMira Living-Colour Restraint */
+    --bg-nav: #0b1733;
+    --bg-main: #102347;
+    --bg-panel: #15264c;
+    --text-main: #f7f6f1;
+    --text-dim: #969daa;
+    --gold: #C9A24B;        /* Official GluMira gold (locked; one gold only) */
+    --gold-light: var(--gold); /* one gold only (src/brand.ts GOLD) */
+    --gold-shadow: var(--gold);
+    --gold-text: var(--gold);
+    --accent-blue: #1a5fb4;
+    --border-color: #22375f;
+    --border-input: #354d7d;
+    --success: #2ecc71;
+    --warning: #d48806;
+    --error: #c0392b;
+
+    /* Semantic mapping & GluMira Shade Color */
+    --bg-ground: var(--bg-main);
+    --bg-card: var(--bg-nav);
+    --bg-elevated: var(--bg-panel);
+    --text-primary: var(--text-main);
+    --text-secondary: #d5d8e0;
+    --text-muted: var(--text-dim);
+    
+    /* Dark mode: blueish grey for calm headers, labels, and secondary focal points */
+    --shade-color: #969daa;
+    --shade-color-hover: #c4c9d4;
+    --btn-primary-bg: #22375f;
+    --btn-primary-text: #f7f6f1;
+    --btn-primary-border: #384f7b;
+    --btn-primary-hover-bg: #2c436f;
+    --scrollbar: rgba(34, 55, 95, 0.5);
+    --notice-bg: rgba(212, 136, 6, 0.12);
+    --on-gold: #0b1733;
+    /* The gold button: the bottom band of the founder's gold gradient only (2026-10-15, verbatim: "We only use the
+       bottom part of the gradient"), sampled from his image: #E9CB40 at the top of a button to #D7B838 at the
+       bottom, never the pale upper band. One token for every gold button. */
+    --pb-gold-button: linear-gradient(180deg, #E9CB40 0%, #DDBE3A 60%, #D7B838 100%);
+    /* The Builder renders at 125% by default for every viewer (founder 2026-10-15: "Please change the size of
+       production builder to 125% zoom as default"). The browser's own zoom still works on top. */
+    --pb-zoom: 1.25;
+  }
+
+  :root.theme-light {
+    --bg-nav: #eceae3;
+    --bg-main: #f7f6f1;
+    --bg-panel: #ffffff;
+    --text-main: #16233f;
+    --text-dim: #525b6b;
+    --gold: #C9A24B;
+    --gold-light: var(--gold);
+    --gold-shadow: var(--gold);
+    --gold-text: var(--gold); /* every gold text is #C9A24B in both themes (founder 2026-10-15: "USE THIS") */
+    --accent-blue: #1a5fb4;
+    --border-color: #d6d2c4;
+    --border-input: #b9b3a1;
+    --scrollbar: rgba(22, 35, 63, 0.25);
+    --notice-bg: rgba(179, 111, 5, 0.10);
+    --success: #27ae60;
+    --warning: #b36f05;
+    --error: #c0392b;
+
+    --bg-ground: var(--bg-main);
+    --bg-card: #ffffff;
+    --bg-elevated: #f2f0e8;
+    --text-primary: var(--text-main);
+    --text-secondary: #29313d;
+    --text-muted: var(--text-dim);
+    
+    /* Light mode: muted slate for labels and secondary text (AA on #f7f6f1), dark blue on hover */
+    --shade-color: #4a5468;
+    --shade-color-hover: #16233f;
+    --btn-primary-bg: #16233f;
+    --btn-primary-text: #f7f6f1;
+    --btn-primary-border: #102347;
+    --btn-primary-hover-bg: #0b1733;
+  }
+
+  /* 125% for the whole page. The app root is sized back by the same factor so it still fills the window. */
+  html { zoom: var(--pb-zoom); }
+  #root, #root > div { height: calc(100vh / var(--pb-zoom)) !important; width: calc(100vw / var(--pb-zoom)) !important; }
+
+  /* The one compact control size (screens/ui.tsx IconAction and FoldButton). */
+  .pb-action { font-size: 11px; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    height: calc(100vh / var(--pb-zoom));
+    width: calc(100vw / var(--pb-zoom));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  code, .mono-code {
+    font-family: "Consolas", monospace;
+  }
+
+  /* Headings in gold (founder mark-up 2026-10-15: "HEADING IN GOLD"), one rule for every panel heading. */
+  .label-text {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-text);
+    font-weight: 600;
+  }
+
+  .text-shade {
+    color: var(--shade-color);
+  }
+  .text-shade:hover {
+    color: var(--shade-color-hover);
+  }
+
+  /* Title: Calm brand presence */
+  .title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+  }
+  .title span.gold-accent {
+    color: var(--gold-text);
+  }
+  /* GluMira in the one gold text colour, Production Builder in the main text colour. */
+  .title .gold-word {
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  /* The gold button: every Send. The bottom-band gold, navy text. */
+  .btn-gold {
+    background-image: var(--pb-gold-button);
+    color: var(--on-gold);
+    border: 1px solid #D7B838;
+    padding: 3px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 3px;
+    cursor: pointer;
+    font-family: "Segoe UI", sans-serif;
+    white-space: nowrap;
+    transition: filter 0.15s ease;
+  }
+  .btn-gold:hover,
+  .btn-gold:focus-visible { filter: brightness(1.06); }
+  .btn-gold:active { filter: brightness(0.96); }
+  .btn-gold:disabled { opacity: 0.55; cursor: default; filter: none; }
+
+  /* Calm cards without loud stripes - turns gold when worked in */
+  .card-var16 {
+    background: var(--bg-nav);
+    padding: var(--space-2) var(--space-3);
+    border-radius: 3px;
+    margin-bottom: var(--space-2);
+    border: 1px solid var(--border-color);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card-var16:hover,
+  .card-var16:focus-within {
+    border-color: var(--gold-text);
+  }
+
+  /* The plain button: navy at rest and navy when worked in. Gold is only for Send (founder 2026-10-15, verbatim:
+     "Agent misunderstood and made all buttons that gold"; his rulings named only Take it further and Send). */
+  .btn-var16 {
+    background: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: 1px solid var(--btn-primary-border);
+    padding: 3px 9px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 2px;
+    font-family: "Segoe UI", sans-serif;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .btn-var16:hover,
+  .btn-var16:focus-visible,
+  .btn-var16:active {
+    background: var(--btn-primary-hover-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-border);
+    font-weight: 600;
+  }
+
+  /* Compact outline button: navy when worked in, never a gold fill. */
+  .btn-gold-on-work {
+    background: transparent;
+    color: var(--shade-color);
+    border: 1px solid var(--border-color);
+    padding: 3px 8px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.15s ease;
+  }
+  .btn-gold-on-work:hover,
+  .btn-gold-on-work:focus {
+    background: var(--btn-primary-hover-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-border);
+    font-weight: 600;
+  }
+
+  /* Input and Textarea: rest in subtle border, turns gold only when worked in */
+  .input-work-gold {
+    background: var(--bg-nav);
+    border: 1px solid var(--border-input);
+    color: var(--text-main);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .input-work-gold:focus,
+  .input-work-gold:focus-visible {
+    outline: none;
+    border-color: var(--gold-text) !important;
+    box-shadow: 0 0 0 1px var(--gold);
+  }
+
+  /* Panels share one padding from the spacing scale */
+  .panel-pad {
+    padding: var(--space-5);
+  }
+
+  /* Top tabs: inactive tabs are quiet; the active tab is bold, full-contrast, with a gold bar. */
+  .nav-tab {
+    position: relative;
+    padding: var(--space-1) var(--space-2);
+    border-radius: 3px;
+    color: var(--shade-color);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+  /* Row 2 tabs sit over the left pane: one line, tight, so all five fit its width. */
+  .tab-row .nav-tab { padding: 2px 5px; letter-spacing: 0.03em; white-space: nowrap; }
+  .nav-tab:hover {
+    color: var(--text-main);
+  }
+  .nav-tab.is-active {
+    color: var(--text-main);
+    font-weight: 700;
+    background: var(--bg-panel);
+  }
+  .nav-tab.is-active::after {
+    content: '';
+    position: absolute;
+    left: var(--space-2);
+    right: var(--space-2);
+    bottom: -7px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--gold);
+  }
+  .nav-tab:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* Hairline vertical layout guides */
+  .hairline-v {
+    width: 1px;
+    min-width: 1px;
+    max-width: 1px;
+    background-color: var(--border-color);
+    opacity: 0.75;
+  }
+
+  /* Hairline column splitter: crisp 1px hairline vertical layout guide that illuminates gold when worked in */
+  .column-splitter {
+    width: 1px;
+    min-width: 1px;
+    max-width: 1px;
+    cursor: col-resize;
+    position: relative;
+    z-index: 30;
+    background-color: var(--border-color);
+    opacity: 0.75;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+  }
+  /* Generous 10px invisible hit zone for smooth dragging without visual bulk */
+  .column-splitter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -5px;
+    right: -5px;
+    cursor: col-resize;
+    z-index: 31;
+  }
+  /* Gently turns gold only when worked in (hovered or actively resizing) */
+  .column-splitter:hover,
+  .column-splitter.active-resizing {
+    opacity: 1;
+    background-color: var(--gold-text);
+  }
+
+  /* Mic animation */
+  @keyframes mic-pulse {
+    0%, 100% {
+      color: var(--gold-text);
+      transform: scale(1);
+    }
+    50% {
+      color: var(--gold-light);
+      transform: scale(1.15);
+    }
+  }
+  .mic-active {
+    animation: mic-pulse 1.3s infinite ease-in-out;
+    color: var(--gold-light) !important;
+  }
+
+  /* Ultra-thin 2px up/down scrollbars that blend completely into the design */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 2px;
+    height: 2px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar);
+    border-radius: 1px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--shade-color);
+  }
+}
+
+/* A section minimized by its heading (screens/ui.tsx H2). */
+[data-folded] { display: none !important; }

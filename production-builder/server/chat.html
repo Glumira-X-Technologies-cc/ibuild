@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GluMira Diary Chat</title>
+<style>
+/* GluMira one identity: navy world, gold light, bone ground. Same tokens as the Production Builder. */
+:root {
+  --navy: #102347; --bg-deep: #0B1733; --bg-panel: #102347; --bg-card: #16294B; --bg-hover: #1E3358; --bg-active: #253C64;
+  --gold: #C9A24B; --gold-dim: #8B6F47; --gold-glow: rgba(201,162,75,0.12);
+  --bone: #F7F6F1; --text: #F7F6F1; --text-dim: #AEB3BE; --text-muted: #7480A0;
+  --border: rgba(247,246,241,0.10); --danger: #E07A6B;
+  --radius: 8px; --radius-lg: 12px;
+  --mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg-deep); color: var(--text);
+  font: 15px/1.55 "Segoe UI", system-ui, -apple-system, sans-serif;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+header {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 10px 16px; background: var(--bg-panel); border-bottom: 1px solid var(--border);
+}
+header h1 { font-size: 16px; margin: 0 auto 0 0; font-weight: 600; letter-spacing: .2px; }
+header h1 span { color: var(--gold); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--text-muted); display: inline-block; margin-right: 6px; vertical-align: middle; }
+.dot.ok { background: var(--gold); }
+.dot.bad { background: var(--danger); }
+select, button, textarea { font: inherit; color: var(--text); }
+select {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 6px 8px; max-width: min(320px, 60vw);
+}
+button {
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 6px 12px; cursor: pointer;
+}
+button:hover { background: var(--bg-hover); border-color: var(--gold-dim); }
+button.primary { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 600; }
+button.primary:hover { filter: brightness(1.08); }
+button:disabled { opacity: .5; cursor: default; }
+main { flex: 1; overflow-y: auto; padding: 16px; }
+.thread { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.empty { color: var(--text-dim); text-align: center; margin-top: 12vh; }
+.empty b { color: var(--gold); }
+.msg { position: relative; padding: 10px 14px; border-radius: var(--radius-lg); overflow-wrap: anywhere; }
+.msg.user { align-self: flex-end; max-width: 85%; background: var(--bg-active); white-space: pre-wrap; }
+.msg.assistant { background: var(--bg-card); border: 1px solid var(--border); }
+.msg.error { background: rgba(224,122,107,.12); border: 1px solid var(--danger); color: var(--bone); }
+.msg .copy {
+  position: absolute; top: 6px; right: 6px; font-size: 12px; padding: 2px 8px;
+  opacity: 0; transition: opacity .15s;
+}
+.msg:hover .copy, .msg .copy:focus { opacity: 1; }
+.msg details { margin: 0 0 8px; color: var(--text-dim); font-size: 13px; }
+.msg details summary { cursor: pointer; color: var(--text-muted); }
+.msg details div { white-space: pre-wrap; border-left: 2px solid var(--gold-dim); padding-left: 10px; margin-top: 4px; }
+.md > :first-child { margin-top: 0; } .md > :last-child { margin-bottom: 0; }
+.md h1, .md h2, .md h3, .md h4 { color: var(--gold); margin: 14px 0 6px; line-height: 1.3; }
+.md h1 { font-size: 19px; } .md h2 { font-size: 17px; } .md h3, .md h4 { font-size: 15px; }
+.md p { margin: 6px 0; } .md ul, .md ol { margin: 6px 0; padding-left: 22px; }
+.md a { color: var(--gold); }
+.md code { font-family: var(--mono); font-size: 13px; background: var(--bg-deep); padding: 1px 5px; border-radius: 4px; }
+.md pre { background: var(--bg-deep); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px; overflow-x: auto; }
+.md pre code { background: none; padding: 0; }
+.md blockquote { margin: 6px 0; padding-left: 10px; border-left: 2px solid var(--gold-dim); color: var(--text-dim); }
+.md hr { border: 0; border-top: 1px solid var(--border); }
+.cursor::after { content: "▍"; color: var(--gold); animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+footer { padding: 10px 16px 14px; background: var(--bg-panel); border-top: 1px solid var(--border); }
+.composer { max-width: 860px; margin: 0 auto; display: flex; gap: 8px; align-items: flex-end; }
+textarea {
+  flex: 1; resize: none; min-height: 44px; max-height: 40vh; padding: 10px 12px; overflow-y: hidden;
+  background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); outline: none;
+}
+textarea:focus { border-color: var(--gold-dim); box-shadow: 0 0 0 3px var(--gold-glow); }
+.hint { max-width: 860px; margin: 6px auto 0; font-size: 12px; color: var(--text-muted); }
+@media (max-width: 600px) { header h1 { width: 100%; } .msg.user { max-width: 100%; } }
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="dot" id="health" title="Checking the proxy"></span>GluMira <span>Diary Chat</span></h1>
+  <select id="model" aria-label="Model"><option>Loading models...</option></select>
+  <button id="newChat" type="button">New chat</button>
+  <button id="save" type="button">Save to diary</button>
+  <a href="/builder" style="color:inherit;text-decoration:none;margin-left:8px;"><button type="button">Builder</button></a>
+</header>
+<main id="scroller"><div class="thread" id="thread"></div></main>
+<footer>
+  <form class="composer" id="form">
+    <textarea id="input" rows="1" placeholder="Describe your idea..." aria-label="Message"></textarea>
+    <button class="primary" id="send" type="submit">Send</button>
+  </form>
+  <div class="hint">Enter sends. Shift+Enter starts a new line. Runs on this machine through 127.0.0.1.</div>
+</footer>
+<script>
+"use strict";
+let DEFAULT_MODEL = ""; // the server says which (GEMINI_CHAT_MODEL in the vault)
+const STORE = "glumira-diary-chat";
+const $ = (id) => document.getElementById(id);
+const thread = $("thread"), scroller = $("scroller"), input = $("input"), sendBtn = $("send"), modelSel = $("model");
+
+let messages = [];      // [{role, content, reasoning?}]
+let controller = null;  // AbortController while streaming
+
+function store(get, value) {
+  try {
+    if (get) return JSON.parse(localStorage.getItem(STORE) || "null");
+    localStorage.setItem(STORE, JSON.stringify(value));
+  } catch { return null; }
+}
+
+// ---------- small, safe Markdown (escape first, then format) ----------
+function esc(s) { return s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+function inline(s) {
+  return s
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[^*])\*([^*\s][^*]*)\*/g, "$1<em>$2</em>")
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+}
+function md(src) {
+  const blocks = [];
+  let text = esc(src).replace(/```[^\n]*\n([\s\S]*?)(```|$)/g, (_, code) => {
+    blocks.push("<pre><code>" + code.replace(/\n$/, "") + "</code></pre>");
+    return "\u0000" + (blocks.length - 1) + "\u0000";
+  });
+  const out = [];
+  let list = null, para = [];
+  const flushPara = () => { if (para.length) { out.push("<p>" + inline(para.join("<br>")) + "</p>"); para = []; } };
+  const flushList = () => { if (list) { out.push(`<${list.tag}>` + list.items.map((i) => "<li>" + inline(i) + "</li>").join("") + `</${list.tag}>`); list = null; } };
+  for (const line of text.split("\n")) {
+    let m;
+    if (/^\u0000\d+\u0000$/.test(line.trim())) { flushPara(); flushList(); out.push(line.trim()); }
+    else if ((m = line.match(/^(#{1,4})\s+(.*)$/))) { flushPara(); flushList(); out.push(`<h${m[1].length}>` + inline(m[2]) + `</h${m[1].length}>`); }
+    else if ((m = line.match(/^\s*[-*+]\s+(.*)$/))) { flushPara(); if (!list || list.tag !== "ul") { flushList(); list = { tag: "ul", items: [] }; } list.items.push(m[1]); }
+    else if ((m = line.match(/^\s*\d+[.)]\s+(.*)$/))) { flushPara(); if (!list || list.tag !== "ol") { flushList(); list = { tag: "ol", items: [] }; } list.items.push(m[1]); }
+    else if ((m = line.match(/^&gt;\s?(.*)$/))) { flushPara(); flushList(); out.push("<blockquote>" + inline(m[1]) + "</blockquote>"); }
+    else if (/^\s*(-{3,}|\*{3,})\s*$/.test(line)) { flushPara(); flushList(); out.push("<hr>"); }
+    else if (!line.trim()) { flushPara(); flushList(); }
+    else { flushList(); para.push(line); }
+  }
+  flushPara(); flushList();
+  return out.join("").replace(/\u0000(\d+)\u0000/g, (_, i) => blocks[+i]);
+}
+
+// ---------- rendering ----------
+function render() {
+  thread.innerHTML = "";
+  if (!messages.length) {
+    thread.innerHTML = '<div class="empty">Give it an idea. It asks <b>4 to 6 questions</b>, then compiles one structured prompt.</div>';
+    return;
+  }
+  messages.forEach((m) => thread.appendChild(bubble(m)));
+  scrollDown();
+}
+function bubble(m) {
+  const el = document.createElement("div");
+  el.className = "msg " + m.role;
+  if (m.role === "user") { el.textContent = m.content; return el; }
+  if (m.role === "error") { el.textContent = m.content; return el; }
+  fill(el, m, false);
+  return el;
+}
+function fill(el, m, streaming) {
+  el.innerHTML = "";
+  if (m.reasoning) {
+    const d = document.createElement("details");
+    d.innerHTML = "<summary>Thinking</summary>";
+    const body = document.createElement("div");
+    body.textContent = m.reasoning;
+    d.appendChild(body);
+    el.appendChild(d);
+  }
+  const content = document.createElement("div");
+  content.className = "md" + (streaming ? " cursor" : "");
+  content.innerHTML = md(m.content || "");
+  el.appendChild(content);
+  if (!streaming && m.content) {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "copy"; b.textContent = "Copy";
+    b.onclick = async () => {
+      try { await navigator.clipboard.writeText(m.content); b.textContent = "Copied"; }
+      catch { b.textContent = "Copy failed"; }
+      setTimeout(() => (b.textContent = "Copy"), 1200);
+    };
+    el.appendChild(b);
+  }
+}
+function scrollDown() { scroller.scrollTop = scroller.scrollHeight; }
+function persist() { store(false, { model: modelSel.value, messages: messages.filter((m) => m.role !== "error") }); }
+
+// ---------- sending ----------
+async function send(text) {
+  messages.push({ role: "user", content: text });
+  const reply = { role: "assistant", content: "", reasoning: "" };
+  messages.push(reply);
+  render();
+  const el = thread.lastElementChild;
+  fill(el, reply, true);
+  setBusy(true);
+  controller = new AbortController();
+  try {
+    const res = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: modelSel.value || undefined, // empty: the server uses its default
+        messages: messages.filter((m) => (m.role === "user" || m.role === "assistant") && m !== reply)
+          .map((m) => ({ role: m.role, content: m.content })),
+      }),
+      signal: controller.signal,
+    });
+    if (!res.ok) {
+      let msg = "HTTP " + res.status;
+      try { const j = await res.json(); msg = (j.error && j.error.message) || msg; } catch {}
+      throw new Error(msg);
+    }
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "", frames = 0;
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      let i;
+      while ((i = buf.indexOf("\n")) >= 0) {
+        const line = buf.slice(0, i).trim();
+        buf = buf.slice(i + 1);
+        if (!line.startsWith("data:")) continue;
+        const data = line.slice(5).trim();
+        if (data === "[DONE]") continue;
+        let j; try { j = JSON.parse(data); } catch { continue; }
+        if (j.error) throw new Error(j.error.message || "Stream error");
+        const d = (j.choices && j.choices[0] && j.choices[0].delta) || {};
+        if (d.reasoning_content) reply.reasoning += d.reasoning_content;
+        if (d.content) reply.content += d.content;
+        if (d.reasoning_content || d.content) {
+          frames++;
+          fill(el, reply, true);
+          scrollDown();
+        }
+      }
+    }
+    if (!reply.content && reply.reasoning) reply.content = "_The model only returned its thinking. Open Thinking above, or try another model._";
+    if (!frames) reply.content = "_No answer came back. Try again or pick another model._";
+  } catch (e) {
+    if (e.name === "AbortError") { if (!reply.content) reply.content = "_Stopped._"; }
+    else {
+      messages.pop();
+      messages.push({ role: "error", content: "Error: " + e.message });
+    }
+  } finally {
+    controller = null;
+    setBusy(false);
+    render();
+    persist();
+  }
+}
+function setBusy(busy) {
+  sendBtn.textContent = busy ? "Stop" : "Send";
+  sendBtn.classList.toggle("primary", !busy);
+  $("save").disabled = busy;
+  $("newChat").disabled = busy;
+}
+
+$("form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (controller) { controller.abort(); return; }
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = ""; autosize();
+  send(text);
+});
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); $("form").requestSubmit(); }
+});
+function autosize() {
+  input.style.height = "auto";
+  const want = input.scrollHeight + 2; // + top and bottom border, so one line shows no scrollbar
+  input.style.height = Math.min(want, innerHeight * 0.4) + "px";
+  input.style.overflowY = want > innerHeight * 0.4 ? "auto" : "hidden";
+}
+input.addEventListener("input", autosize);
+
+$("newChat").onclick = () => { messages = []; persist(); render(); input.focus(); };
+modelSel.onchange = persist;
+
+// ---------- save to diary ----------
+$("save").onclick = async () => {
+  const convo = messages.filter((m) => m.role === "user" || m.role === "assistant");
+  if (!convo.length) { alert("Nothing to save yet."); return; }
+  const first = convo.find((m) => m.role === "user");
+  const title = prompt("Title for this diary note:", (first ? first.content : "Chat").split("\n")[0].slice(0, 60));
+  if (title === null || !title.trim()) return;
+  const now = new Date();
+  const date = new Date(now.getTime() - now.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  const markdown = `# ${title.trim()}\n\n${date} · model \`${modelSel.value}\`\n\n` +
+    convo.map((m) => (m.role === "user" ? "## Founder\n\n" : "## Assistant\n\n") + m.content).join("\n\n") + "\n";
+  const btn = $("save"); btn.disabled = true; btn.textContent = "Saving...";
+  try {
+    const r = await fetch("/api/diary/save-chat", {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ date, title: title.trim(), markdown }),
+    });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error((j.error && j.error.message) || "HTTP " + r.status);
+    alert("Saved to " + j.path + (j.url ? "\n" + j.url : ""));
+  } catch (e) {
+    alert("Could not save to the diary: " + e.message);
+  } finally {
+    btn.disabled = false; btn.textContent = "Save to diary";
+  }
+};
+
+// ---------- boot ----------
+async function boot() {
+  const saved = store(true);
+  if (saved && Array.isArray(saved.messages)) messages = saved.messages;
+  render();
+  try {
+    const h = await (await fetch("/health")).json();
+    $("health").className = "dot " + (h.key_present ? "ok" : "bad");
+    $("health").title = h.key_present ? "Proxy up, Gemini key present" : "Proxy up, Gemini key missing";
+  } catch { $("health").className = "dot bad"; $("health").title = "Proxy not reachable"; }
+  try {
+    const j = await (await fetch("/v1/models")).json();
+    if (j.error) throw new Error(j.error.message);
+    DEFAULT_MODEL = j.default || "";
+    const ids = (j.data || []).map((m) => m.id).sort((a, b) => a.localeCompare(b));
+    if (DEFAULT_MODEL && !ids.includes(DEFAULT_MODEL)) ids.unshift(DEFAULT_MODEL);
+    modelSel.innerHTML = "";
+    for (const id of ids) {
+      const o = document.createElement("option");
+      o.value = id; o.textContent = id === DEFAULT_MODEL ? id + " (default)" : id;
+      modelSel.appendChild(o);
+    }
+    const want = saved && saved.model && ids.includes(saved.model) ? saved.model : DEFAULT_MODEL;
+    modelSel.value = want;
+  } catch (e) {
+    modelSel.innerHTML = `<option value="">Gemini default</option>`;
+    modelSel.title = "Model list unavailable: " + e.message;
+  }
+  input.focus();
+}
+boot();
+</script>
+</body>
+</html>

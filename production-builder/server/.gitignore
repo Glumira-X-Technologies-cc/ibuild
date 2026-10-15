@@ -1,0 +1,9 @@
+/target
+node_modules/
+*.log
+proxy.log
+proxy.err.log
+*.env
+
+# Local founder data and attachments never enter Git
+.runtime/
