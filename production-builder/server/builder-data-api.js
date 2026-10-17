@@ -56,8 +56,15 @@ function compileWorkItem(input,context) {
   const scopedPrompt='Execution repository: '+(task?.executionRepo||'unresolved; no repository execution authorized')+'\nWrite scope: '+(task?.writeScope||'unresolved; follow the source card and current filing law')+'\n\n'+prompt;
   return {prompt:scopedPrompt,task:task||idea,queueTask:task,unfiledIdea:!!idea,readPaths,resources:context.resources,roles,readiness:{ready:blockers.length===0,blockers},status:'prepared-not-sent',source:{commit:context.repo.commit,queue:context.roadmap.source.path},gates:ACTION_GATES};
 }
+// Findings are a pure function of the pinned repo state. Nothing here reads a clock or draws a random id,
+// so the same state yields the same findings in the same order on every call (card 01-29 slice B).
+// The clock lives in debugResponse below, in one field of its own, and never inside the findings list.
 function debugFindings(context) {
-  return {scannedAt:new Date().toISOString(),source:context.repo.commit,findings:[...context.roadmap.warnings,...(context.os.jev?.unresolved||[]).map(r=>({code:'UNRESOLVED_ROUTE',subject:r.subject,reason:r.reason})),...context.estate.filter(r=>!r.slug).map(r=>({code:'ESTATE_IDENTITY_UNRESOLVED',subject:r.label})),...context.resources.filter(r=>!r.probed).map(r=>({code:'RESOURCE_NOT_PROBED',subject:r.name}))],scope:'Deterministic source diagnostics. No model review or OS gate run is claimed.'};
+  return {source:context.repo.commit,scope:'Deterministic source diagnostics. No model review or OS gate run is claimed.',findings:[...context.roadmap.warnings,...(context.os.jev?.unresolved||[]).map(r=>({code:'UNRESOLVED_ROUTE',subject:r.subject,reason:r.reason})),...context.estate.filter(r=>!r.slug).map(r=>({code:'ESTATE_IDENTITY_UNRESOLVED',subject:r.label})),...context.resources.filter(r=>!r.probed).map(r=>({code:'RESOURCE_NOT_PROBED',subject:r.name}))]};
+}
+// scannedAt is the only field allowed to differ between two scans of the same state.
+function debugResponse(context,clock=()=>new Date()) {
+  return {...debugFindings(context),scannedAt:clock().toISOString()};
 }
 function createBuilderRouter(options) {
   const express=require('express'),router=express.Router(),store=options.store||createBuilderStore({dataDir:options.dataDir});router.store=store;
@@ -91,7 +98,7 @@ function createBuilderRouter(options) {
   });
   router.get('/reminders',(req,res)=>{const state=store.snapshot();res.json({revision:state.revision,reminders:state.reminders,due:state.reminders.filter(r=>r.status==='due'),delivery:'in-app; no background notification delivery claimed'});});
   router.get('/export',(req,res)=>{res.set('Content-Disposition','attachment; filename="builder-export.json"');res.json({schema:'glumira-builder-export/1',exportedAt:new Date().toISOString(),state:store.snapshot()});});
-  router.get('/debug',async(req,res)=>res.json(debugFindings(await context())));
+  router.get('/debug',async(req,res)=>res.json(debugResponse(await context())));
   router.post('/compile',async(req,res)=>{
     const result=compileWorkItem(req.body,await context());
     const id='compile-'+randomUUID(),promptHash=createHash('sha256').update(result.prompt).digest('hex');
@@ -106,4 +113,4 @@ function createBuilderRouter(options) {
   router.use((err,req,res,next)=>{if(res.headersSent)return next(err);res.status(err.status||500).json({error:{code:err.code||'BUILDER_INTERNAL_ERROR',message:err instanceof BuilderError?err.message:'Builder operation failed'}});});
   return router;
 }
-module.exports={createBuilderRouter,bootstrap,compileWorkItem,debugFindings,mergeResources,ACTION_GATES,bootOrder,INDEPENDENT_REVIEW};
+module.exports={createBuilderRouter,bootstrap,compileWorkItem,debugFindings,debugResponse,mergeResources,ACTION_GATES,bootOrder,INDEPENDENT_REVIEW};

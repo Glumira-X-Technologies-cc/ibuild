@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { builder } from '../api';
 import { Status, useLoad } from './ui';
 import { libraryLaw } from '../library-law';
+import { segments, subtreeMatches, visibleNodes } from '../library-search';
 
 // Law tree from production-builder/index.html (founder 2026-09-27).
 // A row is ticked only when its name is a path in the committed Library repo. A click cannot tick it.
@@ -66,11 +67,17 @@ function Tick({ on }: { on: boolean }) {
   return <input type="checkbox" checked={on} readOnly onClick={e => e.preventDefault()} tabIndex={-1} title={on ? 'Ticked because this name is in the Library repo. A click does not tick it.' : 'Not ticked. It ticks when this name is committed in the Library repo.'} className="mt-0.5 shrink-0" />;
 }
 
+// A matched run sits on the locked gold with navy text. Not bold: the founder keeps bold for headings.
+function Marked({ text, q }: { text: string; q: string }) {
+  return <>{segments(text, q).map((part, i) => (
+    <span key={i} style={part.hit ? { background: 'var(--gold)', color: 'var(--on-gold)', borderRadius: '2px', padding: '0 1px' } : undefined}>{part.text}</span>
+  ))}</>;
+}
+
 function Tree({ node, depth, open, active, toggle, pick, q }: { node: Node; depth: number; open: Set<string>; active: string; toggle: (n: string) => void; pick: (n: string) => void; q: string }) {
   const kids = node.children || [];
-  const self = !q || node.name.toLowerCase().includes(q) || (node.note || '').toLowerCase().includes(q);
-  const kidHit = kids.some(function hit(n): boolean { return n.name.toLowerCase().includes(q) || (n.note || '').toLowerCase().includes(q) || (n.children || []).some(hit); });
-  if (q && !self && !kidHit) return null;
+  const kidHit = kids.some(function hit(n): boolean { return subtreeMatches(n, q); });
+  if (!subtreeMatches(node, q)) return null;
   const showKids = kids.length > 0 && (open.has(node.name) || (!!q && kidHit));
   const on = active === node.name;
   return (<>
@@ -81,7 +88,7 @@ function Tree({ node, depth, open, active, toggle, pick, q }: { node: Node; dept
     >
       <span className="w-3.5 shrink-0 text-xs text-[var(--shade-color)]" style={{ transform: showKids ? 'rotate(90deg)' : undefined }}>{kids.length ? '▶' : ''}</span>
       <span className="inline-flex items-center justify-center w-[18px] h-[18px] rounded text-xs shrink-0 bg-[#1a3268] text-[var(--text-main)]">{ICONS[node.type] || '?'}</span>
-      <span className="flex-1 truncate">{node.name}</span>
+      <span className="flex-1 truncate"><Marked text={node.name} q={q} /></span>
       <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: dot(node) }} title={node.filed ? 'In the Library repo' : node.status === 'missing' ? 'Not in the Library repo' : node.status || ''} />
       {kids.length > 0 && <span className="mono-code text-xs text-[var(--shade-color)] w-5 text-right shrink-0">{kids.length}</span>}
     </div>
@@ -89,9 +96,9 @@ function Tree({ node, depth, open, active, toggle, pick, q }: { node: Node; dept
   </>);
 }
 
-function Where({ node }: { node: Node }) {
+function Where({ node, q }: { node: Node; q: string }) {
   return (<>
-    <div className="text-xs text-[var(--text-secondary)]">{node.note || 'The law names this and gives no further place.'}{node.count ? ' · ' + node.count + ' files' : ''}</div>
+    <div className="text-xs text-[var(--text-secondary)]"><Marked text={node.note || 'The law names this and gives no further place.'} q={q} />{node.count ? ' · ' + node.count + ' files' : ''}</div>
     {node.url && /^https:\/\/github\.com\//.test(node.url) && <a className="text-xs text-[var(--gold-text)]" href={node.url} target="_blank" rel="noreferrer">Open this place</a>}
   </>);
 }
@@ -111,14 +118,14 @@ export default function Library() {
         <input value={q} onChange={e => setQ(e.target.value)} placeholder="Search vault, cabinet, book..." className="input-work-gold rounded px-2 py-1 text-xs w-full mb-2" />
         {idx.error && <p className="text-xs text-[var(--error)] mb-2">{idx.error}</p>}
         {!idx.data && !idx.error && <Status error={null} />}
-        <div>{(tree.children || []).map(n => <Tree key={n.name} node={n} depth={0} open={open} active={active} toggle={toggle} pick={setActive} q={query} />)}</div>
+        <div>{(visibleNodes(tree.children || [], query)).map(n => <Tree key={n.name} node={n} depth={0} open={open} active={active} toggle={toggle} pick={setActive} q={query} />)}</div>
       </div>
       {node && <div>
-        <div className="text-sm text-[var(--text-main)]">{node.name}</div>
+        <div className="text-sm text-[var(--text-main)]"><Marked text={node.name} q={query} /></div>
         <div className="label-text mt-3 mb-1">What</div>
         <div className="text-xs text-[var(--text-main)]">{WHAT[node.type] || node.type}</div>
         <div className="label-text mt-3 mb-1">Where</div>
-        <Where node={node} />
+        <Where node={node} q={query} />
         <div className="flex items-start gap-2 mt-3">
           <Tick on={!!node.filed} />
           <div className="text-xs text-[var(--text-secondary)]">{node.filed ? 'Ticked. This name is in the committed Library repo.' : 'Not ticked. It ticks when this name is committed in the Library repo. A click cannot tick it.'}</div>
@@ -128,9 +135,9 @@ export default function Library() {
             <button key={c.name} type="button" onClick={() => { setActive(c.name); setOpen(prev => new Set(prev).add(node.name)); }} className="w-full text-left flex items-start gap-2 py-2 border-b border-[var(--border-color)]">
               <Tick on={!!c.filed} />
               <span className="min-w-0">
-                <span className="block text-xs text-[var(--text-main)]">{c.name}</span>
+                <span className="block text-xs text-[var(--text-main)]"><Marked text={c.name} q={query} /></span>
                 <span className="block text-xs text-[var(--text-secondary)]">What · {WHAT[c.type] || c.type}</span>
-                <span className="block text-xs text-[var(--shade-color)]">Where · {c.note || 'No place recorded.'}</span>
+                <span className="block text-xs text-[var(--shade-color)]">Where · <Marked text={c.note || 'No place recorded.'} q={query} /></span>
               </span>
             </button>
           ))}
