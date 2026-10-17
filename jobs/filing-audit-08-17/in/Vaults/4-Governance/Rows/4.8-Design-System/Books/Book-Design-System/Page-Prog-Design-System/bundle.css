@@ -1,0 +1,198 @@
+/* edition : Original */
+/* status : DONE */
+/* date : 2026-10-15 */
+/* GluMira components. Every value comes from tokens.css: no loose colour, radius, size or shadow.
+   One rule per category: Row 4.8 Design System, DECISIONS.md D-01 to D-13. */
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600&family=Fraunces:opsz,wght@9..144,600&display=swap");
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The one place for capitals (D-01). */
+.gm-eyebrow { font: 400 11px/16px var(--font-sans); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.gm-heading { font: 600 15px/20px var(--font-sans); color: var(--heading); margin: 0; }
+.gm-body { font: 400 13px/20px var(--font-sans); color: var(--ink); margin: 0; }
+.gm-meta { font: 400 11px/16px var(--font-mono); color: var(--muted); }
+.gm-link { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line-input); text-underline-offset: 3px; font-weight: 400; }
+.gm-link:hover { text-decoration-color: currentColor; }
+
+/* Light from the top right (D-09): surfaces are lit at 225deg; shadows fall down-left (D-08). */
+.gm-surface {
+  background: linear-gradient(var(--light-angle), var(--raised-lit) 0%, var(--raised) 60%);
+  box-shadow: inset -1px 1px 0 var(--raised-lit), var(--shadow-rest);
+  border-radius: var(--radius-2);
+}
+
+/* Buttons (D-06). One height, one radius, body size, weight 400, sentence case. */
+.gm-btn {
+  box-sizing: border-box;
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  height: var(--control-h); padding: 0 var(--space-4);
+  font: 400 13px/20px var(--font-sans); color: var(--ink);
+  border: var(--border-1) solid var(--line);
+  border-radius: var(--radius-1);
+  background: linear-gradient(var(--light-angle), var(--raised-lit) 0%, var(--raised) 70%);
+  box-shadow: inset -1px 1px 0 var(--raised-lit), var(--shadow-rest);
+  cursor: pointer; white-space: nowrap;
+}
+.gm-btn:hover { background: var(--raised-hover); }
+.gm-btn:active, .gm-btn.is-pressed { background: var(--raised-hover); box-shadow: var(--shadow-inner); }
+.gm-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.gm-btn:disabled, .gm-btn.is-disabled { opacity: 0.5; box-shadow: none; background: var(--raised); cursor: default; }
+.gm-btn--web { height: var(--control-h-web); font-size: 16px; line-height: 24px; }
+
+/* Gold: the bottom band of the gold gradient only, for the one forward action of a view, always on the right. */
+.gm-btn--send {
+  color: var(--on-gold);
+  border-color: var(--gold-band-bottom);
+  background: linear-gradient(var(--light-angle), var(--gold-band-top) 0%, var(--gold-band-bottom) 100%);
+  box-shadow: inset -1px 1px 0 var(--gold-band-top), var(--shadow-rest);
+}
+.gm-btn--send:hover { background: linear-gradient(var(--light-angle), var(--gold-band-mid) 0%, var(--gold-band-bottom) 100%); }
+.gm-btn--send:active, .gm-btn--send.is-pressed { background: var(--gold-band-bottom); box-shadow: var(--shadow-inner); }
+.gm-btn--send:disabled, .gm-btn--send.is-disabled { background: var(--gold-band-bottom); opacity: 0.5; box-shadow: none; }
+
+/* Quiet: text only. */
+.gm-btn--quiet { background: none; border-color: transparent; box-shadow: none; color: var(--muted); padding: 0 var(--space-2); }
+.gm-btn--quiet:hover { background: none; color: var(--ink); }
+
+/* Loading: keeps width and label; the three-bar loader replaces a spinner (L-096). */
+.gm-bars { display: inline-flex; gap: 2px; align-items: flex-end; height: 10px; }
+.gm-bars i { display: block; width: 2px; background: currentColor; border-radius: var(--radius-0); }
+.gm-bars i:nth-child(1) { height: 4px; } .gm-bars i:nth-child(2) { height: 7px; } .gm-bars i:nth-child(3) { height: 10px; }
+
+/* Icon button (D-07): one glyph size, a 28px hit area, no circle or fill. */
+.gm-icon-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: var(--hit); height: var(--hit); padding: 0;
+  border: 0; border-radius: var(--radius-1); background: none; color: var(--muted); cursor: pointer;
+}
+.gm-icon-btn:hover { color: var(--ink); }
+.gm-icon-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.gm-icon-btn svg, .gm-icon { width: var(--icon); height: var(--icon); display: block; }
+.gm-icons { display: inline-flex; gap: var(--space-1); }
+
+/* Fields (D-12: a border only on fields you type in). */
+.gm-field { display: grid; gap: var(--space-1); }
+.gm-field label { font: 400 13px/20px var(--font-sans); color: var(--muted); }
+.gm-input, .gm-select, .gm-textarea {
+  box-sizing: border-box; width: 100%;
+  font: 400 13px/20px var(--font-sans); color: var(--ink);
+  background: var(--ground);
+  border: var(--border-1) solid var(--line-input);
+  border-radius: var(--radius-1);
+  box-shadow: var(--shadow-inner);
+}
+.gm-input, .gm-select { height: var(--control-h); padding: 0 var(--space-3); }
+.gm-textarea { padding: var(--space-2) var(--space-3); resize: vertical; min-height: 80px; }
+.gm-input::placeholder, .gm-textarea::placeholder { color: var(--muted); }
+.gm-input:focus, .gm-select:focus, .gm-textarea:focus { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+/* Select list (a menu). */
+.gm-menu {
+  list-style: none; margin: 0; padding: var(--space-1);
+  background: var(--overlay); border-radius: var(--radius-2); box-shadow: var(--shadow-raised);
+  min-width: 180px;
+}
+.gm-menu li { padding: var(--space-1) var(--space-3); border-radius: var(--radius-1); color: var(--ink); }
+.gm-menu li.is-selected { background: var(--raised); color: var(--ink); box-shadow: inset 2px 0 0 var(--gold-text); }
+.gm-menu li:hover { background: var(--raised-hover); }
+
+/* Toggle: physically round, the named exception. */
+.gm-toggle { display: inline-flex; align-items: center; gap: var(--space-2); cursor: pointer; }
+.gm-toggle input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.gm-toggle .track { width: 32px; height: 18px; border-radius: var(--radius-round); background: var(--ground); border: var(--border-1) solid var(--line-input); box-shadow: var(--shadow-inner); position: relative; box-sizing: border-box; }
+.gm-toggle .track::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: var(--radius-round); background: var(--muted); }
+.gm-toggle input:checked + .track { background: var(--raised-lit); border-color: var(--heading); }
+.gm-toggle input:checked + .track::after { left: 16px; background: var(--ink); }
+.gm-toggle input:focus-visible + .track { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* Slider: a large thumb (L-072). */
+.gm-slider { width: 100%; appearance: none; -webkit-appearance: none; height: 28px; background: none; margin: 0; }
+.gm-slider::-webkit-slider-runnable-track { height: 4px; border-radius: var(--radius-round); background: var(--line-input); }
+.gm-slider::-moz-range-track { height: 4px; border-radius: var(--radius-round); background: var(--line-input); }
+.gm-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; margin-top: -7px; border-radius: var(--radius-round); background: var(--ink); box-shadow: var(--shadow-rest); border: 0; }
+.gm-slider::-moz-range-thumb { width: 18px; height: 18px; border-radius: var(--radius-round); background: var(--ink); box-shadow: var(--shadow-rest); border: 0; }
+
+/* Progress: three bars, still, no running animation (L-096). */
+.gm-progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-1); width: 160px; }
+.gm-progress i { height: 4px; border-radius: var(--radius-1); background: var(--line); }
+.gm-progress i.is-done { background: var(--heading); }
+
+/* Status: a dot and a word, never a pill (D-02). */
+.gm-status { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--ink); }
+.gm-dot { width: 8px; height: 8px; border-radius: var(--radius-round); background: var(--muted); flex: none; }
+.gm-dot--ok { background: var(--success); } .gm-dot--wait { background: var(--warning); } .gm-dot--fail { background: var(--error); }
+.gm-chip { display: inline-flex; align-items: center; gap: var(--space-2); height: 24px; padding: 0 var(--space-2); border: var(--border-1) solid var(--line); border-radius: var(--radius-1); color: var(--ink); }
+
+/* Card (D-02 container radius; set apart by fill and the rest shadow, no border: D-12). */
+.gm-card {
+  padding: var(--space-3) var(--space-4); display: grid; gap: var(--space-2);
+  background: linear-gradient(var(--light-angle), var(--raised-lit) 0%, var(--raised) 60%);
+  box-shadow: inset -1px 1px 0 var(--raised-lit), var(--shadow-rest);
+  border-radius: var(--radius-2);
+}
+.gm-card .gm-actions { display: flex; justify-content: flex-end; gap: var(--space-2); }
+.gm-card--empty { justify-items: start; color: var(--muted); }
+
+/* Toast and the card that opens next to its menu (L-023): raised level. */
+.gm-toast { display: inline-flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-4); background: var(--overlay); border-radius: var(--radius-2); box-shadow: var(--shadow-raised); color: var(--ink); }
+.gm-open-card { padding: var(--space-4); background: var(--raised); border-radius: var(--radius-2); box-shadow: inset -1px 1px 0 var(--raised-lit), var(--shadow-raised); display: grid; gap: var(--space-3); }
+
+/* Table rows. */
+.gm-table { width: 100%; border-collapse: collapse; }
+.gm-table th { text-align: left; font: 400 13px/20px var(--font-sans); color: var(--muted); padding: var(--space-2) var(--space-3); border-bottom: var(--border-1) solid var(--line); }
+.gm-table td { padding: var(--space-2) var(--space-3); border-bottom: var(--border-1) solid var(--line); color: var(--ink); }
+.gm-table tr.is-selected td { background: var(--raised); }
+.gm-table tr.is-selected td:first-child { box-shadow: inset 2px 0 0 var(--gold-text); }
+.gm-table td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* The header: navy in both themes, so gold words always have their navy (D-11). */
+.gm-header { background: var(--header); color: var(--on-header); }
+.gm-row1 { height: var(--row-1); display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter); border-bottom: var(--border-1) solid var(--navy-700); }
+.gm-brand { display: inline-flex; align-items: center; gap: var(--space-2); font: 600 18px/24px var(--font-sans); color: var(--on-header); }
+.gm-brand b { color: var(--gold-text); font-weight: 600; }
+.gm-brand img { height: 32px; width: auto; }
+.gm-header .gm-icon-btn { color: var(--on-header-muted); }
+.gm-header .gm-icon-btn:hover { color: var(--on-header); }
+
+/* Tabs: sentence case, the active one marked by a gold underline (D-01, D-11). */
+.gm-tabs { display: flex; gap: var(--space-1); align-items: stretch; height: var(--row-2); }
+.gm-tab { display: inline-flex; align-items: center; padding: 0 var(--space-3); color: var(--on-header-muted); font: 400 13px/20px var(--font-sans); border: 0; background: none; position: relative; cursor: pointer; }
+.gm-tab:hover { color: var(--on-header); }
+.gm-tab.is-active { color: var(--on-header); }
+.gm-tab.is-active::after { content: ""; position: absolute; left: var(--space-3); right: var(--space-3); bottom: 0; height: 2px; background: var(--gold-text); border-radius: var(--radius-0); }
+
+/* The grid (D-03). Row 2 shares the pane columns; every pane starts with a pane head. */
+.gm-shell { display: grid; grid-template-rows: var(--row-1) var(--row-2) 1fr; height: 100%; }
+.gm-cols { display: grid; grid-template-columns: var(--gm-cols, 1fr 1.4fr 1fr); }
+.gm-row2 { height: var(--row-2); border-bottom: var(--border-1) solid var(--navy-700); }
+.gm-row2 > div { display: flex; align-items: center; gap: var(--space-3); padding: 0 var(--gutter); min-width: 0; }
+.gm-panes { min-height: 0; }
+.gm-pane { border-left: var(--border-1) solid var(--line); display: grid; grid-template-rows: var(--pane-head) 1fr; min-width: 0; min-height: 0; }
+.gm-pane:first-child { border-left: 0; }
+.gm-pane-head { height: var(--pane-head); display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); padding: 0 var(--gutter); }
+.gm-pane-body { padding: var(--space-2) var(--gutter) var(--gutter); overflow: auto; display: grid; align-content: start; gap: var(--space-3); min-height: 0; }
+
+/* Step list: a tick in the left margin (L-024). */
+.gm-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-2); }
+.gm-steps li { display: grid; grid-template-columns: 16px 1fr; gap: var(--space-2); align-items: start; color: var(--ink); }
+.gm-steps li::before { content: ""; width: 12px; height: 12px; margin-top: 4px; border: var(--border-1) solid var(--line-input); border-radius: var(--radius-1); box-sizing: border-box; }
+.gm-steps li.is-done::before { background: var(--heading); border-color: var(--heading); }
+.gm-steps li.is-done { color: var(--muted); }
+
+/* Footer: the thin navy strip with the two logos, the one footer everywhere (L-087). Its disclaimer sits on the strip with no box (D-12). */
+.gm-footer { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); height: 32px; padding: 0 var(--gutter); background: var(--header); color: var(--on-header-muted); font: 400 11px/16px var(--font-sans); }
+.gm-footer img { height: 18px; width: auto; }
+
+/* The ground stays flat: a gradient this wide shows as horizontal bands ("I dont want solid horizontal lines it must be blended"). Light shows on raised surfaces (D-09). */
+.gm-ground { background: var(--ground); }

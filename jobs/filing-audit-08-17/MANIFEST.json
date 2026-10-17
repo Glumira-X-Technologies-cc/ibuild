@@ -122,6 +122,66 @@
       "from": "git ls-files",
       "blob": "a286d7ba8f2c4105b3096adb73768f345eba1184",
       "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/DECISIONS.md",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/DECISIONS.md",
+      "blob": "2177c03df95765526c19b5a2213e7644fdc54f8c",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/LEDGER.md",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/LEDGER.md",
+      "blob": "e9bb3586a134ca4be1e5a884933fae78bedcbd45",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/SYSTEM.md",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/SYSTEM.md",
+      "blob": "db82d165ecbd557a9e9407d4aec12e9e2ea5ddc2",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/ledger.json",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/ledger.json",
+      "blob": "e614a91f9862328133d123d93c5689a2525be389",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Git-Design-System/PROVENANCE.json",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Git-Design-System/PROVENANCE.json",
+      "blob": "66f1d293df6d536e8819b82eb8bf1ddceeb8d41d",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/bundle.css",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/bundle.css",
+      "blob": "2cfa67ca2818000d6059fb2893de36cc44724901",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/ledger.mjs",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/ledger.mjs",
+      "blob": "4ef62ee0093b1954f3dfc9df03c55612feecf099",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/tokens.css",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/tokens.css",
+      "blob": "ec419aae7f3a1c8dd41b4369a525a4b7e1cf8869",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/tokens.json",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/tokens.json",
+      "blob": "9b77dc35feb8e058c74df18f5399ea2d6f3c6872",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.8-Design-System/Cabinet-Design-System.md",
+      "from": "Vaults/4-Governance/Rows/4.8-Design-System/Cabinet-Design-System.md",
+      "blob": "d2c4ec127637415d09445f6ad08acb4cbd04eebe",
+      "writable": false
     }
   ]
 }

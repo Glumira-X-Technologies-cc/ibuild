@@ -1,0 +1,155 @@
+/* GluMira — generated from tokens.json */
+/* edition : Original */
+/* status : DONE */
+/* date : 2026-10-15 */
+:root, [data-theme="dark"] {
+  --navy-950: #070F1F;
+  --navy-900: #09152A;
+  --navy-850: #0D1C38;
+  --navy-800: #102347;
+  --navy-750: #1E3051;
+  --navy-725: #253656;
+  --navy-700: #2C3C5B;
+  --navy-600: #3E4D69;
+  --navy-550: #55627A;
+  --navy-500: #636F84;
+  --navy-450: #848D9C;
+  --navy-300: #ABB0B9;
+  --navy-150: #D4D6D8;
+  --bone: #F7F6F1;
+  --hairline: #E0DBCF;
+  --white: #FFFFFF;
+  --gold: #C9A24B;
+  --gold-band-top: #E9CB40;
+  --gold-band-mid: #DDBE3A;
+  --gold-band-bottom: #D7B838;
+  --success: #2ECC71;
+  --warning: #D48806;
+  --error: #C0392B;
+  --header: var(--navy-900);
+  --ground: var(--navy-800);
+  --raised: var(--navy-750);
+  --raised-lit: var(--navy-725);
+  --raised-hover: var(--navy-850);
+  --overlay: var(--navy-700);
+  --line: var(--navy-700);
+  --line-input: var(--navy-600);
+  --ink: var(--bone);
+  --heading: var(--navy-300);
+  --muted: var(--navy-300);
+  --on-header: var(--bone);
+  --on-header-muted: var(--navy-300);
+  --gold-text: var(--gold);
+  --on-gold: var(--navy-800);
+  --focus: var(--gold);
+  --shadow-ink: rgba(7, 15, 31, 0.55);
+  --shadow-rest: -1px 2px 4px rgba(7, 15, 31, 0.55);
+  --shadow-raised: -3px 8px 20px rgba(7, 15, 31, 0.6);
+  --shadow-inner: inset -1px 1px 2px rgba(7, 15, 31, 0.6);
+}
+[data-theme="light"] {
+  --ground: var(--bone);
+  --raised: var(--white);
+  --raised-lit: var(--white);
+  --raised-hover: var(--bone);
+  --overlay: var(--white);
+  --line: var(--hairline);
+  --line-input: var(--navy-450);
+  --ink: var(--navy-800);
+  --heading: var(--navy-500);
+  --muted: var(--navy-550);
+  --focus: var(--navy-800);
+  --shadow-ink: rgba(7, 15, 31, 0.14);
+  --shadow-rest: -1px 2px 4px rgba(7, 15, 31, 0.14);
+  --shadow-raised: -3px 8px 20px rgba(7, 15, 31, 0.18);
+  --shadow-inner: inset -1px 1px 2px rgba(7, 15, 31, 0.14);
+}
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --radius-0: 0;
+  --radius-1: 4px;
+  --radius-2: 8px;
+  --radius-round: 999px;
+  --row-1: 48px;
+  --row-2: 40px;
+  --pane-head: 40px;
+  --gutter: 16px;
+  --control-h: 32px;
+  --control-h-web: 40px;
+  --icon: 14px;
+  --hit: 28px;
+  --border-1: 1px;
+  --light-angle: 225deg;
+  --zoom-builder: 1.25;
+  --font-sans: "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-display: Fraunces, Georgia, serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+}
+.b-title {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.b-heading {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 20px;
+  font-weight: 600;
+}
+.b-body {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}
+.b-meta {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 400;
+}
+.b-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+.w-h1 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 600;
+}
+.w-h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 600;
+}
+.w-h3 {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+}
+.w-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+.w-meta {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}

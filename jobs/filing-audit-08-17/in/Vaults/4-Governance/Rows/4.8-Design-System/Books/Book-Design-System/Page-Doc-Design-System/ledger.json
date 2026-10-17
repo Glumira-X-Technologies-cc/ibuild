@@ -1,0 +1,1319 @@
+{
+ "edition": "Original",
+ "status": "DONE",
+ "date": "2026-10-15",
+ "about": "Founder design ledger: his words, source and date. Rendered to LEDGER.md by Page-Prog-Design-System/ledger.mjs.",
+ "roots": {
+  "SS": {
+   "label": "Sorting station",
+   "about": "glumira-document-sorting-station repo",
+   "local": "D:/glumira-document-sorting-station/"
+  },
+  "DC": {
+   "label": "Sorting station, Claude Design chats",
+   "about": "glumira-document-sorting-station Library-7.2/PARCELS/P-2026-09-15-007 (his Claude Design chats, April to August 2026)",
+   "local": "D:/glumira-document-sorting-station/Library-7.2/PARCELS/P-2026-09-15-007/"
+  },
+  "P": {
+   "label": "Sorting station, claude.ai chats",
+   "about": "glumira-document-sorting-station Library-7.2/PARCELS (his own messages in exported claude.ai chats, March to July 2026)",
+   "local": "D:/glumira-document-sorting-station/Library-7.2/PARCELS/"
+  },
+  "H": {
+   "label": "Sorting station, herds",
+   "about": "glumira-document-sorting-station Library-7.2/HERDS (founder-words pages and 7.1 documents copied word for word)",
+   "local": "D:/glumira-document-sorting-station/Library-7.2/HERDS/"
+  },
+  "G7": {
+   "label": "Sorting station, 7.1 bodies",
+   "about": "glumira-document-sorting-station Library-7.2/PARCELS/P-2026-09-26-G7/source-bodies",
+   "local": "D:/glumira-document-sorting-station/Library-7.2/PARCELS/P-2026-09-26-G7/source-bodies/"
+  },
+  "M72": {
+   "label": "Agent memory",
+   "about": "the Claude Code memory folder for this repo (copies filed in Vault 2 Row 2.1)",
+   "local": "C:/Users/franc/.claude/projects/C--Glumira-7-2/memory/"
+  },
+  "HUB": {
+   "label": "Archive memory",
+   "about": "memory-governance-archive memory/",
+   "local": "C:/memory-governance-archive/memory/"
+  },
+  "NAB": {
+   "label": "Archive memory, Nabucco",
+   "about": "memory-governance-archive memory/ARCHIVE/2026-10-02-nabucco-frozen (rulings he said apply to ALL his UI)",
+   "local": "C:/memory-governance-archive/memory/ARCHIVE/2026-10-02-nabucco-frozen/nabucco-memory/"
+  },
+  "GOV": {
+   "label": "Archive governance",
+   "about": "memory-governance-archive governance/",
+   "local": "C:/memory-governance-archive/governance/"
+  },
+  "HO": {
+   "label": "Handover",
+   "about": "this repo, Vault 4 Row 4.7 handovers",
+   "local": "C:/Glumira-7.2/.claude/worktrees/determined-haibt-44ebc5/Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/"
+  },
+  "SKILL": {
+   "label": "Colour method skill",
+   "about": "glumira-color-method skill",
+   "local": "C:/Users/franc/.claude/skills/glumira-color-method/"
+  },
+  "BRAND": {
+   "label": "Brand docs",
+   "about": "this repo, docs/04_Brand",
+   "local": "C:/Glumira-7.2/.claude/worktrees/determined-haibt-44ebc5/docs/04_Brand/"
+  },
+  "FWS": {
+   "label": "Global working style",
+   "about": "his global Claude rules, FOUNDER-WORKING-STYLE.md",
+   "local": "C:/Users/franc/.claude/"
+  },
+  "FS": {
+   "label": "Chat 2026-10-15",
+   "about": "his messages in the Claude Code session \"claude.ai account fork sync\", 2026-10-15",
+   "local": "C:/Users/franc/.claude/projects/C--Glumira-7-2--claude-worktrees-claude-ai-account-fork-sync-ae8bec/9f00d46b-aba5-4fc0-b94a-1b7b9784ee8a.jsonl"
+  },
+  "VG": {
+   "label": "Chat 2026-10-14",
+   "about": "his messages in the Claude Code session \"vibrant goldwasser\", 2026-10-14",
+   "local": "C:/Users/franc/.claude/projects/C--Glumira-7-2--claude-worktrees-vibrant-goldwasser-79e7f0/9e2948ef-daa8-4075-93a4-feaf9051385b.jsonl"
+  },
+  "SC": {
+   "label": "Chat 2026-10-15 screens",
+   "about": "screen colour session",
+   "local": "C:/Users/franc/.claude/projects/C--Glumira-7-2--claude-worktrees-screen-color-consistency-ea2ac3/05b6703c-d59f-4ac1-b72d-8c72489d73b1.jsonl"
+  },
+  "WTF": {
+   "label": "This repo",
+   "about": "Glumira-7.2",
+   "local": "C:/Glumira-7.2/"
+  },
+  "IMG": {
+   "label": "His image",
+   "about": "his marked-up screenshot of the Builder, 2026-10-15 (image 1.webp), read in session"
+  }
+ },
+ "entries": [
+  {
+   "id": "L-001",
+   "topic": "Caps, corners, alignment",
+   "date": "2026-10-15",
+   "words": "this is disappointing Smaller more discreet caps no caps rounded edges and square edges / No visible alignment / Search tools and skills to form and produce a design system that i do not have to repeat myself / most of it was communicated multiple times and should be in the document sorting repo",
+   "src": "FS",
+   "line": 1928,
+   "verified": "found"
+  },
+  {
+   "id": "L-002",
+   "topic": "Layout and alignment",
+   "date": "2026-10-15",
+   "words": "I THINK YOU MISUNDERSTOOD ME MOVING ITEMS / Please see attached / This is what i call engineered and designed / Structured, functional and beautiful",
+   "src": "FS",
+   "line": 1471,
+   "note": "With his reference image 7 of the Builder.",
+   "verified": "found"
+  },
+  {
+   "id": "L-003",
+   "topic": "Layout and alignment",
+   "date": "2026-07-23",
+   "words": "Severe OCD. Lines like this should line up and controls should be left aligned - i read from left to right.",
+   "src": "NAB",
+   "file": "feedback-left-align-and-line-up.md",
+   "line": 11,
+   "verified": "found"
+  },
+  {
+   "id": "L-004",
+   "topic": "Layout and alignment",
+   "date": "2026-07-25",
+   "words": "miss alignment / natural flow humans use does not need to go backwards with the intent to go forward / Next is never left / read from left to right / next at right position means i have finished this block and ready to progress to the next / one sticky menu per section",
+   "src": "NAB",
+   "file": "feedback-next-right-one-sticky-menu.md",
+   "line": 11,
+   "verified": "found"
+  },
+  {
+   "id": "L-005",
+   "topic": "Layout and alignment",
+   "date": "2026-07-25",
+   "words": "This is ocd in action: / All vertical lines of panes must from below header to end of screen - no horizontal cuts / All horizontal lines must align 100% on all screen sizes",
+   "src": "NAB",
+   "file": "feedback-pane-line-laws.md",
+   "line": 11,
+   "verified": "found"
+  },
+  {
+   "id": "L-006",
+   "topic": "Layout and alignment",
+   "date": "2026-08-10",
+   "words": "center scrol bars not aligned - you are very bad for adhd and ocd",
+   "src": "HUB",
+   "file": "feedback-dual-pane-scrollbar-align.md",
+   "line": 9,
+   "note": "The memory file labels this verbatim sense.",
+   "verified": "found"
+  },
+  {
+   "id": "L-007",
+   "topic": "Layout and alignment",
+   "date": "2026-07-06",
+   "words": "1 - alignment",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-008",
+   "topic": "Layout and alignment",
+   "date": "2026-07-02",
+   "words": "align blocks",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-009",
+   "topic": "Layout and alignment",
+   "date": "2026-06-17",
+   "words": "text alignment is off",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-03.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-010",
+   "topic": "Layout and alignment",
+   "date": "2026-06-16",
+   "words": "alignment out",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 80,
+   "verified": "found"
+  },
+  {
+   "id": "L-011",
+   "topic": "Layout and alignment",
+   "date": "2026-07-06",
+   "words": "Still too heavy to the right side - looks off balance",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-012",
+   "topic": "Layout and alignment",
+   "date": "2026-07-06",
+   "words": "all graphs must be the same size - you are loosing design sanity",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-013",
+   "topic": "Layout and alignment",
+   "date": "2026-07-03",
+   "words": "Make the two blocks the same size",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-014",
+   "topic": "Layout and alignment",
+   "date": "2026-07-06",
+   "words": "Blocks moved around but was never calibrated to fit flow. I want your design input not just move this move that.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-015",
+   "topic": "Layout and alignment",
+   "date": "2026-07-06",
+   "words": "YOU ARE FIXING LINE BY LINE. Not good - I asked for complete page overview according to i international design guidelines, superior esthetic, comfortable flow and maximum communication to visitor",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-016",
+   "topic": "Layout and alignment",
+   "date": "2026-04-02",
+   "words": "The layout and scall is important to establish the brand. Keep layout in memory",
+   "src": "P",
+   "file": "P-2026-09-15-C004/conversation-e5083770*",
+   "line": 2057,
+   "verified": "found"
+  },
+  {
+   "id": "L-017",
+   "topic": "Layout and alignment",
+   "date": "2026-06-28",
+   "words": "the date is always, or 99% of the time, in the [top-right].",
+   "src": "H",
+   "file": "Dashboard/Documents-71-Today-Founder-Feedback-R1.md",
+   "line": 36,
+   "verified": "found"
+  },
+  {
+   "id": "L-018",
+   "topic": "Layout and alignment",
+   "date": "2026-10-13",
+   "words": "Keep my header and the changes I gave on a screenshot. Keep the AI Studio design and add functions, don't change my design.",
+   "src": "WTF",
+   "file": "apps/ais-builder/handover/HANDOVER-supergrok-PB.md",
+   "line": 5,
+   "verified": "found"
+  },
+  {
+   "id": "L-019",
+   "topic": "Layout and alignment",
+   "date": "2026-10-15",
+   "words": "add a layout icon next to scan where i can change which panes show in work space all 3 is default",
+   "src": "FS",
+   "line": 643,
+   "verified": "found"
+  },
+  {
+   "id": "L-020",
+   "topic": "Layout and alignment",
+   "date": "2026-09-03",
+   "words": "Your scaling is off / you compress everything to a bundled cluster / Mine is horizontally Long and slender / yours is short and fat",
+   "src": "HUB",
+   "file": "feedback-topic-tree-not-information-dump.md",
+   "line": 67,
+   "verified": "found"
+  },
+  {
+   "id": "L-021",
+   "topic": "Layout and alignment",
+   "date": "2026-07-13",
+   "words": "The first white graph. Can you please extend the white in the same horizontal banner like you do the dark blue?",
+   "src": "GOV",
+   "file": "hub/glumira-7.1/punchlist.md",
+   "line": 757,
+   "verified": "found"
+  },
+  {
+   "id": "L-022",
+   "topic": "Scroll and navigation",
+   "date": "2026-08-11",
+   "words": "hates to scroll",
+   "src": "FWS",
+   "file": "FOUNDER-WORKING-STYLE.md",
+   "line": 89,
+   "verified": "found"
+  },
+  {
+   "id": "L-023",
+   "topic": "Scroll and navigation",
+   "date": "2026-07-23",
+   "words": "Please ban this type of design for all future layout projects i use in tools for myself and programming",
+   "src": "NAB",
+   "file": "feedback-navigation-not-scrolling.md",
+   "line": 11,
+   "note": "Continues: a click on a menu opens a card next to the menu; NAVIGATION - NOT SCROLLING.",
+   "verified": "found"
+  },
+  {
+   "id": "L-024",
+   "topic": "Scroll and navigation",
+   "date": "2026-07-25",
+   "words": "All processes with steps need a tick left margin to show if it is done or not.",
+   "src": "NAB",
+   "file": "feedback-navigation-not-scrolling.md",
+   "line": 26,
+   "verified": "found"
+  },
+  {
+   "id": "L-025",
+   "topic": "Scroll and navigation",
+   "date": "2026-07-25",
+   "words": "remove that circle thingy completely - everything is in the menu bar",
+   "src": "NAB",
+   "file": "feedback-pane-line-laws.md",
+   "line": 18,
+   "verified": "found"
+  },
+  {
+   "id": "L-026",
+   "topic": "Scroll and navigation",
+   "date": "2026-06-10",
+   "words": "by the time you scrolled to the bottom the top info is already forgotten.",
+   "src": "H",
+   "file": "Dashboard/Documents-Founder-Words-Dashboard.md",
+   "line": 30,
+   "note": "Marked verbatim-in-intent in its source.",
+   "verified": "found"
+  },
+  {
+   "id": "L-027",
+   "topic": "Scroll and navigation",
+   "date": "2026-04-08",
+   "words": "Create an opportunity for every step to flow into another without scrolling and searching endlessly",
+   "src": "P",
+   "file": "P-2026-09-15-C029/conversation-22ea4e52*",
+   "line": 12906,
+   "verified": "found"
+  },
+  {
+   "id": "L-028",
+   "topic": "Scroll and navigation",
+   "date": "2026-05-12",
+   "words": "FOR THE MILLIONTH TIME YOU WILL NOT INSTRUCT ME TO SCROLL UP AND DOWN.",
+   "src": "P",
+   "file": "P-2026-09-15-C099/conversation-dd9e446b*",
+   "line": 6338,
+   "verified": "found"
+  },
+  {
+   "id": "L-029",
+   "topic": "Scroll and navigation",
+   "date": "2026-03-30",
+   "words": "The countdown timer can be small but bright. i am on a laptop and must still scroll to see the bottom of the page. this is poor design.",
+   "src": "P",
+   "file": "P-2026-09-15-C002/conversation-8d03b604*",
+   "line": 18136,
+   "verified": "found"
+  },
+  {
+   "id": "L-030",
+   "topic": "Scroll and navigation",
+   "date": "2026-06-23",
+   "words": "completely out of scale and proportion",
+   "src": "HUB",
+   "file": "feedback-auth-layout-locked.md",
+   "line": 21,
+   "note": "Same file: must be a full page, no scrolling to see anything.",
+   "verified": "found"
+  },
+  {
+   "id": "L-031",
+   "topic": "Scroll and navigation",
+   "date": "2026-10-14",
+   "words": "chat must be able to collapse / minimize if needed and all blocks and cards must have natural progression when you click on them",
+   "src": "VG",
+   "line": 783,
+   "verified": "found"
+  },
+  {
+   "id": "L-032",
+   "topic": "Scroll and navigation",
+   "date": "2026-04-05",
+   "words": "The menu bar is basically invisible",
+   "src": "P",
+   "file": "P-2026-09-15-C018/conversation-ed7f483a*",
+   "line": 819,
+   "note": "Continues: Make Main tabs with dropdowns for easier navigation.",
+   "verified": "found"
+  },
+  {
+   "id": "L-033",
+   "topic": "Spacing and density",
+   "date": "2026-06-30",
+   "words": "it is the spacing. The spacing is not right. Everything is so far and wide, and there's so much white space.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-01.md",
+   "line": 136,
+   "verified": "found"
+  },
+  {
+   "id": "L-034",
+   "topic": "Spacing and density",
+   "date": "2026-06-25",
+   "words": "SPACING AND LAYOUT",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-05.md",
+   "line": 40,
+   "verified": "found"
+  },
+  {
+   "id": "L-035",
+   "topic": "Spacing and density",
+   "date": "2026-04-02",
+   "words": "spacing is off",
+   "src": "P",
+   "file": "P-2026-09-15-C010/conversation-69921434*",
+   "line": 7163,
+   "verified": "found"
+  },
+  {
+   "id": "L-036",
+   "topic": "Spacing and density",
+   "date": "2026-03-31",
+   "words": "Charts cannot overflow make them all in condensed spacing / overflowing margin does not look nice",
+   "src": "P",
+   "file": "P-2026-09-15-C005/conversation-bd57b47a*",
+   "line": 4028,
+   "verified": "found"
+  },
+  {
+   "id": "L-037",
+   "topic": "Spacing and density",
+   "date": "2026-03-30",
+   "words": "on one of the light backgroundsthe whole thing is too busy",
+   "src": "P",
+   "file": "P-2026-09-15-C002/conversation-8d03b604*",
+   "line": 18136,
+   "verified": "found"
+  },
+  {
+   "id": "L-038",
+   "topic": "Spacing and density",
+   "date": "2026-04-04",
+   "words": "patient profile is also too noisy unwanted large placeholders.",
+   "src": "P",
+   "file": "P-2026-09-15-C016/conversation-1ca323ba*",
+   "line": 2934,
+   "verified": "found"
+  },
+  {
+   "id": "L-039",
+   "topic": "Spacing and density",
+   "date": "2026-03-31",
+   "words": "Your designs focus to much on lots of words.",
+   "src": "P",
+   "file": "P-2026-09-15-C004/conversation-e5083770*",
+   "line": 1694,
+   "verified": "found"
+  },
+  {
+   "id": "L-040",
+   "topic": "Spacing and density",
+   "date": "2026-07-06",
+   "words": "Text too much",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-041",
+   "topic": "Spacing and density",
+   "date": "2026-09-03",
+   "words": "Make you screen margins smaller",
+   "src": "HUB",
+   "file": "feedback-topic-tree-not-information-dump.md",
+   "line": 75,
+   "verified": "found"
+  },
+  {
+   "id": "L-042",
+   "topic": "Spacing and density",
+   "date": "2026-09-03",
+   "words": "add 2 spaces between each task - too conjested",
+   "src": "HUB",
+   "file": "feedback-topic-tree-not-information-dump.md",
+   "match": "conjested",
+   "line": 82,
+   "verified": "found"
+  },
+  {
+   "id": "L-043",
+   "topic": "Spacing and density",
+   "date": "2026-10-12",
+   "words": "all your icons are taking uo workspace and is ugly",
+   "src": "HO",
+   "file": "2026-10-12T1903Z-builder-council-redesign.md",
+   "line": 24,
+   "verified": "found"
+  },
+  {
+   "id": "L-044",
+   "topic": "Spacing and density",
+   "date": "2026-09-21",
+   "words": "I do not want to read",
+   "src": "M72",
+   "file": "project-glumira-72-build-board-2026-09-21.md",
+   "match": "i do not want to read",
+   "line": 25,
+   "verified": "found"
+  },
+  {
+   "id": "L-045",
+   "topic": "Type, caps and bold",
+   "date": "2026-10-15",
+   "words": "remove BOLD from conversational text / Bold reserved for headings and sub headings",
+   "src": "FS",
+   "line": 1264,
+   "verified": "found"
+  },
+  {
+   "id": "L-046",
+   "topic": "Type, caps and bold",
+   "date": "2026-10-15",
+   "words": "unify text size / Give me a third color for the headings / Use the darkest blue toned with white to make a lighter non intrusive blue",
+   "src": "FS",
+   "line": 1290,
+   "verified": "found"
+  },
+  {
+   "id": "L-047",
+   "topic": "Type, caps and bold",
+   "date": "2026-09-03",
+   "words": "bold of links is disturbing",
+   "src": "GOV",
+   "file": "20_CONTRACTS/Founder-Communication-Contract_v1.0.md",
+   "line": 93,
+   "verified": "found"
+  },
+  {
+   "id": "L-048",
+   "topic": "Type, caps and bold",
+   "date": "2026-06-25",
+   "words": "I dont like the font you are using some letters look upside down. I t must be clear and easy to read.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-05.md",
+   "line": 40,
+   "verified": "found"
+  },
+  {
+   "id": "L-049",
+   "topic": "Type, caps and bold",
+   "date": "2026-07-13",
+   "words": "The one you do now",
+   "src": "H",
+   "file": "Alarms-Settings/Documents-71-Design-Lock.md",
+   "line": 211,
+   "note": "Approves Hanken Grotesk, Fraunces and ui-monospace as the only three families.",
+   "verified": "found"
+  },
+  {
+   "id": "L-050",
+   "topic": "Type, caps and bold",
+   "date": "2026-07-06",
+   "words": "Modules for real life. / font size bothers / Same size as cook book?",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-051",
+   "topic": "Type, caps and bold",
+   "date": "2026-07-06",
+   "words": "Audit page for layout and typography - just making something smaller ruins the design",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-052",
+   "topic": "Type, caps and bold",
+   "date": "2026-07-06",
+   "words": "the text should be smaller so the graph can fit.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-053",
+   "topic": "Type, caps and bold",
+   "date": "2026-09-03",
+   "words": "Keep plain text / mind font sizes",
+   "src": "HUB",
+   "file": "feedback-topic-tree-not-information-dump.md",
+   "line": 62,
+   "verified": "found"
+  },
+  {
+   "id": "L-054",
+   "topic": "Type, caps and bold",
+   "date": "2026-09-03",
+   "words": "plain text / row 3 and 4 = 2pt smaller",
+   "src": "HUB",
+   "file": "feedback-topic-tree-not-information-dump.md",
+   "line": 62,
+   "verified": "found"
+  },
+  {
+   "id": "L-055",
+   "topic": "Type, caps and bold",
+   "date": "2026-10-12",
+   "words": "placeement not font",
+   "src": "HO",
+   "file": "2026-10-12T1903Z-builder-council-redesign.md",
+   "line": 19,
+   "verified": "found"
+  },
+  {
+   "id": "L-056",
+   "topic": "Type, caps and bold",
+   "date": "2026-09-30",
+   "words": "Change font to Calibri",
+   "src": "HUB",
+   "file": "feedback-brand-gold-font-from-live-page.md",
+   "line": 19,
+   "note": "For the Jev picker page only.",
+   "verified": "found"
+  },
+  {
+   "id": "L-057",
+   "topic": "Headings",
+   "date": "2026-07-06",
+   "words": "most headings are the same format and then you have the odd one out",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-058",
+   "topic": "Headings",
+   "date": "2026-07-06",
+   "words": "keep blue only like other headings",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-059",
+   "topic": "Headings",
+   "date": "2026-10-15",
+   "words": "HEADING IN GOLD",
+   "src": "IMG",
+   "file": "image 1.webp (mark-up of the Builder)",
+   "verified": "image"
+  },
+  {
+   "id": "L-060",
+   "topic": "Headings",
+   "date": "2026-10-15",
+   "words": "navy +35% white - show",
+   "src": "FS",
+   "line": 1354,
+   "verified": "found"
+  },
+  {
+   "id": "L-061",
+   "topic": "Headings",
+   "date": "2026-07-06",
+   "words": "Add consistency to all pages",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-062",
+   "topic": "Headings",
+   "date": "2026-06-25",
+   "words": "I want one theme throughout.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-05.md",
+   "line": 40,
+   "verified": "found"
+  },
+  {
+   "id": "L-063",
+   "topic": "Headings",
+   "date": "2026-07-29",
+   "words": "Can we look at the design system",
+   "src": "P",
+   "file": "P-2026-09-17-006/glumira-7.1/docs/Rebuild/Sessions/2026-07-29_design-system-continuity-plan.md",
+   "line": 7,
+   "note": "Continues: font header footer templates etc. I can change them separately and then apply to pages. I am looking for continuity in design.",
+   "verified": "found"
+  },
+  {
+   "id": "L-064",
+   "topic": "Headings",
+   "date": "2026-06-25",
+   "words": "nEED SAME HEADER AND FOOTER AS REST OF INTERIOR",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-05.md",
+   "line": 40,
+   "verified": "found"
+  },
+  {
+   "id": "L-065",
+   "topic": "Buttons",
+   "date": "2026-10-15",
+   "words": "replace take it further with send",
+   "src": "FS",
+   "line": 1229,
+   "verified": "found"
+  },
+  {
+   "id": "L-066",
+   "topic": "Buttons",
+   "date": "2026-10-15",
+   "words": "replace yes write prompt with send and move right",
+   "src": "FS",
+   "line": 1337,
+   "verified": "found"
+  },
+  {
+   "id": "L-067",
+   "topic": "Buttons",
+   "date": "2026-10-15",
+   "words": "We only use the bottom part of the gradient",
+   "src": "FS",
+   "line": 1191,
+   "verified": "found"
+  },
+  {
+   "id": "L-068",
+   "topic": "Buttons",
+   "date": "2026-10-15",
+   "words": "change to gold button",
+   "src": "IMG",
+   "file": "image 1.webp (mark-up: Take it further and chat Send)",
+   "verified": "image"
+  },
+  {
+   "id": "L-069",
+   "topic": "Buttons",
+   "date": "2026-10-15",
+   "words": "I want a mood board when mixing / i am trying to finalize the website design / see light streak coming from right top - do the same / Agent misunderstood and made all buttons that gold / This was a sample from the internet not cobalt",
+   "src": "FS",
+   "line": 1889,
+   "note": "Queued message with his UI-kit mood board image.",
+   "verified": "found"
+  },
+  {
+   "id": "L-070",
+   "topic": "Buttons",
+   "date": "2026-07-06",
+   "words": "These 8 buttons must be in 1 block / add entry must also be blue and white / Remove gold add entry in eyebrow / Only greeting and date line in eyebrow / Below message your care circle add golden ask mira button",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-071",
+   "topic": "Buttons",
+   "date": "2026-07-06",
+   "words": "remove gold register from eyebrow",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-072",
+   "topic": "Buttons",
+   "date": "2026-04-08",
+   "words": "Sliders too small very difficult to navigate.",
+   "src": "P",
+   "file": "P-2026-09-15-C031/conversation-334ed3a6*",
+   "line": 71,
+   "verified": "found"
+  },
+  {
+   "id": "L-073",
+   "topic": "Buttons",
+   "date": "2026-07-03",
+   "words": "the only thing I want to keep of the old [landing page] is the shiny gold color on the buttons",
+   "src": "HUB",
+   "file": "feedback-gold-one-metallic.md",
+   "match": "is the shiny gold color on the buttons",
+   "line": 43,
+   "note": "Labelled verbatim intent in its source.",
+   "verified": "found"
+  },
+  {
+   "id": "L-074",
+   "topic": "Icons and logo",
+   "date": "2026-10-15",
+   "words": "compact icon spacing and make them smaller",
+   "src": "FS",
+   "line": 1243,
+   "verified": "found"
+  },
+  {
+   "id": "L-075",
+   "topic": "Icons and logo",
+   "date": "2026-10-15",
+   "words": "all tttthe same",
+   "src": "FS",
+   "match": "all tttthe same",
+   "line": 1253,
+   "verified": "found"
+  },
+  {
+   "id": "L-076",
+   "topic": "Icons and logo",
+   "date": "2026-10-15",
+   "words": "make smaller",
+   "src": "IMG",
+   "file": "image 1.webp (mark-up: header icons, mic + Clear, chat + Clear)",
+   "verified": "image"
+  },
+  {
+   "id": "L-077",
+   "topic": "Icons and logo",
+   "date": "2026-10-12",
+   "words": "remove circles from icons",
+   "src": "HO",
+   "file": "2026-10-12T1903Z-builder-council-redesign.md",
+   "line": 17,
+   "verified": "found"
+  },
+  {
+   "id": "L-078",
+   "topic": "Icons and logo",
+   "date": "2026-10-12",
+   "words": "Why + for light and dark - icon only",
+   "src": "HO",
+   "file": "2026-10-12T1903Z-builder-council-redesign.md",
+   "line": 17,
+   "verified": "found"
+  },
+  {
+   "id": "L-079",
+   "topic": "Icons and logo",
+   "date": "2026-10-15",
+   "words": "ADD IOB HUNTER SHIELD FOR LOGO",
+   "src": "IMG",
+   "file": "image 1.webp",
+   "verified": "image"
+  },
+  {
+   "id": "L-080",
+   "topic": "Icons and logo",
+   "date": "2026-06-22",
+   "words": "add shield to the wordmark lines everywhere from now on",
+   "src": "HUB",
+   "file": "project-shield-logo.md",
+   "line": 13,
+   "verified": "found"
+  },
+  {
+   "id": "L-081",
+   "topic": "Icons and logo",
+   "date": "2026-07-13",
+   "words": "I would like the shield to sit directly on the dark blue background",
+   "src": "GOV",
+   "file": "hub/glumira-7.1/punchlist.md",
+   "line": 758,
+   "verified": "found"
+  },
+  {
+   "id": "L-082",
+   "topic": "Icons and logo",
+   "date": "2026-10-15",
+   "words": "GOLD - WHITE",
+   "src": "IMG",
+   "file": "image 1.webp (title: GluMira gold, Production Builder white)",
+   "verified": "image"
+  },
+  {
+   "id": "L-083",
+   "topic": "Corners, borders and blocks",
+   "date": "2026-06-26",
+   "words": "Can you please remove the block around the GluMira as an educational platform, not a medical device, at the bottom? I don't like the block, and then you can tighten it a bit.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-05.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-084",
+   "topic": "Corners, borders and blocks",
+   "date": "2026-07-06",
+   "words": "Remove borser from disclaimer and have it sit on bCKGROUND",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-085",
+   "topic": "Corners, borders and blocks",
+   "date": "2026-04-06",
+   "words": "Do not make the logo look like a copy paste on top of text. it must blend in with the background",
+   "src": "P",
+   "file": "P-2026-09-15-C023/conversation-8caf6d59*",
+   "line": 2232,
+   "verified": "found"
+  },
+  {
+   "id": "L-086",
+   "topic": "Corners, borders and blocks",
+   "date": "2026-04-07",
+   "words": "Backgroung - line contast must be a lot softer",
+   "src": "P",
+   "file": "P-2026-09-15-C028/conversation-009ad04b*",
+   "line": 148,
+   "verified": "found"
+  },
+  {
+   "id": "L-087",
+   "topic": "Corners, borders and blocks",
+   "date": "2026-07-12",
+   "words": "check that on the landing page of .app is the thin footer with the two logos. That is the only approved footer that I want anywhere.",
+   "src": "H",
+   "file": "Alarms-Settings/Documents-71-Design-Lock.md",
+   "match": "thin footer with the two logos",
+   "line": 62,
+   "verified": "found"
+  },
+  {
+   "id": "L-088",
+   "topic": "Corners, borders and blocks",
+   "date": "2026-07-06",
+   "words": "the footer is too big it looks like a paragraph not a foot note",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-089",
+   "topic": "Corners, borders and blocks",
+   "date": "2026-07-02",
+   "words": "Keep as is but add squate image place holder before each",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-090",
+   "topic": "Light, shadow and depth",
+   "date": "2026-10-15",
+   "words": "light from right makes design alive",
+   "src": "FS",
+   "line": 1885,
+   "verified": "found"
+  },
+  {
+   "id": "L-091",
+   "topic": "Light, shadow and depth",
+   "date": "2026-10-15",
+   "words": "your gloss adds white - that is not gloss it is diluting color / search the internet how to make gloss on a gradient",
+   "src": "FS",
+   "line": 1793,
+   "verified": "found"
+  },
+  {
+   "id": "L-092",
+   "topic": "Light, shadow and depth",
+   "date": "2026-10-15",
+   "words": "ave you ever seen a shadow that is lighter than it's owner",
+   "src": "FS",
+   "line": 1718,
+   "verified": "found"
+  },
+  {
+   "id": "L-093",
+   "topic": "Light, shadow and depth",
+   "date": "2026-10-15",
+   "words": "to me the area between green lines is the shadow / Lemon does not belong here",
+   "src": "FS",
+   "line": 1734,
+   "verified": "found"
+  },
+  {
+   "id": "L-094",
+   "topic": "Light, shadow and depth",
+   "date": "2026-10-15",
+   "words": "more yellow is wrong here / it is throwing the balance off / I dont want solid horizontal lines it must be blended",
+   "src": "FS",
+   "line": 1780,
+   "verified": "found"
+  },
+  {
+   "id": "L-095",
+   "topic": "Light, shadow and depth",
+   "date": "2026-08-14",
+   "words": "A. Lange & Söhne, - Beautiful quiet statement",
+   "src": "HUB",
+   "file": "feedback-lange-oura-depth-is-light-not-blur.md",
+   "match": "Beautiful quiet statement",
+   "line": 8,
+   "note": "Same file: claude thinks 3d is taking a graph out of focus; and ouraring.com.",
+   "verified": "found"
+  },
+  {
+   "id": "L-096",
+   "topic": "Light, shadow and depth",
+   "date": "2026-07-12",
+   "words": "please apply the small three bar visual like we are having here in the studio.",
+   "src": "HUB",
+   "file": "feedback-adhd-low-stimulation-visuals.md",
+   "line": 9,
+   "note": "Continues: running up and down is over stimulation for ADHD.",
+   "verified": "found"
+  },
+  {
+   "id": "L-097",
+   "topic": "Light, shadow and depth",
+   "date": "2026-04-16",
+   "words": "Must be a natural transparant kayer kige cilored glass plassed on each other",
+   "src": "P",
+   "file": "P-2026-09-15-C054/conversation-e6eb1442*",
+   "line": 3792,
+   "verified": "found"
+  },
+  {
+   "id": "L-098",
+   "topic": "Light, shadow and depth",
+   "date": "2026-10-15",
+   "words": "no periwinkle is your reminder not mine. Stop adding your notes on my ui",
+   "src": "FS",
+   "line": 1813,
+   "verified": "found"
+  },
+  {
+   "id": "L-099",
+   "topic": "Colour (method governs)",
+   "date": "2026-10-12",
+   "words": "your blue is not from the same base color dark blue",
+   "src": "M72",
+   "file": "feedback-every-blue-from-navy.md",
+   "line": 11,
+   "verified": "found"
+  },
+  {
+   "id": "L-100",
+   "topic": "Colour (method governs)",
+   "date": "2026-10-12",
+   "words": "update color that there are no color restriction for blue and gold and bone for .app and .ai",
+   "src": "BRAND",
+   "file": "Living-Color-System_v1.0.md",
+   "line": 4,
+   "verified": "found"
+  },
+  {
+   "id": "L-101",
+   "topic": "Colour (method governs)",
+   "date": "2026-10-15",
+   "words": "USE THIS",
+   "src": "FS",
+   "line": 8,
+   "note": "On #C9A24B for every gold text. On #7A5C0A he said REMOVE.",
+   "verified": "found"
+  },
+  {
+   "id": "L-102",
+   "topic": "Colour (method governs)",
+   "date": "2026-09-20",
+   "words": "the library viewer is very nice BUT the gold is too much",
+   "src": "HUB",
+   "file": "project-van-clief-library-viewer.md",
+   "match": "nice but the gold is too much",
+   "line": 20,
+   "verified": "found"
+  },
+  {
+   "id": "L-103",
+   "topic": "Colour (method governs)",
+   "date": "2026-05-21",
+   "words": "What I want to achieve is a cohesion of a family in different shades.",
+   "src": "P",
+   "file": "P-2026-09-15-C092/conversation-a9b995b2*",
+   "line": 1364,
+   "verified": "found"
+  },
+  {
+   "id": "L-104",
+   "topic": "Colour (method governs)",
+   "date": "2026-05-07",
+   "words": "Black background again. No dark high contrast i am old and half blind",
+   "src": "P",
+   "file": "P-2026-09-15-C041/conversation-10f5142a*",
+   "line": 443,
+   "verified": "found"
+  },
+  {
+   "id": "L-105",
+   "topic": "Colour (method governs)",
+   "date": "2026-07-30",
+   "words": "You grey background color is too ugly to look at / See the approved color scheme",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-03.md",
+   "line": 32,
+   "verified": "found"
+  },
+  {
+   "id": "L-106",
+   "topic": "Colour (method governs)",
+   "date": "2026-07-03",
+   "words": "All graph backgrounds must be white.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-107",
+   "topic": "Colour (method governs)",
+   "date": "2026-06-10",
+   "words": "warm tones, no cold blue-grey",
+   "src": "H",
+   "file": "Programme/Documents-Planning-Book-Full-Sources-part-002.md",
+   "line": 596,
+   "verified": "found"
+  },
+  {
+   "id": "L-108",
+   "topic": "Colour (method governs)",
+   "date": "2026-05-06",
+   "words": "I do not want Scandinavian minimalist or teal for that matter in the current format.",
+   "src": "P",
+   "file": "P-2026-09-15-C043/conversation-74535e76*",
+   "line": 468,
+   "verified": "found"
+  },
+  {
+   "id": "L-109",
+   "topic": "Platform, zoom and theme",
+   "date": "2026-10-15",
+   "words": "Please change the size of production builder to 125% zoom as default",
+   "src": "FS",
+   "line": 1172,
+   "verified": "found"
+  },
+  {
+   "id": "L-110",
+   "topic": "Platform, zoom and theme",
+   "date": "2026-10-12",
+   "words": "The production builder is only desktop. I do not want to use it on my telephone.",
+   "src": "M72",
+   "file": "feedback-builder-desktop-only.md",
+   "line": 11,
+   "verified": "found"
+  },
+  {
+   "id": "L-111",
+   "topic": "Platform, zoom and theme",
+   "date": "2026-07-24",
+   "words": "i am 95% of the time on desktop",
+   "src": "NAB",
+   "file": "feedback-nabucco-is-desktop-first.md",
+   "line": 11,
+   "verified": "found"
+  },
+  {
+   "id": "L-112",
+   "topic": "Platform, zoom and theme",
+   "date": "2026-07-30",
+   "words": "I want to build the full site first and then derive the mobile site from that.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-03.md",
+   "line": 32,
+   "verified": "found"
+  },
+  {
+   "id": "L-113",
+   "topic": "Platform, zoom and theme",
+   "date": "2026-07-04",
+   "words": "For the mobile application, the dark blue sidebar will just move away, and it will go to the bottom of the app.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-01.md",
+   "line": 80,
+   "verified": "found"
+  },
+  {
+   "id": "L-114",
+   "topic": "Platform, zoom and theme",
+   "date": "2026-04-04",
+   "words": "Layout not fit for mobile all pages must be designed for phone fist.",
+   "src": "P",
+   "file": "P-2026-09-15-C015/conversation-280ccec3*",
+   "line": 13,
+   "verified": "found"
+  },
+  {
+   "id": "L-115",
+   "topic": "Platform, zoom and theme",
+   "date": "2026-07-06",
+   "words": "remove light dark auto - light only",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "note": "For sign-in.",
+   "verified": "found"
+  },
+  {
+   "id": "L-116",
+   "topic": "Copy and wording",
+   "date": "2026-06-25",
+   "words": "Do not invent new text or taglines - use what we have in the repo",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-05.md",
+   "line": 40,
+   "verified": "found"
+  },
+  {
+   "id": "L-117",
+   "topic": "Copy and wording",
+   "date": "2026-07-06",
+   "words": "No em dashes",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  },
+  {
+   "id": "L-118",
+   "topic": "Copy and wording",
+   "date": "2026-07-23",
+   "words": "I don't want death, I don't want ghosts, I don't want skeleton",
+   "src": "NAB",
+   "file": "feedback-no-dark-or-cryptic-names.md",
+   "line": 11,
+   "verified": "found"
+  },
+  {
+   "id": "L-119",
+   "topic": "Copy and wording",
+   "date": "2026-04-14",
+   "words": "Use am / pm  - not a and p redicilous",
+   "src": "P",
+   "file": "P-2026-09-15-C057/conversation-18ba83e5*",
+   "line": 527,
+   "verified": "found"
+  },
+  {
+   "id": "L-120",
+   "topic": "Charts (Insulin-Lock governs)",
+   "date": "2026-07-06",
+   "words": "The yellow, orange, and the red bands must only be lines. Please don't color them.",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-01.md",
+   "line": 80,
+   "verified": "found"
+  },
+  {
+   "id": "L-121",
+   "topic": "Charts (Insulin-Lock governs)",
+   "date": "2026-05-21",
+   "words": "Color scheme applies to web pages only not graphs / graphs and content visuals are full color unrestricted",
+   "src": "P",
+   "file": "P-2026-09-15-C092/conversation-a9b995b2*",
+   "line": 13,
+   "verified": "found"
+  },
+  {
+   "id": "L-122",
+   "topic": "Charts (Insulin-Lock governs)",
+   "date": "2026-07-06",
+   "words": "Tabs to be closer to graph to look like folder markers in a file",
+   "src": "DC",
+   "file": "SUMMARY-PAGE-02.md",
+   "line": 16,
+   "verified": "found"
+  }
+ ],
+ "held": [
+  "\"only the unit selected must turn gold\" (2026-09-20): quoted by a harvest agent from memory-governance-archive governance/tools/tree/README.md, but not found there or anywhere in memory. Not filed until a source is found.",
+  "His claude.ai export (Claude Design conversations): not dropped into claude-export-drop yet. Added when it lands."
+ ]
+}
