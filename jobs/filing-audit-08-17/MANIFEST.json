@@ -1,0 +1,127 @@
+{
+  "job": "filing-audit-08-17",
+  "source_repo": "Glumira-X-Technologies-cc/Glumira-7.2",
+  "source_commit": "62eadaff4b3a2a53e81d73d41cb53df5b1bf9641",
+  "files": [
+    {
+      "path": "Library/OS/JEV-MAP.json",
+      "from": "Library/OS/JEV-MAP.json",
+      "blob": "b46b0f37eede4ae8c2911d82994672e67a31f263",
+      "writable": false
+    },
+    {
+      "path": "Library/OS/CHECK.mjs",
+      "from": "Library/OS/CHECK.mjs",
+      "blob": "8780c24ddbef50434a409d901af73d17581b28de",
+      "writable": false
+    },
+    {
+      "path": "Library/OS/REPO-REGISTRY.json",
+      "from": "Library/OS/REPO-REGISTRY.json",
+      "blob": "b9800577272c356f5ea71352a32a204a24a91320",
+      "writable": false
+    },
+    {
+      "path": "Library/OS/PROTOCOL.md",
+      "from": "Library/OS/PROTOCOL.md",
+      "blob": "93b464390a381727e2d4a427cf6123749dd83a87",
+      "writable": false
+    },
+    {
+      "path": "Library/OS/GUIDE.md",
+      "from": "Library/OS/GUIDE.md",
+      "blob": "9178f70d78d7ee427bb589c64123924617fd5a45",
+      "writable": false
+    },
+    {
+      "path": "Library/OS/START.md",
+      "from": "Library/OS/START.md",
+      "blob": "568fecb3eda43e91dbefd36876b20e165f87695d",
+      "writable": false
+    },
+    {
+      "path": "Library/OS/STOP.md",
+      "from": "Library/OS/STOP.md",
+      "blob": "8d68f12cff1fdfcc178386ecaed2147725f5c2df",
+      "writable": false
+    },
+    {
+      "path": "Library/OS/RULES.md",
+      "from": "Library/OS/RULES.md",
+      "blob": "c0e9f325043f6f2ab0ad41b8d1d52af6ca948b53",
+      "writable": false
+    },
+    {
+      "path": "Library/OS/ERRATA.json",
+      "from": "Library/OS/ERRATA.json",
+      "blob": "cf3f3022b7dd752dcde323b24a8cb06e0c39cad7",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.5-Filing-Law/Cabinet-Filing-Law.md",
+      "from": "Vaults/4-Governance/Rows/4.5-Filing-Law/Cabinet-Filing-Law.md",
+      "blob": "b84ffc9e7fedf331674b16398d6f58b17a99a82f",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Filing-Law/Page-Doc-Filing-Law/GLUMIRA-FILING-LAW.md",
+      "from": "Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Filing-Law/Page-Doc-Filing-Law/GLUMIRA-FILING-LAW.md",
+      "blob": "c8917471361fd486a3852df9a98e1ef842a76715",
+      "writable": false
+    },
+    {
+      "path": "Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Naming-Scheme/Page-Doc-Naming-Scheme/NAMING-SCHEME.md",
+      "from": "Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Naming-Scheme/Page-Doc-Naming-Scheme/NAMING-SCHEME.md",
+      "blob": "1d0aa700af30a7e32692911131775e010737476c",
+      "writable": false
+    },
+    {
+      "path": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Six-Libraries/Page-Doc-Six-Libraries/SIX-LIBRARIES-PLAN.md",
+      "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Six-Libraries/Page-Doc-Six-Libraries/SIX-LIBRARIES-PLAN.md",
+      "blob": "abc93f42e4d0c781e8487e52eee0691ea3656639",
+      "writable": false
+    },
+    {
+      "path": "docs/04_Brand/App-Locked-Palette_v1.0.md",
+      "from": "docs/04_Brand/App-Locked-Palette_v1.0.md",
+      "blob": "3f8c4d1df8de6646e230fa76eeb32dad69752ef0",
+      "writable": false
+    },
+    {
+      "path": "docs/04_Brand/GluMira-Color-Swatches_v1.0.html",
+      "from": "docs/04_Brand/GluMira-Color-Swatches_v1.0.html",
+      "blob": "724a052b6603197edb061000f536348e836cc589",
+      "writable": false
+    },
+    {
+      "path": "docs/04_Brand/Living-Color-System_v1.0.md",
+      "from": "docs/04_Brand/Living-Color-System_v1.0.md",
+      "blob": "a8aea6cca9bba88ef4a185ac6ec31da1dbdc0025",
+      "writable": false
+    },
+    {
+      "path": "docs/04_Brand/Living-Light-Shadow-Application_v1.0.md",
+      "from": "docs/04_Brand/Living-Light-Shadow-Application_v1.0.md",
+      "blob": "739ccdb303e35cb4136199570f5abf5676e2f6ec",
+      "writable": false
+    },
+    {
+      "path": "Foyer-extract.json",
+      "from": "Foyer/FOYER.json (routes, vault and row names and paths only)",
+      "blob": "2546312fdc9af31a41b1258fbf8582e9f207b40c",
+      "writable": false
+    },
+    {
+      "path": "ROADMAP-phase8-extract.md",
+      "from": "ROADMAP.md lines 225 to 251",
+      "blob": "6723ef67b07cb8c3f80244460a6ef5177f9b1fb2",
+      "writable": false
+    },
+    {
+      "path": "tracked-paths.txt",
+      "from": "git ls-files",
+      "blob": "a286d7ba8f2c4105b3096adb73768f345eba1184",
+      "writable": false
+    }
+  ]
+}

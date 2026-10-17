@@ -1,0 +1,17 @@
+{
+  "job": "filing-audit-08-17",
+  "card": "08-17",
+  "target_repo": "Glumira-X-Technologies-cc/Glumira-7.2",
+  "founder_words": [
+    "i first want to get the structure right - please check the updated van clief structure",
+    "create a plan deepseek will build",
+    "docs/04_Brand / all these old numbering must be removed and renamed undwer new filing rules"
+  ],
+  "read_only": "everything under in/",
+  "writable": "out/ only",
+  "never": [
+    "push to main",
+    "merge",
+    "edit in/"
+  ]
+}
