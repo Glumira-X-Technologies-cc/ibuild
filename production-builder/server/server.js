@@ -29,6 +29,25 @@ const { exec } = require("node:child_process");
 const { mountLaneBridge } = require("./lane-bridge");
 
 const HERE = __dirname;
+
+// Seven PB fix modules are ESM (.mjs). Load once via dynamic import from this CommonJS server.
+let pbLibPromise = null;
+function loadPbLib() {
+  if (!pbLibPromise) {
+    pbLibPromise = Promise.all([
+      import("./lib/questions.mjs"),
+      import("./lib/sources.mjs"),
+      import("./lib/modelFormat.mjs"),
+      import("./lib/skills.mjs"),
+      import("./lib/guard.mjs"),
+      import("./lib/rules.mjs"),
+      import("./lib/complete.mjs"),
+    ]).then(([questions, sources, modelFormat, skills, guard, rules, complete]) => ({
+      questions, sources, modelFormat, skills, guard, rules, complete,
+    }));
+  }
+  return pbLibPromise;
+}
 const PORT = Number(process.env.PORT) || 3001;
 const HOST = "127.0.0.1";
 const HUB = process.env.GOVERNANCE_HUB || "C:/memory-governance-archive";
@@ -459,10 +478,16 @@ function repoCwd() {
 app.post("/api/builder/bash", (req, res) => {
   const command = String((req.body && req.body.command) || "").trim();
   if (!command) return apiError(res, 400, "No command.", "no_command");
-  exec(command, { cwd: repoCwd(), timeout: 20000, maxBuffer: 200000, windowsHide: true }, (err, stdout, stderr) => {
+  // Interactive terminal from the page opens at C:\. Pass cwd in the body to override; otherwise C:\.
+  // Jobs and other repo tools keep using repoCwd() elsewhere.
+  const asked = String((req.body && req.body.cwd) || "").trim();
+  const cwd = asked === "C:\\" || asked === "C:/" || asked.toLowerCase() === "c:\\" || asked === "C:"
+    ? "C:\\"
+    : (asked && path.isAbsolute(asked) && !asked.includes("..") ? asked : "C:\\");
+  exec(command, { cwd, timeout: 20000, maxBuffer: 200000, windowsHide: true }, (err, stdout, stderr) => {
     const text = `${stdout || ""}${stderr || ""}`.slice(0, 20000);
     if (err && !text) return apiError(res, 500, scrub(err.message), "bash");
-    res.json({ ok: !err, text: scrub(text || (err ? err.message : "")) });
+    res.json({ ok: !err, text: scrub(text || (err ? err.message : "")), cwd });
   });
 });
 app.post("/api/builder/github", async (req, res) => {
@@ -530,8 +555,96 @@ app.post("/v1/chat/completions", (req, res) => {
   relayChat(req, res, body).catch((e) => apiError(res, 500, e.message, "proxy_failure"));
 });
 
+// Lane bridge first so callLane can wrap runLane for the governed chat flow.
+const laneBridge = mountLaneBridge(app, { optionalKey, apiError }); // /api/lane and /api/lane/status
+
+async function callLane(prompt, _lane) {
+  const r = await laneBridge.runLane({ prompt });
+  if (!r.ok) throw new Error(r.message || "lane failed");
+  return { text: r.text, lane: r.lane };
+}
+
+// Governed build flow: { message, answers, lane } → clarify | blocked | done.
+// Legacy chat.html keeps { messages } SSE through relayChat.
+async function handleGovernedChat(req, res) {
+  const lib = await loadPbLib();
+  const { nextQuestion, isReady, buildInterrogationBlock } = lib.questions;
+  const { SourceLedger } = lib.sources;
+  const { formatPrompt, detectFamily } = lib.modelFormat;
+  const { resolveSkill, routingBlock } = lib.skills;
+  const { guarded } = lib.guard;
+  const { evaluate } = lib.rules;
+  const { ensureArtifact } = lib.complete;
+
+  const { message, answers = {}, lane = process.env.MODEL_LANE || "gemini" } = req.body || {};
+
+  // 1. Interrogate before doing anything else
+  if (!isReady(answers)) {
+    const q = nextQuestion(answers);
+    return res.json({ phase: "clarify", ...q, answers });
+  }
+
+  // 2. Gather sources
+  const ledger = new SourceLedger();
+  for (const f of String(answers.context || "").split(/[\n,]/).map((s) => s.trim()).filter(Boolean)) {
+    try {
+      await ledger.readFile(process.cwd(), f);
+    } catch {
+      /* refused paths stay out of the ledger */
+    }
+  }
+
+  // 3. Route skill
+  const skill = resolveSkill(message);
+
+  // 4. Pre-flight gate
+  const pre = evaluate({ answers, sources: ledger.toJSON().entries, skill, family: detectFamily(lane) }, "pre");
+  if (!pre.ok) return res.status(422).json({ phase: "blocked", ...pre });
+
+  // 5. Compile
+  const task = message;
+  const prompt = formatPrompt({
+    task,
+    lane,
+    blocks: [buildInterrogationBlock(answers), routingBlock(skill), ledger.toBlock()],
+  });
+
+  // 6. Generate under guard + artifact enforcement
+  const { text, retries, ok, reason } = await ensureArtifact({
+    task: prompt,
+    generate: async (p) => {
+      const g = await guarded(() => callLane(p, lane), { label: "chat" });
+      if (g.verdict === "FAIL" && !g.text) throw new Error(g.report.failures.join("; "));
+      return g.text;
+    },
+  });
+
+  // 7. Post-flight gate
+  const post = evaluate(
+    { answers, sources: ledger.toJSON().entries, skill, family: detectFamily(lane), output: text },
+    "post"
+  );
+  if (!post.ok) return res.status(422).json({ phase: "blocked", ...post, output: text });
+
+  res.json({
+    phase: "done",
+    text,
+    retries,
+    artifactOk: ok,
+    reason,
+    sources: ledger.toJSON(),
+    skill,
+    rules: post.report,
+  });
+}
+
 app.post("/api/chat", (req, res) => {
   const b = req.body || {};
+  // New governed flow (message string). Existing chat.html keeps messages + SSE.
+  if (typeof b.message === "string") {
+    handleGovernedChat(req, res).catch((e) => apiError(res, 500, e.message, "proxy_failure"));
+    return;
+  }
   if (!Array.isArray(b.messages)) return apiError(res, 400, "Body needs a messages array.", "bad_request");
   const messages = b.messages
     .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
@@ -544,8 +657,6 @@ app.post("/api/chat", (req, res) => {
   };
   relayChat(req, res, body).catch((e) => apiError(res, 500, e.message, "proxy_failure"));
 });
-
-mountLaneBridge(app, { optionalKey, apiError }); // /api/lane and /api/lane/status: the Production Builder lane bridge
 
 app.post("/api/diary/save-chat", async (req, res) => {
   const { date, title, markdown, dryRun } = req.body || {};

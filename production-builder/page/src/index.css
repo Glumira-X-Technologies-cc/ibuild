@@ -241,64 +241,95 @@
   .panel-pad {
     padding: var(--space-5);
   }
+  /* Section headings (Fold / H2): space between sections; first in a pane flush with FOUNDER CAPTURE. */
+  .section-head {
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
+  }
+  .panel-pad > section:first-child > .section-head,
+  .panel-pad > .section-head:first-child {
+    margin-top: 0;
+  }
 
-  /* Top tabs: inactive tabs are quiet; the active tab is bold, full-contrast, with a gold bar. */
+  /* Top tabs: same size as Founder Capture idea text (text-sm / 0.875rem). Selection = gold text only. No underline, no bold (founder 2026-10-16). */
   .nav-tab {
     position: relative;
-    padding: var(--space-1) var(--space-2);
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    line-height: 1;
+    padding: 0 5px;
     border-radius: 3px;
     color: var(--shade-color);
     font-weight: 500;
-    letter-spacing: 0.06em;
-    transition: color 0.15s ease, background-color 0.15s ease;
+    font-size: 0.875rem; /* match idea textarea text-sm */
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    background: transparent;
+    transition: color 0.15s ease;
   }
-  /* Row 2 tabs sit over the left pane: one line, tight, so all five fit its width. */
-  .tab-row .nav-tab { padding: 2px 5px; letter-spacing: 0.03em; white-space: nowrap; }
+  .tab-row .nav-tab { padding: 0 3px; }
   .nav-tab:hover {
     color: var(--text-main);
   }
   .nav-tab.is-active {
-    color: var(--text-main);
-    font-weight: 700;
-    background: var(--bg-panel);
+    color: var(--gold-text);
+    font-weight: 500;
+    background: transparent;
   }
   .nav-tab.is-active::after {
-    content: '';
-    position: absolute;
-    left: var(--space-2);
-    right: var(--space-2);
-    bottom: -7px;
-    height: 3px;
-    border-radius: 2px;
-    background: var(--gold);
+    content: none !important;
+    display: none !important;
   }
   .nav-tab:focus-visible {
     outline: 2px solid var(--gold);
     outline-offset: 2px;
   }
+  /* Header row 2 chips: one height, square edges, same text size as idea textarea / nav tabs. */
+  .header-chip {
+    display: inline-flex;
+    align-items: center;
+    height: 22px;
+    line-height: 1;
+    padding: 0 8px;
+    border-radius: 0;
+    font-size: 0.875rem; /* match idea textarea text-sm */
+    white-space: nowrap;
+  }
 
-  /* Hairline vertical layout guides */
+  /* Hairline vertical layout guides between header chrome (gold at rest, same as splitters). */
   .hairline-v {
     width: 1px;
     min-width: 1px;
     max-width: 1px;
-    background-color: var(--border-color);
-    opacity: 0.75;
+    background-color: var(--gold);
+    opacity: 0.85;
   }
 
-  /* Hairline column splitter: crisp 1px hairline vertical layout guide that illuminates gold when worked in */
+  /* Column/row splitters: gold at rest (#C9A24B / var(--gold)); stronger gold on hover/drag. */
+  .column-splitter,
+  .row-splitter {
+    position: relative;
+    z-index: 30;
+    background-color: #C9A24B;
+    background-color: var(--gold);
+    opacity: 1;
+    transition: background-color 0.15s ease, opacity 0.15s ease;
+  }
   .column-splitter {
     width: 1px;
     min-width: 1px;
     max-width: 1px;
     cursor: col-resize;
-    position: relative;
-    z-index: 30;
-    background-color: var(--border-color);
-    opacity: 0.75;
-    transition: background-color 0.15s ease, opacity 0.15s ease;
   }
-  /* Generous 10px invisible hit zone for smooth dragging without visual bulk */
+  .row-splitter {
+    height: 1px;
+    min-height: 1px;
+    max-height: 1px;
+    width: 100%;
+    cursor: row-resize;
+    flex-shrink: 0;
+  }
   .column-splitter::before {
     content: '';
     position: absolute;
@@ -309,9 +340,20 @@
     cursor: col-resize;
     z-index: 31;
   }
-  /* Gently turns gold only when worked in (hovered or actively resizing) */
+  .row-splitter::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -5px;
+    bottom: -5px;
+    cursor: row-resize;
+    z-index: 31;
+  }
   .column-splitter:hover,
-  .column-splitter.active-resizing {
+  .column-splitter.active-resizing,
+  .row-splitter:hover,
+  .row-splitter.active-resizing {
     opacity: 1;
     background-color: var(--gold-text);
   }

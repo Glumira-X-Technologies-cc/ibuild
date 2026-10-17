@@ -6,6 +6,7 @@ export function useLoad<T>(fn: () => Promise<T>, deps: unknown[] = []) {
   const [error, setError] = useState<string | null>(null);
   const reload = useCallback(() => { setError(null); fn().then(setData).catch(e => setError(e.message)); }, deps); // eslint-disable-line
   useEffect(reload, [reload]);
+  useEffect(() => { window.addEventListener('builder-scanned', reload); return () => window.removeEventListener('builder-scanned', reload); }, [reload]);
   return { data, error, reload };
 }
 // Minimize: any block or card with a fold key can be folded to its title. The choice is kept per key
@@ -49,7 +50,7 @@ export const Card: React.FC<{ title?: React.ReactNode; children?: React.ReactNod
 export const Fold: React.FC<{ id: string; title: React.ReactNode; children?: React.ReactNode; startOpen?: boolean; right?: React.ReactNode }> = ({ id, title, children, startOpen, right }) => {
   const [open, toggle] = useFold(id, startOpen ?? true);
   return (<section>
-    <div className="flex items-center justify-between gap-2 mt-6 mb-3">
+    <div className="section-head flex items-center justify-between gap-2">
       <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--gold-text)] cursor-pointer select-none" onClick={toggle}>{title}</h2>
       <div className="flex items-center gap-2">{right}<FoldButton open={open} onToggle={toggle} label={typeof title === 'string' ? title : undefined} /></div>
     </div>
@@ -68,7 +69,7 @@ export const H2: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     }
   });
   return (
-    <div ref={ref} data-h2="" className="flex items-center justify-between gap-2 mt-6 mb-3">
+    <div ref={ref} data-h2="" className="section-head flex items-center justify-between gap-2">
       <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--gold-text)] cursor-pointer select-none" onClick={toggle}>{children}</h2>
       {key && <FoldButton open={open} onToggle={toggle} label={String(children)} />}
     </div>

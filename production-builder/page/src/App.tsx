@@ -13,7 +13,21 @@ import { IdeaFlow } from './screens/PromptKit';
 import { Icon } from './icons';
 import { IconAction } from './screens/ui';
 import { replyLines } from './format';
-import { PANE_IDS, PaneId, Panes, growPane, paneSnapshot, readPanes, savePanes, togglePane } from './layout';
+import {
+  DEFAULT_TERMINAL_HEIGHT,
+  MAX_TERMINAL_HEIGHT,
+  MIN_TERMINAL_HEIGHT,
+  PANE_IDS,
+  PaneId,
+  Panes,
+  growPane,
+  paneSnapshot,
+  readPanes,
+  readTerminalHeight,
+  savePanes,
+  saveTerminalHeight,
+  togglePane,
+} from './layout';
 import { fmtDateTime, fmtTime, laneName } from './format';
 
 // Types
@@ -85,15 +99,19 @@ export default function App() {
   // Movable vertical column widths (Variation 16 baseline: 350px 1fr 350px)
   const [leftWidth, setLeftWidth] = useState<number>(350);
   const [rightWidth, setRightWidth] = useState<number>(350);
-  // Workspace panes (layout icon next to Scan): all three by default, at least one, kept per viewer.
+  // Workspace panes (layout icon next to Scan): three columns by default; Terminal is a separate bottom dock toggle.
   const [panes, setPanes] = useState<Panes>(() => { try { return readPanes(window.localStorage); } catch { return readPanes(null); } });
   const [layoutOpen, setLayoutOpen] = useState<boolean>(false);
+  const [terminalHeight, setTerminalHeight] = useState<number>(() => { try { return readTerminalHeight(window.localStorage); } catch { return DEFAULT_TERMINAL_HEIGHT; } });
   const flipPane = (id: PaneId) => setPanes(p => { const n = togglePane(p, id); if (n === p) showToast('At least one pane stays shown.'); else { try { savePanes(window.localStorage, n); } catch { /* storage blocked */ } } return n; });
+  const showTerminal = (on: boolean) => setPanes(p => { if (p.terminal === on) return p; const n = { ...p, terminal: on }; try { savePanes(window.localStorage, n); } catch { /* storage blocked */ } return n; });
   const grow = growPane(panes);
   const leftPaneRef = useRef<HTMLElement>(null);
   const middlePaneRef = useRef<HTMLElement>(null);
   const [isResizingLeft, setIsResizingLeft] = useState<boolean>(false);
   const [isResizingRight, setIsResizingRight] = useState<boolean>(false);
+  const [isResizingTerminal, setIsResizingTerminal] = useState<boolean>(false);
+  const dictationTarget = useRef<'ideas' | 'chat'>('ideas');
 
   // Active top tab & dropdown state
   const [activeTab, setActiveTab] = useState<string>('ideas');
@@ -145,27 +163,19 @@ export default function App() {
   }, [checkServer]);
   const fmtScan = (iso: string | null) => iso ? fmtDateTime(new Date(iso)) : 'never';
 
-  // Scan now: a real read of the repo through the Builder. /debug returns scannedAt and findings;
-  // if it fails, /bootstrap is read instead and the time it answered is the scan time.
+  // One response carries bootstrap and debug from the same fetched commit.
   const handleScan = async () => {
     if (scanning) return;
     setScanning(true);
     try {
-      let at: string, msg: string;
-      try {
-        const d: any = await builder('/debug');
-        at = d.scannedAt;
-        const n = (Array.isArray(d.findings) ? d.findings : []).filter(Boolean).length;
-        msg = `Scanned ${String(d.source).slice(0, 7)}: ${n} finding${n === 1 ? '' : 's'}.`;
-      } catch {
-        const b: any = await builder('/bootstrap');
-        at = new Date().toISOString();
-        const w = (Array.isArray(b?.roadmap?.warnings) ? b.roadmap.warnings : []).filter(Boolean).length;
-        msg = `Scanned ${String(b?.repo?.commit ?? '').slice(0, 7)}: ${b?.roadmap?.counts?.rows ?? 0} roadmap rows, ${w} warning${w === 1 ? '' : 's'}.`;
-      }
+      const result: any = await builder('/scan', {});
+      const scan = result.bootstrap.scan;
+      const at = scan.scannedAt;
       setLastScan(at);
       try { localStorage.setItem('ais.lastScan', at); } catch { /* storage blocked */ }
-      showToast(msg);
+      window.dispatchEvent(new Event('builder-scanned'));
+      showToast((scan.fetchStatus === 'fresh' ? 'Scanned main ' : 'Fetch failed. Cached main ') +
+        scan.commit.slice(0, 7) + '. Open Estate for sync and document status.');
     } catch (e: any) { showToast(e.message); }
     finally { setScanning(false); }
   };
@@ -406,11 +416,16 @@ export default function App() {
         }
 
         if (finalChunk) {
-          setIdeaText(prev => (prev ? `${prev.trim()} ${finalChunk.trim()}` : finalChunk.trim()));
-          setInterimTranscript('');
-          if (!ideaNotice) {
-            setIdeaNotice("Your idea text changed via voice dictation. Press Send to start again with it.");
+          const chunk = finalChunk.trim();
+          if (dictationTarget.current === 'chat') {
+            setChatInput(prev => (prev ? `${prev.trim()} ${chunk}` : chunk));
+          } else {
+            setIdeaText(prev => (prev ? `${prev.trim()} ${chunk}` : chunk));
+            if (!ideaNotice) {
+              setIdeaNotice("Your idea text changed via voice dictation. Press Send to start again with it.");
+            }
           }
+          setInterimTranscript('');
         } else {
           setInterimTranscript(currentInterim);
         }
@@ -448,7 +463,7 @@ export default function App() {
     };
   }, [showToast, ideaNotice]);
 
-  const toggleListening = () => {
+  const toggleListening = (target: 'ideas' | 'chat' = 'ideas') => {
     if (!speechSupported) {
       showToast("Voice dictation isn't available in this browser.");
       return;
@@ -461,6 +476,7 @@ export default function App() {
       setIsListening(false);
       showToast("Dictation stopped.");
     } else {
+      dictationTarget.current = target;
       try {
         recognitionRef.current?.start();
       } catch (err) {
@@ -484,6 +500,11 @@ export default function App() {
     setIsResizingRight(true);
   };
 
+  const handleMouseDownTerminal = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsResizingTerminal(true);
+  };
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (isResizingLeft) {
@@ -493,6 +514,9 @@ export default function App() {
         const windowWidth = window.innerWidth;
         const newWidth = Math.max(260, Math.min(550, windowWidth - e.clientX));
         setRightWidth(newWidth);
+      } else if (isResizingTerminal) {
+        const fromBottom = window.innerHeight - e.clientY;
+        setTerminalHeight(Math.max(MIN_TERMINAL_HEIGHT, Math.min(MAX_TERMINAL_HEIGHT, fromBottom)));
       }
     };
 
@@ -501,9 +525,13 @@ export default function App() {
         setIsResizingLeft(false);
         setIsResizingRight(false);
       }
+      if (isResizingTerminal) {
+        setIsResizingTerminal(false);
+        try { saveTerminalHeight(window.localStorage, terminalHeight); } catch { /* storage blocked */ }
+      }
     };
 
-    if (isResizingLeft || isResizingRight) {
+    if (isResizingLeft || isResizingRight || isResizingTerminal) {
       window.addEventListener('mousemove', handleMouseMove);
       window.addEventListener('mouseup', handleMouseUp);
     }
@@ -512,7 +540,7 @@ export default function App() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isResizingLeft, isResizingRight]);
+  }, [isResizingLeft, isResizingRight, isResizingTerminal, terminalHeight]);
 
   const resetColumnWidths = () => {
     setLeftWidth(350);
@@ -520,12 +548,18 @@ export default function App() {
     showToast("Layout reset.");
   };
 
-  // Tab definitions
+  const resetTerminalHeight = () => {
+    setTerminalHeight(DEFAULT_TERMINAL_HEIGHT);
+    try { saveTerminalHeight(window.localStorage, DEFAULT_TERMINAL_HEIGHT); } catch { /* storage blocked */ }
+    showToast('Terminal height reset.');
+  };
+
+  // Tab definitions — title case, never ALL CAPS (founder 2026-10-16).
   const tabs: NavTab[] = [
-    { id: 'ideas', label: 'IDEAS' },
+    { id: 'ideas', label: 'Ideas' },
     {
       id: 'daily',
-      label: 'DAILY',
+      label: 'Daily',
       menu: [
         { label: 'Today', shortcut: 'Ctrl+1' },
         { label: 'Diary', shortcut: 'Ctrl+2' }
@@ -533,7 +567,7 @@ export default function App() {
     },
     {
       id: 'build',
-      label: 'BUILD',
+      label: 'Build',
       menu: [
         { label: 'Build list', shortcut: 'Ctrl+3' },
         { label: 'Library', shortcut: 'Ctrl+4' }
@@ -541,7 +575,7 @@ export default function App() {
     },
     {
       id: 'van-clief',
-      label: 'VAN CLIEF',
+      label: 'Van Clief',
       menu: [
         { label: 'Structure', shortcut: 'Ctrl+5' },
         { label: 'Estate', shortcut: 'Ctrl+6' }
@@ -549,7 +583,7 @@ export default function App() {
     },
     {
       id: 'tools',
-      label: 'TOOLS',
+      label: 'Tools',
       menu: [
         { label: 'Modules' },
         { label: 'Prompt kit' },
@@ -702,7 +736,7 @@ export default function App() {
   const runBash = async () => {
     setToolOut('Running…');
     try {
-      const r: any = await builder('/bash', { command: bashCmd });
+      const r: any = await builder('/bash', { command: bashCmd, cwd: 'C:\\' });
       setToolOut(typeof r?.text === 'string' ? r.text : JSON.stringify(r));
     } catch (err: any) { setToolOut(err.message); }
   };
@@ -885,14 +919,14 @@ export default function App() {
       onClick={startServer}
       disabled={serverStatus !== 'offline'}
       title={serverStatus === 'running' ? 'The server answers on this address.' : serverStatus === 'offline' ? 'Start the server.' : 'Checking the server.'}
-      className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs bg-[var(--bg-panel)] text-[var(--text-main)] border border-[var(--border-color)] whitespace-nowrap disabled:cursor-default"
+      className="header-chip gap-1.5 bg-[var(--bg-panel)] text-[var(--text-main)] border border-[var(--border-color)] disabled:cursor-default"
     >
-      <span className={`w-1.5 h-1.5 rounded-full inline-block ${serverStatus === 'running' ? 'bg-[var(--success)]' : serverStatus === 'offline' ? 'bg-[var(--error)]' : 'bg-[var(--shade-color)]'}`}></span>
+      <span className={`w-1.5 h-1.5 rounded-none inline-block ${serverStatus === 'running' ? 'bg-[var(--success)]' : serverStatus === 'offline' ? 'bg-[var(--error)]' : 'bg-[var(--shade-color)]'}`}></span>
       <span>{serverStatus === 'running' ? 'Server running' : serverStatus === 'offline' ? 'Server offline' : 'Checking…'}</span>
     </button>
   );
   const lastScanned = (
-    <span className="text-xs text-[var(--shade-color)] font-mono flex items-center gap-1.5 whitespace-nowrap" title="When Scan now last read the repository">
+    <span className="header-chip text-[var(--shade-color)] font-mono gap-1.5" title="When Scan now last read the repository">
       <Icon name="clock" size={12} />
       <span>Last scanned: {fmtScan(lastScan)}</span>
     </span>
@@ -914,13 +948,13 @@ export default function App() {
     { label: 'Add image', run: () => ideaImageRef.current?.click() },
     { label: 'Add file', run: () => ideaFileRef.current?.click() },
     { label: 'GitHub read / write', run: () => setTool('github') },
-    { label: 'Terminal', run: () => setTool('terminal') },
+    { label: 'Terminal', run: () => { setTool(null); showTerminal(true); } },
   ];
   const chatPlusItems: PlusEntry[] = [
     { label: 'Add image', run: () => fileInputRef.current?.click() },
     { label: 'Add file', run: () => chatFileRef.current?.click() },
     { label: 'GitHub read / write', run: () => setTool('github') },
-    { label: 'Terminal', run: () => setTool('terminal') },
+    { label: 'Terminal', run: () => { setTool(null); showTerminal(true); } },
   ];
   const plusRows = (plusMenu === 'ideas' ? ideaPlusItems : chatPlusItems).filter((row): row is PlusItem | '-' => row !== null);
 
@@ -951,7 +985,7 @@ export default function App() {
                 {PANE_IDS.map(id => (
                   <label key={id} className="flex items-center gap-2 px-3 py-1.5 text-xs text-[var(--text-main)] cursor-pointer hover:bg-[var(--bg-panel)]">
                     <input type="checkbox" checked={panes[id]} onChange={() => flipPane(id)} />
-                    <span>{id === 'left' ? 'Left: Founder capture' : id === 'middle' ? `Middle: ${screen ? SCREENS[screen].label : 'Ideas'}` : 'Right: Chat'}</span>
+                    <span>{id === 'left' ? 'Left: Founder capture' : id === 'middle' ? `Middle: ${screen ? SCREENS[screen].label : 'Ideas'}` : id === 'right' ? 'Right: Chat' : 'Terminal'}</span>
                   </label>
                 ))}
                 <p className="px-3 pt-1 text-xs text-[var(--shade-color)]">At least one pane stays shown.</p>
@@ -967,23 +1001,23 @@ export default function App() {
           Last scanned over the middle, the chat heading, Vent and the model over the chat.
           ========================================================================= */}
       <div
-        className="h-[40px] shrink-0 flex items-stretch border-b border-[var(--border-color)] bg-[var(--bg-nav)] text-[0.85rem] relative"
+        className="h-[40px] shrink-0 flex items-center border-b border-[var(--border-color)] bg-[var(--bg-nav)] text-sm relative"
         style={{ zIndex: 25 }}
       >
-        {panes.left && <div style={grow === 'left' ? undefined : { width: `${leftWidth}px` }} className={`${grow === 'left' ? 'flex-1' : 'shrink-0'} pl-4 pr-1 flex items-center`}>{tabBar}</div>}
-        {panes.middle && <div className="flex-1 min-w-0 px-5 flex items-center justify-center gap-4">
+        {panes.left && <div style={grow === 'left' ? undefined : { width: `${leftWidth}px` }} className={`${grow === 'left' ? 'flex-1' : 'shrink-0'} h-full pl-4 pr-1 flex items-center`}>{tabBar}</div>}
+        {panes.middle && <div className="flex-1 min-w-0 h-full px-5 flex items-center justify-center gap-4">
           {!panes.left && tabBar}
           {statusPill}
           {lastScanned}
         </div>}
-        {panes.right && <div style={grow === 'right' ? undefined : { width: `${rightWidth}px` }} className={`${grow === 'right' ? 'flex-1' : 'shrink-0'} px-5 flex items-center gap-3`}>
+        {panes.right && <div style={grow === 'right' ? undefined : { width: `${rightWidth}px` }} className={`${grow === 'right' ? 'flex-1' : 'shrink-0'} h-full px-5 flex items-center gap-3`}>
           {!panes.left && !panes.middle && tabBar}
           {!panes.middle && statusPill}
-          <span className="nav-tab is-active">{ventOn ? 'VENT' : 'CHAT'}</span>
+          <span className="nav-tab is-active">{ventOn ? 'Vent' : 'Chat'}</span>
           <div className="hairline-v h-4" />
           <button type="button" onClick={toggleVent} aria-pressed={ventOn} title={ventOn ? 'Back to the chat' : 'Talk the idea through. Writes no prompt, saves nothing.'}
-            className={`text-xs px-2 py-0.5 rounded-full border ${ventOn ? 'border-[var(--gold)] text-[var(--gold-text)]' : 'border-[var(--border-color)] text-[var(--shade-color)] hover:text-[var(--gold-text)]'}`}>Vent</button>
-          <label className="flex items-center gap-2 text-xs text-[var(--shade-color)] ml-auto">
+            className={`header-chip border ${ventOn ? 'border-[var(--gold)] text-[var(--gold-text)]' : 'border-[var(--border-color)] text-[var(--shade-color)] hover:text-[var(--gold-text)]'}`}>Vent</button>
+          <label className="flex items-center gap-2 text-sm text-[var(--shade-color)] ml-auto">
             <span>Model</span>
             <select
               aria-label="Chat model"
@@ -992,7 +1026,7 @@ export default function App() {
                 setSelectedModel(e.target.value);
                 showToast(`Chatting with ${orderedProviders.find(p => p.id === e.target.value)?.name || e.target.value}.`);
               }}
-              className="text-xs input-work-gold rounded px-2 py-0.5 min-w-[7rem]"
+              className="text-sm input-work-gold rounded px-2 py-0.5 min-w-[7rem]"
             >
               {!selectedModel && <option value="">{providers.length ? 'Choose model' : 'No models yet'}</option>}
               {orderedProviders.map(p => <option key={p.id} value={p.id} disabled={!p.configured}>{p.name}{p.configured ? '' : ' (not set up)'}</option>)}
@@ -1049,10 +1083,10 @@ export default function App() {
           {/* Composer Controls Toolbar: consistent row placement */}
           <div className="flex items-center justify-between mt-2.5 pt-1">
             <div className="flex items-center gap-1 relative">
-              <IconAction icon="microphone" title={isListening ? 'Stop voice dictation' : 'Dictate the idea with the microphone'} active={isListening} className={isListening ? 'mic-active' : ''} onClick={toggleListening} />
               <span ref={ideaPlusRef} className="inline-flex">
                 <IconAction icon="add" title="Idea options: New idea, Vent, Save, Park and more" onClick={() => openPlus('ideas', ideaPlusRef.current)} />
               </span>
+              <IconAction icon="microphone" title={isListening ? 'Stop voice dictation' : 'Dictate the idea with the microphone'} active={isListening} className={isListening ? 'mic-active' : ''} onClick={() => toggleListening('ideas')} />
               <input ref={ideaImageRef} type="file" accept="image/png,image/jpeg,image/gif,image/webp" className="hidden" onChange={e => { const f = e.target.files?.[0]; e.target.value = ''; if (f) attachPicked(f, 'ideas'); }} />
               <input ref={ideaFileRef} type="file" className="hidden" onChange={e => { const f = e.target.files?.[0]; e.target.value = ''; if (f) attachPicked(f, 'ideas'); }} />
               <IconAction label="Clear" title="Clear the idea" onClick={handleClearIdea} />
@@ -1105,7 +1139,7 @@ export default function App() {
                 return (
                 <div key={idea.id} className="card-var16">
                   {idea.state === 'resurfaced' && <div className="text-xs uppercase tracking-wider text-[var(--gold-text)] mb-1">Resurfaced · parked {RESURFACE_DAYS}+ days ago</div>}
-                  <p className="text-xs text-[var(--text-main)] leading-relaxed">{idea.text}</p>
+                  <p className="text-sm text-[var(--text-main)] leading-relaxed">{idea.text}</p>
                   <div className="flex items-center justify-between gap-2 mt-2 pt-1 border-t border-[var(--border-color)]">
                     <span className="text-xs text-[var(--shade-color)] mono-code">{idea.status} · {idea.createdAt}</span>
                     <div className="flex flex-wrap items-center justify-end gap-1">
@@ -1176,7 +1210,7 @@ export default function App() {
                   <span className="text-[var(--shade-color)]">{msg.speaker}:</span>
                   <span className="text-xs mono-code text-[var(--shade-color)]">{msg.time}</span>
                 </div>
-                <div className="text-xs text-[var(--text-main)] leading-relaxed">{replyLines(msg.text).map((l, i) => l.heading ? <div key={i} className="font-semibold mt-1">{l.text}</div> : <div key={i} className="whitespace-pre-wrap">{l.text || '\u00a0'}</div>)}</div>
+                <div className="text-sm text-[var(--text-main)] leading-relaxed">{replyLines(msg.text).map((l, i) => l.heading ? <div key={i} className="font-semibold mt-1">{l.text}</div> : <div key={i} className="whitespace-pre-wrap">{l.text || '\u00a0'}</div>)}</div>
                 {ventOn && msg.text && <div className="flex justify-end mt-1"><button type="button" onClick={() => saveAsIdea(msg.text)} className="text-xs text-[var(--shade-color)] hover:text-[var(--gold-text)]">Save as idea</button></div>}
               </div>
             ))}
@@ -1204,6 +1238,7 @@ export default function App() {
                 <span ref={chatPlusRef} className="inline-flex">
                   <IconAction icon="add" title="Add" onClick={() => openPlus('chat', chatPlusRef.current)} />
                 </span>
+                <IconAction icon="microphone" title={isListening ? 'Stop voice dictation' : 'Dictate the chat with the microphone'} active={isListening} className={isListening ? 'mic-active' : ''} onClick={() => toggleListening('chat')} />
 
                 <input ref={fileInputRef} type="file" accept="image/png,image/jpeg,image/gif,image/webp" className="hidden" onChange={handleChatImage} />
                 <input ref={chatFileRef} type="file" className="hidden" onChange={e => { const f = e.target.files?.[0]; e.target.value = ''; if (f) attachPicked(f, 'chat'); }} />
@@ -1219,31 +1254,42 @@ export default function App() {
         </aside>
       </main>
 
-      {tool && (
-        <div className="shrink-0 border-t border-[var(--border-color)] bg-[var(--bg-nav)] px-4 py-3 text-xs">
-          <div className="mb-2 flex items-center justify-between">
-            <span className="label-text">{tool === 'github' ? 'GitHub' : 'Terminal'}</span>
-            <button type="button" className="text-[var(--shade-color)] hover:text-[var(--gold-text)]" onClick={() => setTool(null)}>Close</button>
-          </div>
-          {tool === 'github' ? (
-            <div className="space-y-2">
-              <div className="flex gap-2">
-                <input className="input-work-gold min-w-0 flex-1 rounded px-2 py-1" value={ghRepo} onChange={e => setGhRepo(e.target.value)} aria-label="Repository" />
-                <input className="input-work-gold w-40 rounded px-2 py-1" value={ghBranch} onChange={e => setGhBranch(e.target.value)} aria-label="Branch" />
-                <button type="button" className="btn-gold" onClick={() => runGithub('read')}>Read</button>
-                <button type="button" className="btn-gold" onClick={() => runGithub('write')}>Write</button>
+      {(panes.terminal || tool === 'github') && (
+        <>
+          <div
+            className={`row-splitter ${isResizingTerminal ? 'active-resizing' : ''}`}
+            onMouseDown={handleMouseDownTerminal}
+            onDoubleClick={resetTerminalHeight}
+            title="Drag to resize terminal height. Double-click to reset."
+          />
+          <div className="shrink-0 bg-[var(--bg-nav)] px-4 py-3 text-xs flex flex-col" style={{ height: `${terminalHeight}px` }}>
+            <div className="mb-2 flex items-center justify-between shrink-0">
+              <span className="label-text">{tool === 'github' ? 'GitHub' : 'Terminal'}</span>
+              <button type="button" className="text-[var(--shade-color)] hover:text-[var(--gold-text)]" onClick={() => { if (tool === 'github') setTool(null); else showTerminal(false); }}>Close</button>
+            </div>
+            {tool === 'github' ? (
+              <div className="space-y-2 min-h-0 overflow-auto">
+                <div className="flex gap-2">
+                  <input className="input-work-gold min-w-0 flex-1 rounded px-2 py-1" value={ghRepo} onChange={e => setGhRepo(e.target.value)} aria-label="Repository" />
+                  <input className="input-work-gold w-40 rounded px-2 py-1" value={ghBranch} onChange={e => setGhBranch(e.target.value)} aria-label="Branch" />
+                  <button type="button" className="btn-gold" onClick={() => runGithub('read')}>Read</button>
+                  <button type="button" className="btn-gold" onClick={() => runGithub('write')}>Write</button>
+                </div>
+                <input className="input-work-gold w-full rounded px-2 py-1" value={ghPath} onChange={e => setGhPath(e.target.value)} aria-label="Path" placeholder="Path in the repo" />
+                <textarea className="input-work-gold w-full rounded px-2 py-1" rows={3} value={ghBody} onChange={e => setGhBody(e.target.value)} aria-label="File content" />
               </div>
-              <input className="input-work-gold w-full rounded px-2 py-1" value={ghPath} onChange={e => setGhPath(e.target.value)} aria-label="Path" placeholder="Path in the repo" />
-              <textarea className="input-work-gold w-full rounded px-2 py-1" rows={3} value={ghBody} onChange={e => setGhBody(e.target.value)} aria-label="File content" />
-            </div>
-          ) : (
-            <div className="flex gap-2">
-              <input className="input-work-gold min-w-0 flex-1 rounded px-2 py-1 mono-code" value={bashCmd} onChange={e => setBashCmd(e.target.value)} aria-label="Bash command" onKeyDown={e => { if (e.key === 'Enter') runBash(); }} />
-              <button type="button" className="btn-gold" onClick={runBash}>Run</button>
-            </div>
-          )}
-          {toolOut && <pre className="mt-2 max-h-28 overflow-auto whitespace-pre-wrap text-[var(--shade-color)]">{toolOut}</pre>}
-        </div>
+            ) : (
+              <div className="flex flex-col gap-2 min-h-0 flex-1">
+                <div className="flex gap-2 shrink-0">
+                  <input className="input-work-gold min-w-0 flex-1 rounded px-2 py-1 mono-code" value={bashCmd} onChange={e => setBashCmd(e.target.value)} aria-label="Bash command" onKeyDown={e => { if (e.key === 'Enter') runBash(); }} placeholder="Command (cwd C:\\)" />
+                  <button type="button" className="btn-gold" onClick={runBash}>Run</button>
+                </div>
+                {toolOut && <pre className="min-h-0 flex-1 overflow-auto whitespace-pre-wrap text-[var(--shade-color)]">{toolOut}</pre>}
+              </div>
+            )}
+            {tool === 'github' && toolOut && <pre className="mt-2 max-h-28 overflow-auto whitespace-pre-wrap text-[var(--shade-color)]">{toolOut}</pre>}
+          </div>
+        </>
       )}
 
       {/* Icon attribution (Streamline Core, CC BY 4.0, see src/icons/LICENSE.md) */}

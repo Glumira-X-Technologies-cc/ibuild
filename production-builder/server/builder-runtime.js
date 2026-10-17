@@ -11,6 +11,8 @@ const {createProviderService}=require('./builder-providers');
 const {createJobManager,createJobsRouter}=require('./builder-jobs');
 const {createIdeasRouter}=require('./builder-ideas');
 const {createWebReader}=require('./builder-web');
+const {createScanService}=require('./builder-scan');
+const {pathToFileURL}=require('node:url');
 function findRepoRoot(start){let p=path.resolve(start);while(path.dirname(p)!==p){if(fs.existsSync(path.join(p,'.git'))&&fs.existsSync(path.join(p,'Foyer','FOYER.json')))return p;p=path.dirname(p);}throw new BuilderError('BUILDER_REPO_NOT_FOUND','Run the builder inside its validated Glumira-7.2 checkout.',503);}
 function runOsGate(repoRoot){
   const scoped={...process.env,GIT_CONFIG_COUNT:'2',GIT_CONFIG_KEY_0:'safe.directory',GIT_CONFIG_VALUE_0:repoRoot.replace(/\\/g,'/'),GIT_CONFIG_KEY_1:'core.longpaths',GIT_CONFIG_VALUE_1:'true'};
@@ -20,7 +22,10 @@ function createBuilderRuntime({repoRoot,dataDir,getKey,env=process.env,fetchImpl
   const store=createBuilderStore({dataDir:dataDir||path.join(repoRoot,'.runtime','production-builder')});
   let providers,manager;
   const getProviderStatus=async()=>({providers:providers.describe(),resources:manager.capabilities().map(c=>({...c,name:{claude:'Claude Terminal',codex:'Codex',gemini:'Gemini',hermes:'Hermes'}[c.id||c.target]||c.name}))});
-  const context=()=>bootstrap({repoRoot,store,getProviderStatus,hubRoot:env.GOVERNANCE_HUB||'C:/memory-governance-archive'});
+  const hubRoot=env.GOVERNANCE_HUB||'C:/memory-governance-archive';
+  const getEstateReport=async({refresh})=>{const {collectEstateSync}=await import(pathToFileURL(path.join(hubRoot,'governance/agent-os/estate-sync.mjs')).href);return collectEstateSync({hubRoot,fetch:refresh});};
+  const scanService=createScanService({repoRoot,hubRoot,getEstateReport});
+  const context=async()=>bootstrap({repoRoot,store,getProviderStatus,hubRoot,source:await scanService.get()});
   providers=createProviderService({getKey,store,getContext:context,env,fetchImpl});
   const authorizeJob=async(input)=>{
     const receipt=store.snapshot().requests.find(r=>r.id===input.context?.dispatchReceiptId);
@@ -42,11 +47,11 @@ function createBuilderRuntime({repoRoot,dataDir,getKey,env=process.env,fetchImpl
   router.post('/chat',async(req,res)=>providers.chat(req,res));
   router.get('/jobs/targets',async(req,res)=>res.json({targets:req.query.probe==='1'?await manager.probeCapabilities():manager.capabilities()}));
   router.use('/jobs',createJobsRouter({manager}));
-  const hubRoot=env.GOVERNANCE_HUB||'C:/memory-governance-archive';
+
   // Web pages the Ideas page reads are saved under .runtime (gitignored), never committed.
   const web=createWebReader({dataDir:path.join(dataDir||path.join(repoRoot,'.runtime','production-builder'),'web'),getKey});
   router.use('/ideas',createIdeasRouter({skillsHome:env.BUILDER_SKILLS_HOME||path.join(hubRoot,'governance','skills','glumira-7.1'),getSource:()=>readBuilderContext(repoRoot,{hubRoot}),web}));
-  router.use(createBuilderRouter({repoRoot,store,getProviderStatus,hubRoot:env.GOVERNANCE_HUB||'C:/memory-governance-archive'}));
+  router.use(createBuilderRouter({repoRoot,store,getProviderStatus,hubRoot,scanService}));
   router.use((error,req,res,next)=>{if(res.headersSent)return next(error);res.status(error.status||500).json({error:{code:error.code||'BUILDER_OPERATION_FAILED',message:providers.scrub(error instanceof BuilderError?error.message:'Builder operation failed. Inspect the local log for a non-secret diagnostic.')}});});
   return {router,store,providers,manager,context,authorizeJob,close:()=>store.close()};
 }

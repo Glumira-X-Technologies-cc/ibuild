@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { builder } from '../api';
+import EstateStatus from './EstateStatus';
 import { ScreenProps, Status, useLoad } from './ui';
 
 // Van Clief estate: VAN-CLIEF-STRUCTURE-72.txt as pinned in the Production Builder page
@@ -114,19 +115,20 @@ export default function Estate(_props: ScreenProps) {
   const [q, setQ] = useState('');
   const [open, setOpen] = useState<Set<string>>(() => new Set(['3', 'onb']));
   const [active, setActive] = useState('3');
-  const [part, setPart] = useState<'tree' | 'floors' | 'repos'>('tree');
+  const [part, setPart] = useState<'status' | 'tree' | 'floors' | 'repos'>('status');
   const query = q.trim().toLowerCase();
   const toggle = (id: string) => setOpen(prev => { const n = new Set(prev); if (n.has(id)) n.delete(id); else n.add(id); return n; });
   const node = find(active, TREE);
   const estate: any[] = Array.isArray(boot.data?.estate) ? boot.data.estate : [];
 
   return (<>
-    <p className="text-xs text-[var(--shade-color)] mb-2">VAN-CLIEF-STRUCTURE-72.txt, pinned at station 1b19eec. {TAGS} Founder 2026-10-05: "3.2 Reports & Logs / 3.3 Engines / these are vaults". Where the file shows them under the Foyer, that ruling is newer. A click opens a row. It does not place or tick it.</p>
+    {part !== 'status' && <p className="text-xs text-[var(--shade-color)] mb-2">VAN-CLIEF-STRUCTURE-72.txt, pinned at station 1b19eec. {TAGS} Founder 2026-10-05: "3.2 Reports & Logs / 3.3 Engines / these are vaults". Where the file shows them under the Foyer, that ruling is newer. A click opens a row. It does not place or tick it.</p>}
     <div className="flex gap-4 text-xs mb-2">
-      {(['tree', 'floors', 'repos'] as const).map(id => (
-        <button key={id} type="button" onClick={() => setPart(id)} className={`${part === id ? 'text-[var(--gold-text)]' : 'text-[var(--shade-color)]'}`}>{id === 'tree' ? 'Structure' : id === 'floors' ? 'Floors' : 'Repositories'}</button>
+      {(['status', 'tree', 'floors', 'repos'] as const).map(id => (
+        <button key={id} type="button" onClick={() => setPart(id)} className={`${part === id ? 'text-[var(--gold-text)]' : 'text-[var(--shade-color)]'}`}>{id === 'status' ? 'Sync and documents' : id === 'tree' ? 'Structure' : id === 'floors' ? 'Floors' : 'Repositories'}</button>
       ))}
     </div>
+    {part === 'status' && (!boot.data ? <Status error={boot.error} /> : <EstateStatus data={boot.data} />)}
     {part === 'tree' && (
       <div className="grid grid-cols-1 lg:grid-cols-[minmax(280px,1.2fr)_minmax(220px,0.8fr)] gap-4 items-start">
         <div>

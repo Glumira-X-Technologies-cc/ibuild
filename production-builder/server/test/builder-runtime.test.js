@@ -85,7 +85,7 @@ test('router event boundary rejects forged execution receipts and assistant mess
   ]) {
     const response = await new Promise((resolve, reject) => {
       const req = { method: 'POST', url: '/events', headers: {}, body: { ...event, requestId: 'forge-' + event.type } };
-      const res = { headersSent: false, statusCode: 200, status(code) { this.statusCode = code; return this; }, json(body) { resolve({status: this.statusCode, body}); } };
+      const res = { headersSent: false, statusCode: 200, set() { return this; }, status(code) { this.statusCode = code; return this; }, json(body) { resolve({status: this.statusCode, body}); } };
       f.runtime.router.handle(req, res, reject);
     });
     assert.equal(response.status, 403, event.type);

@@ -68,10 +68,10 @@ function profileMetadata(hubRoot) {
   const inspect = item=>{const sourcePath=path.resolve(hubRoot,item.path);try{const body=fs.readFileSync(sourcePath,'utf8');return {...item,path:sourcePath,label:(body.match(/^# (.+)$/m)||[])[1]||item.id,description:(body.match(/^description:\s*"?(.+?)"?\r?$/m)||[])[1]||'',hash:createHash('sha256').update(body).digest('hex'),status:'reference located',authority:'Metadata only. Effective instructions are not loaded; current OS wins.'};}catch{return {...item,path:sourcePath,label:item.id,status:'reference unavailable',authority:'No execution authority'};}};
   return {agents:agents.map(inspect),councils:councils.map(inspect)};
 }
-function readBuilderContext(repoRoot,{hubRoot='C:/memory-governance-archive'}={}) {
+function readBuilderContext(repoRoot,{hubRoot='C:/memory-governance-archive',sourceCommit}={}) {
   const root=path.resolve(repoRoot);
   if(originIdentity(git(root,['remote','get-url','origin'])).toLowerCase()!==EXPECTED_REPO.toLowerCase())fail('SOURCE_ORIGIN_MISMATCH');
-  const commit=git(root,['rev-parse','HEAD']).trim();if(!/^[0-9a-f]{40}$/.test(commit))fail('SOURCE_HEAD_INVALID');
+  const commit=sourceCommit||git(root,['rev-parse','HEAD']).trim();if(!/^[0-9a-f]{40}$/.test(commit))fail('SOURCE_HEAD_INVALID');
   const read=p=>{if(!validSourcePath(p))fail('SOURCE_PATH_INVALID');return git(root,['show',commit+':'+p]);};
   const json=p=>{try{return JSON.parse(read(p));}catch(e){if(e instanceof BuilderError)throw e;fail('SOURCE_JSON_INVALID');}};
   const registry=json(OS_PATHS[2]),jev=json(OS_PATHS[3]),foyer=json('Foyer/FOYER.json');
@@ -82,7 +82,7 @@ function readBuilderContext(repoRoot,{hubRoot='C:/memory-governance-archive'}={}
   if(page?.kind!=='file'||page.status==='MISSING'||page.path!==registry.builder||!validSourcePath(page.path))fail('FOYER_ROADMAP_ROUTE_INVALID');
   const roadmapText=read(page.path),version=(roadmapText.match(/^version:\s*(\S+)/m)||[])[1];
   if(!COMPATIBLE_ROADMAP_VERSIONS.includes(version))fail('OS_BUILDER_VERSION_MISMATCH');
-  const blob=git(root,['rev-parse',commit+':'+page.path]).trim(),roadmap={...parseRoadmap(roadmapText),version,source:{repo:EXPECTED_REPO,path:page.path,commit,blob,readMode:'committed HEAD; working edits excluded',url:'https://github.com/'+EXPECTED_REPO+'/blob/'+commit+'/'+page.path}};
+  const blob=git(root,['rev-parse',commit+':'+page.path]).trim(),roadmap={...parseRoadmap(roadmapText),version,source:{repo:EXPECTED_REPO,path:page.path,commit,blob,readMode:sourceCommit?'immutable origin/main commit; working edits excluded':'committed HEAD; working edits excluded',url:'https://github.com/'+EXPECTED_REPO+'/blob/'+commit+'/'+page.path}};
   if(page.blob&&page.blob!==blob)roadmap.warnings.push({code:'FOYER_PIN_DIFFERS_FROM_HEAD_BLOB'});
   const specs=[['GluMira 7.2','glumira-7.2','Current build and the one ROADMAP.'],['GluMira 7.1','glumira-7.1','The CONDUCTOR · WRITER · ARCHITECT. Version control.'],['Memory Governance Archive','memory-governance-archive','Operational live copies + 2 previous versions. The READ FIRST AND TRUE engine.'],['GluMira Archive','glumira-archive','Build from sorting station. Canonical structure — literally the files and folders. Index-card filing system.'],['Sorting Station','glumira-document-sorting-station','Source and evidence reconciliation station.'],['Foundation Archive',null,'Founding work. Institutional memory. Source and original intent.'],['GluMira 7.2.1','glumira-7.2.1','Planned build']];
   const estate=specs.map(([label,name,role],i)=>{const entry=registry.repos.find(r=>name&&typeof r.repo==='string'&&r.repo.toLowerCase().endsWith('/'+name));return {id:i+1,label,name:label,role,slug:entry?.repo||null,status:entry?(entry.active===true?'active':entry.frozen===true?'frozen':'registered'):'identity unresolved in current OS registry',executionAuthority:entry?.active===true?'current task source':'reference only; no writes authorized',registryRole:entry?.label||null};});
@@ -98,6 +98,6 @@ function readBuilderContext(repoRoot,{hubRoot='C:/memory-governance-archive'}={}
   // The law the prompts quote, read at the pinned commit: Article 1 step 10 and the Foyer law string.
   const step10=article1Step(texts[1].text,10);if(!step10||typeof foyer.law!=='string'||!foyer.law.trim())fail('OS_LAW_UNREADABLE');
   const law={step10,step10Source:OS_PATHS[1]+' Article 1 step 10',chain:foyer.law,chainSource:'Foyer/FOYER.json law'};
-  return {law,repo:{slug:EXPECTED_REPO,root,commit,branch:git(root,['branch','--show-current']).trim(),dirty:!!git(root,['status','--porcelain']).trim(),source:'committed HEAD'},os:{version:registry.as_of,routingRevision:jev.revision,registry,jev,readPaths:OS_PATHS,documents:texts,fingerprint:createHash('sha256').update(texts.map(t=>t.path+'\n'+t.text).join('\n')+JSON.stringify(foyer)+roadmapText).digest('hex'),gateStatus:'not run by bootstrap'},foyer,roadmap,estate,resources,profiles:profileMetadata(hubRoot)};
+  return {law,repo:{slug:EXPECTED_REPO,root,commit,branch:git(root,['branch','--show-current']).trim(),dirty:!!git(root,['status','--porcelain']).trim(),source:sourceCommit?'origin/main':'committed HEAD'},os:{version:registry.as_of,routingRevision:jev.revision,registry,jev,readPaths:OS_PATHS,documents:texts,fingerprint:createHash('sha256').update(texts.map(t=>t.path+'\n'+t.text).join('\n')+JSON.stringify(foyer)+roadmapText).digest('hex'),gateStatus:'not run by bootstrap'},foyer,roadmap,estate,resources,profiles:profileMetadata(hubRoot)};
 }
 module.exports={validAppsPath,readBuilderContext,parseRoadmap,originIdentity,validSourcePath,article1Step,queuePage,EXPECTED_REPO,OS_PATHS,QUEUE_ROUTE,COMPATIBLE_ROADMAP_VERSIONS};
