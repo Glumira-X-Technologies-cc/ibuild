@@ -14,6 +14,7 @@ You are the builder. Everything under `in/` is read-only. Write only under `out/
 3. `in/Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Filing-Law/Page-Doc-Filing-Law/GLUMIRA-FILING-LAW.md`
 4. `in/Library/OS/JEV-MAP.json`, `in/Foyer-extract.json`, `in/tracked-paths.txt`, `in/ROADMAP-phase8-extract.md`
 5. `in/docs/04_Brand/*` (the old-numbered folder to rename)
+6. `in/Vaults/4-Governance/Rows/4.8-Design-System/` (the Design System Row that moves into Library Design: tokens, ledger, system text, stylesheet)
 
 ## Libraries
 OS, Memory, Governance, Archive, Production Builder, Glumira, Design (ruled by the founder). One more slot is OPEN: do not invent its name.
