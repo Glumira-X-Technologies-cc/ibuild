@@ -1,0 +1,432 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GluMira Colour Mixer</title>
+<style>
+/* Layout: one fixed 1200 x 660 design scaled whole to the window. Mixer left (440), mood board right.
+   Mixer: tabs, sample, hexes, gradient stops, one tabbed control panel, Lock. Board: the UI kit in the mixed colours,
+   or the full colour chart. Light comes from the top right. Chrome is the navy ramp lifted with bone. */
+:root{
+  --navy:#102347; --navy-deep:#0B1733; --panel:#1E3051; --raise:#2C3C5B; --line:#3A4966; --dim:#9BA2AD; --bone:#F7F6F1;
+  --gold-lo:#E9CB40; --gold-hi:#D7B838;
+  --gold-shiny:linear-gradient(180deg,rgba(255,255,255,0.00) 4.50%,rgba(255,255,255,0.50) 4.85%,rgba(255,255,255,1.00) 5.00%,rgba(255,255,255,0.50) 5.15%,rgba(255,255,255,0.00) 5.50%),linear-gradient(180deg,rgba(255,255,255,0.60) 0%,rgba(255,255,255,0.25) 38%,rgba(255,255,255,0.05) 49%,rgba(255,255,255,0.00) 50%,rgba(255,255,255,0.00) 100%),linear-gradient(180deg,#BEA106 0%,#C3A609 4%,#C9AD0E 8%,#D0B414 12%,#D7BC1C 16%,#DFC526 20%,#E6CD32 24%,#ECD53F 28%,#F1DC4C 32%,#F5E259 36%,#F8E663 40%,#F9E96B 44%,#FAEB6F 48%,#FAEB6F 52%,#F9E96B 56%,#F8E663 60%,#F5E259 64%,#F1DC4C 68%,#ECD53F 72%,#E6CD32 76%,#DFC526 80%,#D7BC1C 84%,#D0B414 88%,#C9AD0E 92%,#C3A609 96%,#BEA106 100%);
+  --sans:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,sans-serif;
+  --mono:"Cascadia Mono",Consolas,ui-monospace,monospace;
+  color-scheme:dark;
+}
+[hidden]{display:none!important}
+html,body{background:var(--navy-deep);color:var(--bone)}
+body{font:400 12px/1.35 var(--sans);padding-inline:8px;padding-block:0;overflow-x:hidden}
+.canvas{width:1200px;margin:0 auto;padding-block:8px;display:grid;grid-template-columns:440px minmax(0,1fr);gap:10px}
+.mixer{display:grid;gap:7px;align-content:start;min-width:0}
+h1{font-size:15px;margin:0;font-weight:700}
+h2{font-size:10px;margin:0;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;flex:none}
+.seg button{border:0;border-right:1px solid var(--line);background:transparent;color:var(--dim);padding:4px 9px;font:inherit;cursor:pointer;white-space:nowrap}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--raise);color:var(--bone)}
+.tabset{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.tabset button{border:1px solid var(--line);border-radius:6px;background:transparent;color:var(--dim);padding:4px 4px;font:inherit;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabset button[aria-pressed="true"]{background:var(--raise);color:var(--bone)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:8px 10px;display:grid;gap:6px;align-content:start;min-width:0}
+.stage{border-radius:7px;padding:10px;display:grid;gap:7px;background:var(--navy)}
+.bar{height:64px;border-radius:7px}
+.word{font-size:44px;line-height:1.02;font-weight:800;letter-spacing:-.015em;background-image:var(--gold-shiny);-webkit-background-clip:text;background-clip:text;color:transparent;justify-self:start}
+.btns{display:flex;gap:8px}
+.pbtn{border-radius:7px;padding:6px 18px;font-size:13px;font-weight:600;color:var(--navy)}
+.hexes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.hx{display:flex;gap:6px;align-items:center;cursor:pointer}
+.hx span{width:26px;height:26px;border-radius:5px;border:1px solid var(--line);flex:none}
+.hx b{font:600 12px var(--mono)}
+.card>*{min-width:0}
+.strip{display:flex;gap:2px;overflow:hidden}
+.strip span{flex:1 1 0;min-width:0;height:20px;border-radius:3px;font:8.5px var(--mono);display:flex;align-items:flex-end;justify-content:center;padding-bottom:1px;cursor:pointer;overflow:hidden;white-space:nowrap}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line)}
+.tabs button{border:1px solid transparent;border-bottom:0;border-radius:6px 6px 0 0;background:transparent;color:var(--dim);padding:4px 13px;font:inherit;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--panel);border-color:var(--line);color:var(--bone);margin-bottom:-1px}
+.pane{height:236px;display:grid;gap:4px;align-content:start}
+.pane[hidden]{display:none}
+.hd{display:flex;align-items:center;gap:8px;min-height:24px}
+.row{display:grid;grid-template-columns:12px 108px minmax(0,1fr) 40px;gap:8px;align-items:center;height:21px}
+.row[hidden]{display:none}
+.row .dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--line)}
+.row label{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row output{font:11px var(--mono);text-align:right;color:var(--dim);font-variant-numeric:tabular-nums}
+.row.plain{grid-template-columns:128px minmax(0,1fr) 40px}
+input[type=range]{width:100%;accent-color:var(--gold-hi);margin:0}
+.match{display:flex;gap:6px;align-items:center;margin-left:auto}
+.match input{width:78px;font:11px var(--mono);background:var(--navy-deep);color:var(--bone);border:1px solid var(--line);border-radius:5px;padding:3px 6px}
+button.act,.match button{font:inherit;border-radius:6px;padding:4px 11px;cursor:pointer;border:1px solid var(--line);background:var(--raise);color:var(--bone)}
+/* Gold buttons use only the bottom band of the gradient (founder 2026-10-15). */
+button.lock{background:linear-gradient(180deg,var(--gold-lo),var(--gold-hi));color:var(--navy);border-color:var(--gold-hi);font-weight:600;padding:5px 18px}
+.actions{display:flex;gap:6px;align-items:center}
+.msg{color:var(--dim);font-size:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+pre{margin:0;font:10px/1.45 var(--mono);white-space:pre-wrap;word-break:break-all;color:var(--dim);background:var(--navy-deep);border:1px solid var(--line);border-radius:6px;padding:7px;height:226px;overflow:auto}
+button:focus-visible,input:focus-visible{outline:2px solid var(--gold-hi);outline-offset:2px}
+
+/* Mood board. Colours come from the mixer tabs (custom properties written by script). Shape and type come from
+   the --k-* tokens below and nowhere else, so the GluMira design system can replace them in one place. */
+.board{
+  --k-font:var(--sans); --k-caps:none; --k-track:0; --k-weight:600;
+  --k-f-xs:9px; --k-f-sm:10px; --k-f-md:11px; --k-f-lg:22px;
+  --k-r-sm:5px; --k-r-md:9px; --k-r-lg:12px; --k-r-ctl:999px;
+  --k-s-1:3px; --k-s-2:6px; --k-s-3:9px; --k-s-4:12px;
+  --k-line:1px;
+  font-family:var(--k-font);border-radius:var(--k-r-lg);padding:var(--k-s-4);display:grid;grid-template-rows:auto minmax(0,1fr);gap:var(--k-s-2);min-width:0;
+  background:radial-gradient(90% 70% at 100% 0%,var(--n-glow) 0%,transparent 60%),var(--n-page);border:var(--k-line) solid var(--n-edge);
+  box-shadow:inset calc(-1*var(--k-line)) var(--k-line) 0 var(--n-rim)}
+.bhead{display:flex;align-items:center;gap:var(--k-s-3)}
+.bhead .wm{font-size:var(--k-f-lg);font-weight:800;background-image:var(--gold-shiny);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kit{display:grid;grid-template-columns:200px 222px minmax(0,1fr);gap:var(--k-s-4);min-height:0}
+.kcol{display:grid;gap:var(--k-s-3);align-content:start;min-width:0}
+.kt{font-size:var(--k-f-md);font-weight:var(--k-weight);text-transform:var(--k-caps);letter-spacing:var(--k-track);color:var(--b-text);margin-bottom:calc(-1*var(--k-s-1))}
+.surf{border-radius:var(--k-r-md);background:radial-gradient(120% 100% at 100% 0%,var(--n-glow) 0%,transparent 55%),var(--n-surface);
+  box-shadow:0 8px 18px -6px var(--n-drop),inset calc(-1*var(--k-line)) var(--k-line) 0 var(--n-rim),inset var(--k-line) calc(-1*var(--k-line)) 0 var(--n-under);color:var(--b-text)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:var(--k-s-2)}
+.kcard{padding:var(--k-s-3);display:grid;gap:var(--k-s-1);font-size:var(--k-f-xs);line-height:1.3}
+.kcard.alt{background:radial-gradient(120% 100% at 100% 0%,var(--s-glow) 0%,transparent 55%),var(--s-surface)}
+.kcard b{font-size:var(--k-f-md);font-weight:var(--k-weight)}
+.ico{width:20px;height:20px;border-radius:var(--k-r-sm);display:grid;place-items:center;background:var(--n-page);box-shadow:inset 0 0 0 var(--k-line) var(--g-edge)}
+.ico svg{width:12px;height:12px;stroke:var(--g-light);fill:none;stroke-width:1.6}
+.kbtns{display:grid;grid-template-columns:1fr 1fr;gap:var(--k-s-2)}
+.kb{border-radius:var(--k-r-ctl);padding:var(--k-s-1) 0;line-height:1.6;text-align:center;font-size:var(--k-f-sm);font-weight:var(--k-weight);text-transform:var(--k-caps);letter-spacing:var(--k-track);color:var(--b-text);background:var(--s-grad);
+  box-shadow:inset 0 0 0 var(--k-line) var(--g-edge),0 4px 10px -4px var(--n-drop)}
+.kb.hover{background:var(--s-grad-hi);box-shadow:inset 0 0 0 var(--k-line) var(--g-light),0 0 12px 1px var(--glow-blue)}
+.kb.pressed{background:var(--s-shadow);box-shadow:inset 0 2px 6px var(--n-drop),inset 0 0 0 var(--k-line) var(--g-edge)}
+.kb.disabled{background:var(--n-surface);color:var(--b-muted);opacity:.55;box-shadow:none}
+.kb.loading{display:flex;gap:var(--k-s-2);justify-content:center;align-items:center}
+.spin{width:10px;height:10px;border-radius:50%;border:1.5px solid var(--g-light);border-right-color:transparent}
+.toggles{display:flex;gap:var(--k-s-4);align-items:center;font-size:var(--k-f-sm);color:var(--b-muted)}
+.tg{width:34px;height:18px;border-radius:var(--k-r-ctl);position:relative;display:inline-block;vertical-align:middle;margin-right:var(--k-s-1)}
+.tg.on{background:var(--sp-grad);box-shadow:0 0 10px var(--glow-blue),inset 0 0 0 var(--k-line) var(--g-edge)}
+.tg.off{background:var(--n-surface);box-shadow:inset 0 1px 3px var(--n-drop)}
+.tg i{position:absolute;top:2px;width:14px;height:14px;border-radius:var(--k-r-ctl);background:var(--b-text);box-shadow:0 1px 3px var(--n-drop)}
+.tg.on i{right:2px}.tg.off i{left:2px;background:var(--b-muted)}
+.prog{height:7px;border-radius:var(--k-r-ctl);background:var(--n-surface);box-shadow:inset 0 1px 2px var(--n-drop);overflow:hidden}
+.prog i{display:block;height:100%;width:68%;border-radius:var(--k-r-ctl);background:linear-gradient(90deg,var(--sp-light),var(--g-light))}
+.toast{border-radius:var(--k-r-md);padding:var(--k-s-2) var(--k-s-3);display:flex;gap:var(--k-s-2);align-items:center;font-size:var(--k-f-sm);color:var(--navy);background:var(--gr-grad);box-shadow:inset 0 0 0 var(--k-line) var(--g-edge),0 6px 14px -6px var(--n-drop)}
+.toast .ck{width:15px;height:15px;border-radius:var(--k-r-ctl);background:var(--gr-shadow);display:grid;place-items:center}
+.toast .ck svg{width:9px;height:9px;stroke:var(--b-text);fill:none;stroke-width:2.2}
+.empty{padding:var(--k-s-4);display:grid;justify-items:center;gap:var(--k-s-1);font-size:var(--k-f-xs);color:var(--b-muted);text-align:center;border:var(--k-line) dashed var(--b-muted)}
+.inp{border-radius:var(--k-r-ctl);padding:var(--k-s-1) var(--k-s-3);line-height:1.6;font-size:var(--k-f-sm);color:var(--b-muted);background:var(--n-page);box-shadow:inset 0 1px 3px var(--n-drop),inset 0 0 0 var(--k-line) var(--s-shadow)}
+.inp.focus{color:var(--b-text);box-shadow:inset 0 1px 3px var(--n-drop),0 0 0 1.5px var(--sp-light),0 0 10px var(--glow-blue)}
+.sel{border-radius:var(--k-r-md);padding:var(--k-s-1);display:grid;gap:2px;background:var(--bo-grad);box-shadow:0 8px 16px -6px var(--n-drop),inset 0 0 0 var(--k-line) var(--g-edge)}
+.sel div{border-radius:var(--k-r-sm);padding:var(--k-s-1) var(--k-s-2);font-size:var(--k-f-sm);color:var(--navy)}
+.sel .on{background:var(--g-grad);box-shadow:inset 0 0 0 var(--k-line) var(--g-edge)}
+.sld{position:relative;height:16px}
+.sld .tr{position:absolute;left:0;right:0;top:6px;height:4px;border-radius:var(--k-r-ctl);background:var(--n-surface);box-shadow:inset 0 1px 2px var(--n-drop)}
+.sld .fi{position:absolute;left:0;width:56%;top:6px;height:4px;border-radius:var(--k-r-ctl);background:var(--sp-light);box-shadow:0 0 6px var(--glow-blue)}
+.sld .th{position:absolute;top:1px;left:calc(56% - 6px);width:12px;height:14px;border-radius:var(--k-r-sm);background:var(--g-grad);box-shadow:0 2px 4px var(--n-drop)}
+.ticks{display:flex;justify-content:space-between;font-size:var(--k-f-xs);color:var(--b-muted);margin-top:calc(-1*var(--k-s-1))}
+.modal{overflow:hidden;font-size:var(--k-f-sm)}
+.modal .mh{padding:var(--k-s-1) var(--k-s-3);text-align:center;font-weight:var(--k-weight);text-transform:var(--k-caps);letter-spacing:var(--k-track);background:var(--s-grad);border-bottom:var(--k-line) solid var(--g-edge)}
+.modal .mb{padding:var(--k-s-3);text-align:center;color:var(--b-muted)}
+.modal .mf{display:flex;gap:var(--k-s-2);padding:0 var(--k-s-3) var(--k-s-3)}
+.modal .mf span{flex:1;text-align:center;border-radius:var(--k-r-ctl);padding:var(--k-s-1) 0;font-weight:var(--k-weight);text-transform:var(--k-caps);letter-spacing:var(--k-track)}
+.modal .cancel{background:var(--bo-grad);color:var(--navy)}
+.modal .ok{background:var(--s-grad);color:var(--b-text);box-shadow:inset 0 0 0 var(--k-line) var(--g-edge)}
+.trow{border-radius:var(--k-r-sm);padding:var(--k-s-1) var(--k-s-3);line-height:1.6;font-size:var(--k-f-sm);display:flex;justify-content:space-between;background:var(--n-surface);color:var(--b-muted);box-shadow:inset 0 0 0 var(--k-line) var(--s-shadow)}
+.trow.hover{background:var(--s-grad);color:var(--b-text);box-shadow:0 0 10px var(--glow-blue),inset 0 0 0 var(--k-line) var(--sp-light)}
+.trow.sel2{background:var(--s-shadow);color:var(--b-text);box-shadow:inset 0 0 0 var(--k-line) var(--g-light)}
+.tokens{padding:var(--k-s-3);display:grid;gap:var(--k-s-3);align-content:start;font-size:var(--k-f-xs)}
+.tokens .h{font-size:var(--k-f-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--g-light)}
+.tk{display:flex;gap:var(--k-s-2);align-items:flex-end;color:var(--b-muted)}
+.rad{width:22px;height:22px;background:var(--s-surface);box-shadow:inset 0 0 0 var(--k-line) var(--g-edge)}
+.bt{display:grid;gap:var(--k-s-1)}.bt i{display:block;height:0;border-top-style:solid;border-top-color:var(--g-light)}
+.lv{display:block;height:14px;border-radius:var(--k-r-sm);background:var(--s-surface)}
+.sp{display:grid;gap:var(--k-s-1)}.sp i{display:block;height:5px;border-radius:2px;background:var(--sp-grad)}
+.chart{height:566px;overflow:auto;display:grid;gap:4px;align-content:start;padding-right:4px}
+.cg{display:grid;grid-template-columns:118px minmax(0,1fr);gap:6px;align-items:center}
+.cg h3{margin:0;font-size:9.5px;font-weight:600;color:var(--b-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cg .sws{display:grid;grid-template-columns:repeat(18,minmax(0,1fr));gap:3px}
+.cs{border-radius:4px;height:21px;display:flex;align-items:flex-end;justify-content:center;font:6.5px var(--mono);overflow:hidden;padding-bottom:2px;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(247,246,241,.12)}
+</style>
+</head><body>
+
+<div class="canvas" id="canvas">
+  <div class="mixer">
+    <h1>GluMira Colour Mixer</h1>
+    <div class="tabset" id="tabset" role="group" aria-label="Colour"></div>
+    <section class="card" aria-label="Sample">
+      <div class="stage">
+        <div class="bar" id="bar"></div>
+        <div class="word">GluMira</div>
+        <div class="btns"><span class="pbtn" id="b1">Send</span><span class="pbtn" id="b2">Save idea</span></div>
+      </div>
+      <div class="hexes">
+        <div class="hx" id="hxH"><span></span><b></b></div><div class="hx" id="hxL"><span></span><b></b></div><div class="hx" id="hxS"><span></span><b></b></div>
+      </div>
+      <div class="strip" id="strip"></div>
+    </section>
+    <section class="card" aria-label="Controls">
+      <div class="tabs" role="tablist" id="tabs">
+        <button type="button" role="tab" data-tab="light">Light</button><button type="button" role="tab" data-tab="shadow">Shadow</button><button type="button" role="tab" data-tab="gradient">Gradient</button><button type="button" role="tab" data-tab="code">Code</button>
+      </div>
+      <div class="pane" data-pane="light">
+        <div class="hd"><h2>Light</h2><form class="match" id="matchForm"><input id="matchHex" maxlength="7" placeholder="#E6CD32" aria-label="Hex to match"><button type="submit">Match</button></form></div>
+        <div id="lightRows" style="display:grid;gap:4px"></div>
+      </div>
+      <div class="pane" data-pane="shadow" hidden>
+        <div class="hd"><h2>Shadow</h2><button type="button" class="act" id="one11" style="margin-left:auto">1-1-1</button></div>
+        <div id="shadowRows" style="display:grid;gap:4px"></div>
+        <div class="row plain"><label for="depth">Depth</label><input id="depth" type="range" min="0" max="100"><output id="oDepth"></output></div>
+      </div>
+      <div class="pane" data-pane="gradient" hidden>
+        <div class="row plain"><label for="feather">Feather</label><input id="feather" type="range" min="2" max="12"><output id="oFeather"></output></div>
+        <div class="row plain" id="yellowRow"><label for="yellow">More yellow</label><input id="yellow" type="range" min="-30" max="30"><output id="oYellow"></output></div>
+        <div class="row plain"><label for="brightness">Brightness</label><input id="brightness" type="range" min="-30" max="30"><output id="oBrightness"></output></div>
+        <div class="row plain"><label for="body">Body at</label><input id="body" type="range" min="0" max="60"><output id="oBody"></output></div>
+        <div class="row plain"><label for="bright">Bright at</label><input id="bright" type="range" min="0" max="40"><output id="oBright"></output></div>
+        <div class="row plain"><label for="hl">Highlight</label><input id="hl" type="range" min="0" max="100"><output id="oHl"></output></div>
+        <div class="row plain"><label for="band">Shadow at</label><input id="band" type="range" min="5" max="95"><output id="oBand"></output></div>
+        <div class="row plain"><label for="width">Shadow width</label><input id="width" type="range" min="6" max="60"><output id="oWidth"></output></div>
+        <div class="row plain"><label for="strength">Shadow strength</label><input id="strength" type="range" min="0" max="100"><output id="oStrength"></output></div>
+        <div class="row plain"><label for="gloss">Gloss</label><input id="gloss" type="range" min="0" max="100"><output id="oGloss"></output></div>
+      </div>
+      <div class="pane" data-pane="code" hidden><pre id="code"></pre></div>
+      <div class="actions"><button class="lock" id="lock" type="button">Lock (copy)</button><button class="act" id="reset" type="button">Reset</button><span class="msg" id="msg" aria-live="polite"></span></div>
+    </section>
+  </div>
+
+  <section class="board" id="board" aria-label="Mood board">
+    <div class="bhead"><span class="wm">GluMira</span><span class="spacer" style="flex:1"></span>
+      <div class="seg" id="views" role="group" aria-label="View"><button type="button" data-view="kit">Mood board</button><button type="button" data-view="chart">Colour chart</button></div></div>
+    <div class="kit" id="kit">
+      <div class="kcol">
+        <div class="kt">Cards</div>
+        <div class="cards">
+          <div class="surf kcard"><span class="ico"><svg viewBox="0 0 12 12"><path d="M3 1.5h6v9L6 8.5 3 10.5z"/></svg></span><b>Today</b>Time in range 78%, two meals logged.</div>
+          <div class="surf kcard alt"><span class="ico"><svg viewBox="0 0 12 12"><path d="M6 1.5 10.5 4 6 6.5 1.5 4z M1.5 6.5 6 9l4.5-2.5"/></svg></span><b>Meal plan</b>Breakfast, lunch and supper for the week.</div>
+        </div>
+        <div class="kt">Buttons</div>
+        <div class="kbtns"><span class="kb">Default</span><span class="kb hover">Hover</span><span class="kb pressed">Pressed</span><span class="kb disabled">Disabled</span><span class="kb loading">Loading <i class="spin"></i></span></div>
+        <div class="kt">Toggle switches</div>
+        <div class="toggles"><span><i class="tg on"><i></i></i>On</span><span><i class="tg off"><i></i></i>Off</span></div>
+        <div class="kt">Progress</div>
+        <div class="prog"><i></i></div>
+        <div class="kt">Notification toast</div>
+        <div class="toast"><span class="ck"><svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 2.8"/></svg></span>Reading saved</div>
+        <div class="kt">Empty state</div>
+        <div class="surf empty"><span class="ico"><svg viewBox="0 0 12 12"><path d="M2 3h8M2 6h8M2 9h5"/></svg></span>No readings yet today.</div>
+      </div>
+      <div class="kcol">
+        <div class="kt">Inputs</div>
+        <div class="inp">Name</div>
+        <div class="inp focus">Focus</div>
+        <div class="kt">Select dropdown</div>
+        <div class="sel"><div class="on">Breakfast</div><div>Lunch</div><div>Supper</div><div>Snack</div></div>
+        <div class="kt">Slider</div>
+        <div class="sld"><i class="tr"></i><i class="fi"></i><i class="th"></i></div>
+        <div class="ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+        <div class="kt">Modal dialog</div>
+        <div class="surf modal"><div class="mh">Save this meal?</div><div class="mb">It joins your cookbook.</div><div class="mf"><span class="cancel">Cancel</span><span class="ok">Save</span></div></div>
+        <div class="kt">Table rows</div>
+        <div class="trow"><span>Default</span><span>6.4</span></div>
+        <div class="trow hover"><span>Hover</span><span>7.1</span></div>
+        <div class="trow sel2"><span>Selected</span><span>8.0</span></div>
+      </div>
+      <div class="surf tokens">
+        <div class="h">Tokens</div>
+        <div>Radius steps<div class="tk"><span class="rad" style="border-radius:var(--k-r-sm)"></span><span class="rad" style="border-radius:var(--k-r-md)"></span><span class="rad" style="border-radius:var(--k-r-lg)"></span><span class="rad" style="border-radius:var(--k-r-ctl)"></span></div></div>
+        <div>Border thickness<div class="bt"><i style="border-top-width:.5px"></i><i style="border-top-width:1px"></i><i style="border-top-width:1.5px"></i></div></div>
+        <div>Shadow levels<div style="display:grid;gap:6px;margin-top:3px"><i class="lv" style="box-shadow:0 2px 4px var(--n-drop)"></i><i class="lv" style="box-shadow:0 5px 10px var(--n-drop)"></i><i class="lv" style="box-shadow:0 10px 18px var(--n-drop)"></i></div></div>
+        <div>Icon sizes<div class="tk"><span class="ico" style="width:14px;height:14px"></span><span class="ico" style="width:18px;height:18px"></span><span class="ico" style="width:22px;height:22px"></span></div></div>
+        <div>Spacing scale<div class="sp"><i style="width:var(--k-s-1)"></i><i style="width:var(--k-s-2)"></i><i style="width:var(--k-s-3)"></i><i style="width:var(--k-s-4)"></i><i style="width:calc(2*var(--k-s-4))"></i><i style="width:calc(4*var(--k-s-4))"></i></div></div>
+      </div>
+    </div>
+    <div class="chart" id="chart" hidden></div>
+  </section>
+</div>
+<script>
+const CURVES={"C":[-2.273,-7.058,-6.304],"A":[-2.7,2.83,4.287],"O":[-0.324,1.438,-1.072],"L":[0.729,1.9,-3.635],"W":[2.209,0.395,-0.926],"K":[-4.68,0.26,0.033]};
+const COBALT={"a":0.0097,"b":0.6367,"m":476.2217,"s":18.2479,"c":0.0654,"r":666.0708};
+const WEIGHTS={"C":0.0192,"A":0.0239,"O":0.1737,"L":0.1737,"W":1,"K":0.5};
+// Paint engine: spectral Kubelka-Munk, 380-730 nm in 10 nm steps. CIE 1931 observer from the Wyman, Sloan and
+// Shirley (2013) fit. Each pigment is a smooth reflectance curve fitted to its paint colour; Cobalt Blue has its own
+// curve (blue peak and a small deep-red rise) so its tints stay a clean sky blue. Strengths were fitted 2026-10-15 to
+// the written recipes in App-Locked-Palette_v1.0.md and the navy recipe (Cobalt + Alizarin, Ochre to warm).
+const PIGMENTS=[
+  {id:'C',name:'Cobalt Blue',hex:'#1D4FA1'},{id:'A',name:'Alizarin Crimson',hex:'#7E232D'},{id:'O',name:'Yellow Ochre',hex:'#C8963E'},
+  {id:'L',name:'Lemon Yellow',hex:'#F3DE1A'},{id:'W',name:'White',hex:'#FAFAF6'},{id:'K',name:'Ivory Black',hex:'#1C1B1A'}];
+const PIG={};PIGMENTS.forEach(p=>PIG[p.id]=p);
+const WL=[];for(let l=380;l<=730;l+=10)WL.push(l);
+const gl=(l,m,a,b)=>{const s=l<m?a:b;return Math.exp(-0.5*((l-m)/s)**2)};
+const CMF=WL.map(l=>[1.056*gl(l,599.8,37.9,31.0)+0.362*gl(l,442.0,16.0,26.7)-0.065*gl(l,501.1,20.4,26.2),
+  0.821*gl(l,568.8,46.9,40.5)+0.286*gl(l,530.9,16.3,31.1),1.217*gl(l,437.0,11.8,36.0)+0.681*gl(l,459.0,26.0,13.8)]);
+const XM=[[3.2406,-1.5372,-0.4986],[-0.9689,1.8758,0.0415],[0.0557,-0.2040,1.0570]];
+function linOfRaw(R){let X=0,Y=0,Z=0;for(let i=0;i<WL.length;i++){X+=R[i]*CMF[i][0];Y+=R[i]*CMF[i][1];Z+=R[i]*CMF[i][2]}return XM.map(r=>r[0]*X+r[1]*Y+r[2]*Z)}
+const WHITE=linOfRaw(WL.map(()=>1));
+const linOf=R=>linOfRaw(R).map((v,i)=>v/WHITE[i]);
+const s2l=v=>{v/=255;return v<=0.04045?v/12.92:((v+0.055)/1.055)**2.4};
+const l2s=v=>{v=Math.max(0,Math.min(1,v));return 255*(v<=0.0031308?12.92*v:1.055*v**(1/2.4)-0.055)};
+const hexRgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const rgbHex=c=>'#'+c.map(v=>Math.round(Math.max(0,Math.min(255,v))).toString(16).padStart(2,'0')).join('').toUpperCase();
+const sig=x=>0.5+x/(2*Math.sqrt(1+x*x));
+const clampR=v=>Math.min(0.99,Math.max(0.003,v));
+const curveOf=id=>id==='C'?WL.map(l=>clampR(COBALT.a+COBALT.b*Math.exp(-0.5*((l-COBALT.m)/COBALT.s)**2)+COBALT.c/(1+Math.exp(-(l-COBALT.r)/18))))
+  :WL.map(l=>{const t=(l-555)/175,c=CURVES[id];return clampR(sig(c[0]+c[1]*t+c[2]*t*t))});
+PIGMENTS.forEach(p=>{p.w=WEIGHTS[p.id];p.ks=curveOf(p.id).map(R=>(1-R)**2/(2*R))});
+const cache=new Map();
+function mixRgb(r){let t=0;const n=WL.length,k=new Array(n).fill(0);
+  for(const id in r){const v=r[id];if(!(v>0))continue;const p=PIG[id];const w=v*p.w;t+=w;for(let i=0;i<n;i++)k[i]+=w*p.ks[i]}
+  if(!t)return[0,0,0];return linOf(k.map(x=>{x/=t;return 1+x-Math.sqrt(x*x+2*x)})).map(l2s)}
+function mixHex(r){const key=PIGMENTS.map(p=>(r[p.id]||0).toFixed(4)).join(',');let h=cache.get(key);if(!h){h=rgbHex(mixRgb(r));if(cache.size>5000)cache.clear();cache.set(key,h)}return h}
+function lab(rgb){const [r,g,b]=rgb.map(s2l);const X=(0.4124*r+0.3576*g+0.1805*b)/0.95047,Y=0.2126*r+0.7152*g+0.0722*b,Z=(0.0193*r+0.1192*g+0.9505*b)/1.08883;
+  const f=t=>t>0.008856?Math.cbrt(t):7.787*t+16/116;const fx=f(X),fy=f(Y),fz=f(Z);return[116*fy-16,500*(fx-fy),200*(fy-fz)]}
+function dE(a,b){const A=lab(a),B=lab(b);return Math.hypot(A[0]-B[0],A[1]-B[1],A[2]-B[2])}
+function total(r){let t=0;for(const id in r)t+=r[id]>0?r[id]:0;return t}
+function norm(r){const t=total(r)||1;const o={};PIGMENTS.forEach(p=>o[p.id]=(r[p.id]>0?r[p.id]:0)/t);return o}
+function blend(a,b,t){a=norm(a);b=norm(b);const o={};PIGMENTS.forEach(p=>o[p.id]=(1-t)*a[p.id]+t*b[p.id]);return o}
+function lum(rgb){const [r,g,b]=rgb.map(s2l);return 0.2126*r+0.7152*g+0.0722*b}
+// Seeded search for the recipe that mixes closest to a target hex, so a target gives the same recipe every time.
+function solve(target,exclude=[],seed=7){let s=seed;const rnd=()=>(s=(s*16807)%2147483647)/2147483647;const T=hexRgb(target);const ids=PIGMENTS.map(p=>p.id).filter(id=>!exclude.includes(id));
+  let best=null,be=1e9;for(let run=0;run<6;run++){let p={};ids.forEach(id=>p[id]=rnd()<0.5?0:rnd()*5);if(!total(p))p[ids[0]]=1;let e=dE(mixRgb(p),T);
+    for(let it=0;it<2500;it++){const q={...p};const id=ids[Math.floor(rnd()*ids.length)];const st=3*(1-it/2500)+0.02;
+      q[id]=Math.max(0,(q[id]||0)*Math.exp((rnd()-0.5)*st)+(rnd()<0.2?(rnd()-0.5)*st:0));if(rnd()<0.04)q[id]=0;
+      const t=total(q);if(!t)continue;for(const k in q)q[k]*=10/t;const ee=dE(mixRgb(q),T);if(ee<e){p=q;e=ee}}
+    if(e<be){be=e;best=p}}
+  const o={};PIGMENTS.forEach(p=>o[p.id]=Math.round((best[p.id]||0)*1000)/1000);return {recipe:o,dE:dE(mixRgb(o),T)}}
+if(typeof module!=='undefined')module.exports={PIGMENTS,mixRgb,mixHex,solve,dE,hexRgb,rgbHex,blend,norm,total,lum,lab};
+const CHART=[["Navy surfaces",[["Navy primary","#102347"],["Navy deep edge","#0B1733"]]],["THE ONE GOLD",[["Gold edge","#BEA106"],["Gold body","#E6CD32"],["Gold bright","#F8E663"],["Gold shine","#FAEB6F"]]],["Light / shadow gold",[["Gold highlight","#E8D9B5"],["Gold light","#C9A24B"],["Gold shadow","#8B6F47"]]],["bone / ivory · bone / ivory",[["Bone (solid ground)","#F7F6F1"],["Hairline","#E0DBCF"]]],["Sage canvas",[["Paper","#F4F5EF"],["Card","#E6E7DB"],["Tint","#E2E3D6"],["Tint","#D7D9C5"],["Tint","#D4D6C0"],["Section","#BCC4AC"],["Sage mid","#A6AD96"],["Sage deep","#9EAB92"]]],["Botanical green",[["Forest (darkest)","#4E6444"],["Green","#667F69"],["Green","#738B6E"],["Soft sage-green","#A2B095"],["Soft sage-green","#A9B69E"],["Soft sage-green","#BAC7B4"],["Soft sage-green","#C4D0BF"],["Soft sage-green","#DDE2DB"]]],["Sapphire",[["Deep sapphire","#0141AC"],["Deep sapphire","#0D3EA6"],["True sapphire","#0D4CCF"],["Canonical sapphire ★ LOCKED body text","#0F52BA"],["Sapphire → sky","#1758DB"],["Sapphire → sky","#1D60E8"],["Sapphire → sky","#2D78F2"],["Azure (decorative)","#3E98FB"],["Azure (decorative)","#57B1FB"],["","#0FA2F8"],["","#25B6F9"],["","#30B3F9"],["","#56C9F8"],["","#69CCF8"],["","#87D5F4"],["","#A5DFF9"],["","#C2E8F9"],["","#DCEFF7"],["","#E4F2F8"]]],["Slate-blue",[["","#303F46"],["","#3C4F5A"],["","#455865"],["","#2A445A"],["deep","#35516C"],["","#415D7A"],["","#506A85"],["","#778EA5"],["","#7F95AC"],["","#788BA7"],["mid","#8E9DB0"],["","#9BADBD"],["","#A3B4C5"],["","#AFBBCF"],["","#C7CFE0"],["","#CFD5E0"],["soft","#E9EDF8"]]],["Light / shadow sapphire",[["Highlight","#92C5E0"],["Light","#5B9BC8"],["Shadow","#0D3D52"],["Highlight","#C4E8FA"],["Light","#8DD5F0"],["Shadow","#1B4A62"]]],["Blue group",[["","#DCE2E6"],["","#C6D2DA"],["","#B5C4D0"],["","#A3B6C6"],["","#93A8BC"],["","#8499AE"]]],["Green group",[["","#DDE2DB"],["","#C4D0BF"],["","#BAC7B4"],["","#A9B69E"],["","#A2B095"],["","#9EAB92"]]],["Method primaries",[["Yellow Ochre (W&N)","#C7973F"],["Permanent Alizarin Crimson","#843135"],["Venetian Red (earth triad)","#8C3B2E"]]],["Yellows",[["IOB gold ★ LOCKED (clinical)","#C9A24B"],["Lemon yellow ★ LOCKED (graph head)","#EBD60A"],["Ochre yellow (method-pure)","#E3C45B"],["Gold highlight (warm)","#E8D9B5"],["One gold — edge","#BEA106"],["One gold — body","#E6CD32"],["One gold — bright","#F8E663"],["One gold — shine","#FAEB6F"],["Custard bright — RETIRED","#F0D27A"],["Custard highlight — RETIRED","#FFF6CF"],["Custard mid — RETIRED","#B8902F"],["Custard deep edge — RETIRED","#6E5414"],["Gold shadow (warm earth mix)","#8B6F47"],["Severity gold (safe)","#D4A229"],["Amber (moderate)","#E8920A"]]],["Reds",[["Orange (high)","#D35400"],["Red (danger)","#C0392B"],["Dark red (tail · shadow)","#6B2A2C"],["Crimson light","#B5505A"],["Crimson mid","#9E3B43"],["Crimson deep","#5E2329"]]],["Stacking · Stacking-pressure severity ramp",[["--gm-iob-safe · gold","#D4A229"],["--gm-iob-moderate · amber","#E8920A"],["--gm-iob-high · orange","#D35400"],["--gm-iob-danger · red","#C0392B"]]],["Stacking · Derived extension stops",[["Ochre yellow (in-method · superseded by lemon)","#E3C45B"],["Dark red (tail · shadow)","#6B2A2C"]]],["Stacking · Graph-clarity exception",[["Lemon yellow ★ LOCKED (ramp head)","#EBD60A"],["Ochre yellow (method-pure, retired from ramp)","#E3C45B"]]],["Stacking · Full 6-band ramp",[["Lemon yellow","#EBD60A"],["Gold (safe)","#D4A229"],["Amber","#E8920A"],["Orange","#D35400"],["Red","#C0392B"],["Dark red","#6B2A2C"]]],["clinical · Locked clinical",[["IOB gold","#C9A24B"],["Glucose line","#1A5FB4"]]],["Solid text",[["Heading ink","#16233F"],["Body ink","#29313D"]]]];
+// Page logic. Each tab is one colour with its own state. Light is the paint. Shadow is the same paint with Lemon
+// replaced by Ochre, plus drops, and is never lighter than its light. The gradient is the light with a narrow
+// shadow band blended in; gloss is a brighter colour of the same family laid over it from the top right.
+const $=id=>document.getElementById(id);
+const IDS=PIGMENTS.map(p=>p.id), DROPS=['C','A','O','K'];
+const SHORT={C:'Cobalt',A:'Alizarin',O:'Ochre',L:'Lemon',W:'White',K:'Black'};
+const z=()=>({C:0,A:0,O:0,L:0,W:0,K:0});
+const G0={feather:6,yellow:0,brightness:0,body:10,bright:0,hl:40,band:26,width:26,strength:70,gloss:50};
+// Starting recipes were mixed by the matcher toward each locked hex.
+const TABS=[
+  {key:'gold',name:'Gold',fam:'gold',target:'#E6CD32',light:{C:0.032,O:0.977,L:8.791,W:0.2},drops:{C:2,A:6},depth:60},
+  {key:'goldtext',name:'Gold text',fam:'gold',target:'#C9A24B',light:{C:0.088,O:9.131,W:0.781},drops:{C:2,A:6},depth:60},
+  {key:'navy',name:'Navy',fam:'blue',target:'#102347',light:{C:8.066,A:1.934},drops:{O:3},depth:0},
+  {key:'lnavy',name:'Light navy',fam:'blue',target:'#647087',light:{C:6.791,O:0.478,W:2.616,K:0.115},drops:{O:3},depth:40},
+  {key:'bone',name:'Bone',fam:'neutral',target:'#F7F6F1',light:{C:0.018,A:0.015,O:0.04,W:9.926},drops:{C:0.5,A:0.3,O:3},depth:0},
+  {key:'blue',name:'Blue group',fam:'blue',target:'#B5C4D0',light:{C:2.295,O:0.761,W:6.944},drops:{O:3},depth:40},
+  {key:'green',name:'Green group',fam:'green',target:'#C4D0BF',light:{C:1.178,O:1.68,W:7.143},drops:{A:2},depth:30},
+  {key:'sapphire',name:'Sapphire sheen',fam:'blue',target:'#1160F0',light:{C:9.755,W:0.245},drops:{O:3},depth:0,form:'sheen'},
+  {key:'gsheen',name:'Green sheen',fam:'green',target:'#738B6E',light:{C:3.58,O:5.032,W:1.388},drops:{A:2},depth:20,form:'sheen'}];
+const TAB={};TABS.forEach(t=>TAB[t.key]=t);
+const start=k=>{const t=TAB[k];return {light:{...z(),...t.light},drops:{C:0,A:0,O:0,K:0,...t.drops},depth:t.depth,...G0}};
+const TS={};TABS.forEach(t=>TS[t.key]=start(t.key));
+let cur='gold',ctab='light',view='kit';
+const lemonOk=k=>TAB[k].fam==='gold';
+
+// Sliders are squared so the first part of the travel gives the tiny amounts a drop needs.
+const sq=(max,v)=>max*(v/1000)**2, isq=(max,x)=>Math.round(1000*Math.sqrt(Math.max(0,x)/max));
+const fmt=x=>x>=1?x.toFixed(1):x>=0.1?x.toFixed(2):x>0?x.toFixed(3):'0';
+const pct=x=>(x>=10?Math.round(x):x>=1?x.toFixed(1):x>0?x.toFixed(2):'0')+'%';
+const sgn=x=>(x>0?'+':'')+x;
+const rgba=(h,a)=>{const [r,g,b]=hexRgb(h);return `rgba(${r},${g},${b},${+a.toFixed(3)})`};
+const smooth=t=>t*t*(3-2*t);
+const lumH=h=>lum(hexRgb(h));
+
+// The pigment that brightens this colour inside its own family.
+function brightener(k,L){const f=TAB[k].fam;if(f==='gold')return 'L';if(f==='neutral')return 'W';if(lumH(mixHex(L))>0.4)return 'W';return f==='green'?'O':'C'}
+function glossPigment(k){const f=TAB[k].fam;return f==='gold'?'L':f==='neutral'?'W':f==='green'?'O':'C'}
+
+function compute(k){
+  const s=TS[k],T=total(s.light)||1;
+  const L={...z(),...s.light};
+  if(lemonOk(k)){if(s.yellow>0)L.L+=s.yellow/100*T;else if(s.yellow<0)L.O+=(-s.yellow)/100*T}
+  if(s.brightness>0)L.W+=s.brightness/100*T;else if(s.brightness<0)L.W*=1+s.brightness/30;
+  const TL=total(L)||1;
+  const H={...L};H[brightener(k,L)]+=s.hl/100*TL;
+  const S={...L};S.O+=S.L;S.L=0;S.W=L.W*(1-s.depth/100);DROPS.forEach(id=>S[id]+=(s.drops[id]||0)/100*TL);
+  // A shadow is never lighter than its light: take white out, then darken with the lightest touch of black.
+  const lt=lumH(mixHex(L));for(let i=0;i<60&&lumH(mixHex(S))>=lt*0.96;i++){if(S.W>1e-3)S.W*=0.7;else S.K+=0.004*TL}
+  const Sd=blend(L,S,s.strength/100);
+  const hx={H:mixHex(H),L:mixHex(L),S:mixHex(S),D:mixHex(Sd)};
+  let keys;
+  if(TAB[k].form==='sheen')keys=[[0,Sd],[25,L],[50,H],[75,L],[100,Sd]];
+  else{const c=s.band,w=s.width/2;const bs=Math.max(c-w,s.body+1),be=Math.min(Math.max(c+w,bs+2),99),bc=(bs+be)/2;
+    keys=[[0,H]];if(s.bright>0)keys.push([s.bright,H]);keys.push([Math.max(s.body,s.bright),L],[bs,L],[bc,Sd],[be,L],[100,L])}
+  const stops=[];
+  for(let i=0;i<keys.length;i++){const [pa,ra]=keys[i];if(stops.length&&Math.abs(stops[stops.length-1][0]-pa)<0.05)continue;stops.push([pa,mixHex(ra)]);
+    if(i<keys.length-1){const [pb,rb]=keys[i+1];if(mixHex(ra)!==mixHex(rb)&&pb>pa)for(let j=1;j<s.feather;j++){const t=j/s.feather;stops.push([pa+(pb-pa)*t,mixHex(blend(ra,rb,smooth(t)))])}}}
+  const grad='linear-gradient(180deg,'+stops.map(([p,h])=>h+' '+(+p.toFixed(1))+'%').join(',')+')';
+  const gp={...L};gp[glossPigment(k)]+=0.8*TL;const gh=mixHex(gp),a=s.gloss/100;
+  const gloss=a>0?`radial-gradient(130% 110% at 100% 0%,${rgba(gh,a)} 0%,${rgba(gh,a*0.45)} 30%,${rgba(gh,0)} 65%),linear-gradient(215deg,${rgba(gh,a*0.55)} 0%,${rgba(gh,0)} 45%),`:'';
+  return {L,H,S,hx,stops,grad,gloss,full:gloss+grad,blendMode:a>0?'screen,screen,normal':'normal',glossHex:gh};
+}
+const paint=(el,c)=>{el.style.backgroundImage=c.full;el.style.backgroundBlendMode=c.blendMode};
+
+function build(){
+  $('tabset').innerHTML=TABS.map(t=>`<button type="button" data-k="${t.key}">${t.name}</button>`).join('');
+  $('tabset').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.k;$('msg').textContent='';sync();render()});
+  $('lightRows').innerHTML=PIGMENTS.map(p=>`<div class="row" id="lr_${p.id}"><span class="dot" style="background:${p.hex}"></span><label for="l_${p.id}">${p.name}</label><input id="l_${p.id}" type="range" min="0" max="1000"><output id="ol_${p.id}"></output></div>`).join('');
+  $('shadowRows').innerHTML=DROPS.map(id=>`<div class="row"><span class="dot" style="background:${PIG[id].hex}"></span><label for="s_${id}">${PIG[id].name}</label><input id="s_${id}" type="range" min="0" max="1000"><output id="os_${id}"></output></div>`).join('');
+  IDS.forEach(id=>$('l_'+id).addEventListener('input',e=>{TS[cur].light[id]=sq(10,+e.target.value);render()}));
+  DROPS.forEach(id=>$('s_'+id).addEventListener('input',e=>{TS[cur].drops[id]=sq(40,+e.target.value);render()}));
+  for(const k of ['depth','feather','yellow','brightness','body','bright','hl','band','width','strength','gloss'])$(k).addEventListener('input',e=>{TS[cur][k]=+e.target.value;render()});
+  $('one11').addEventListener('click',()=>{TS[cur].drops={C:1,A:1,O:1,K:0};sync();render()});
+  $('tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ctab=b.dataset.tab;render()});
+  $('views').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;view=b.dataset.view;render()});
+  $('reset').addEventListener('click',()=>{TS[cur]=start(cur);$('msg').textContent='';sync();render()});
+  $('matchForm').addEventListener('submit',e=>{e.preventDefault();match($('matchHex').value)});
+  $('lock').addEventListener('click',()=>copy($('code').textContent,'Copied. Paste it in the chat.'));
+  $('strip').addEventListener('click',e=>{const s=e.target.closest('span');if(s)copy(s.dataset.hex,'Copied '+s.dataset.hex)});
+  ['hxH','hxL','hxS'].forEach(id=>$(id).addEventListener('click',()=>copy($(id).dataset.hex,'Copied '+$(id).dataset.hex)));
+  $('chart').innerHTML=CHART.map(([t,s])=>`<div class="cg"><h3>${t}</h3><div class="sws">${s.map(([n,h])=>`<span class="cs" data-hex="${h}" title="${n} ${h}" style="background:${h};color:${lumH(h)<0.25?'#F7F6F1':'#102347'}">${h.slice(1)}</span>`).join('')}</div></div>`).join('');
+  $('chart').addEventListener('click',e=>{const s=e.target.closest('.cs');if(s){$('matchHex').value=s.dataset.hex;match(s.dataset.hex)}});
+}
+function sync(){const s=TS[cur];
+  IDS.forEach(id=>$('l_'+id).value=isq(10,s.light[id]||0));DROPS.forEach(id=>$('s_'+id).value=isq(40,s.drops[id]||0));
+  for(const k of ['depth','feather','yellow','brightness','body','bright','hl','band','width','strength','gloss'])$(k).value=s[k];
+}
+function render(){
+  const s=TS[cur],c=compute(cur);
+  paint($('bar'),c);paint($('b1'),c);paint($('b2'),c);
+  for(const [id,h] of [['hxH',c.hx.H],['hxL',c.hx.L],['hxS',c.hx.S]]){$(id).dataset.hex=h;$(id).querySelector('span').style.background=h;$(id).querySelector('b').textContent=h}
+  $('strip').innerHTML=c.stops.map(([p,h])=>`<span data-hex="${h}" style="background:${h};color:${lumH(h)<0.25?'#F7F6F1':'#102347'}" title="${h} at ${p.toFixed(1)}%">${c.stops.length>14?'':h.slice(1)}</span>`).join('');
+  IDS.forEach(id=>$('ol_'+id).value=fmt(s.light[id]||0));DROPS.forEach(id=>$('os_'+id).value=pct(s.drops[id]||0));
+  $('lr_L').hidden=!lemonOk(cur);$('yellowRow').hidden=!lemonOk(cur);
+  const o={depth:s.depth+'%',feather:s.feather,yellow:sgn(s.yellow),brightness:sgn(s.brightness),body:s.body+'%',bright:s.bright+'%',hl:s.hl+'%',band:s.band+'%',width:s.width+'%',strength:s.strength+'%',gloss:s.gloss+'%'};
+  for(const k in o)$('o'+k[0].toUpperCase()+k.slice(1)).value=o[k];
+  const sheen=TAB[cur].form==='sheen';['body','bright','band','width'].forEach(id=>$(id).disabled=sheen);
+  document.querySelectorAll('#tabset button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===cur));
+  document.querySelectorAll('#tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===ctab));
+  document.querySelectorAll('.pane').forEach(p=>p.hidden=p.dataset.pane!==ctab);
+  document.querySelectorAll('#views button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.view===view));
+  $('kit').hidden=view!=='kit';$('chart').hidden=view!=='chart';
+  board();
+  const rec=r=>IDS.filter(id=>r[id]>0.0005).sort((a,b)=>r[b]-r[a]).map(id=>fmt(r[id])+' '+SHORT[id]).join(' · ');
+  $('code').textContent=
+`/* GluMira Colour Mixer · ${TAB[cur].name} · ${new Date().toISOString().slice(0,10)} */
+--mix-highlight: ${c.hx.H}; /* ${rec(c.H)} */
+--mix-light: ${c.hx.L}; /* ${rec(c.L)} */
+--mix-shadow: ${c.hx.S}; /* ${rec(c.S)} */
+--mix-band: ${c.hx.D}; /* centre of the shadow band, strength ${s.strength}% */
+--mix-gradient: ${c.grad};
+--mix-gloss: ${c.gloss?c.gloss.slice(0,-1):'none'};
+/* paint as: background-image: var(--mix-gloss), var(--mix-gradient); background-blend-mode: screen, screen, normal */
+/* feather ${s.feather} · more yellow ${sgn(s.yellow)} · brightness ${sgn(s.brightness)} · body at ${s.body}% · bright at ${s.bright}% · highlight ${s.hl}% · shadow at ${s.band}% · width ${s.width}% · gloss ${s.gloss}% */`;
+}
+// The mood board takes its colours from the tabs: navy the world, steel buttons from light navy, gold edges and
+// thumbs, bone text, blue group for quiet text and glow, sapphire for live states, green for the toast.
+function board(){
+  const n=compute('navy'),ln=compute('lnavy'),g=compute('gold'),bo=compute('bone'),bg=compute('blue'),sp=compute('sapphire'),gr=compute('green'),gs=compute('gsheen');
+  const spLift={...sp.L};spLift.W+=1.2*total(sp.L);const spl=mixHex(spLift);
+  const v={'--n-page':n.hx.S,'--n-surface':n.hx.L,'--n-glow':rgba(n.hx.H,0.42),'--n-rim':rgba(n.hx.H,0.55),'--n-under':rgba(n.hx.S,0.7),'--n-drop':rgba(n.hx.S,0.95),'--n-edge':rgba(n.hx.H,0.3),
+    '--s-surface':ln.hx.L,'--s-glow':rgba(ln.hx.H,0.45),'--s-grad':ln.grad,'--s-grad-hi':`linear-gradient(180deg,${ln.hx.H},${ln.hx.L})`,'--s-shadow':ln.hx.S,
+    '--g-light':g.hx.L,'--g-edge':rgba(g.hx.L,0.6),'--g-grad':g.grad,
+    '--b-text':bo.hx.L,'--bo-grad':`linear-gradient(180deg,${bo.hx.H},${bo.hx.L} 55%,${bo.hx.D})`,'--b-muted':bg.hx.L,'--glow-blue':rgba(bg.hx.H,0.55),
+    '--sp-grad':sp.grad,'--sp-light':spl,'--gr-grad':`linear-gradient(180deg,${gr.hx.H},${gr.hx.L} 60%,${gr.hx.D})`,'--gr-shadow':gs.hx.L};
+  const b=$('board');for(const k in v)b.style.setProperty(k,v[k]);
+}
+function match(v){
+  v=(v||'').trim();if(!/^#?[0-9a-fA-F]{6}$/.test(v))return;
+  const t=('#'+v.replace('#','')).toUpperCase();const f=TAB[cur].fam;
+  const tries=f==='gold'?[['K'],[]]:f==='blue'?[['L','A','K'],['L','A'],['L']]:[['L','K'],['L']];
+  let r=null;for(const ex of tries){const x=solve(t,ex);if(!r||x.dE<r.dE-1)r=x;if(r.dE<=3)break}
+  TS[cur].light={...z(),...r.recipe};sync();render();
+}
+function copy(t,ok){
+  const fall=()=>{const r=document.createRange();r.selectNodeContents($('code'));const s=getSelection();s.removeAllRanges();s.addRange(r);$('msg').textContent='Selected. Press Ctrl+C.'};
+  try{navigator.clipboard.writeText(t).then(()=>{$('msg').textContent=ok},fall)}catch(e){fall()}
+}
+// One design, scaled whole to the window: same order and alignment on every screen, nothing to scroll.
+function fit(){const c=$('canvas');c.style.zoom=1;const w=c.offsetWidth,h=c.offsetHeight;
+  c.style.zoom=Math.max(0.4,Math.min(1.6,(document.documentElement.clientWidth-24)/w,(innerHeight-6)/h))}
+addEventListener('resize',fit);
+build();sync();render();fit();
+</script></body></html>
