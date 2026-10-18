@@ -1,0 +1,95 @@
+
+<div class="canvas" id="canvas">
+  <div class="mixer">
+    <h1>GluMira Colour Mixer</h1>
+    <div class="tabset" id="tabset" role="group" aria-label="Colour"></div>
+    <section class="card" aria-label="Sample">
+      <div class="stage">
+        <div class="bar" id="bar"></div>
+        <div class="word">GluMira</div>
+        <div class="btns"><span class="pbtn" id="b1">Send</span><span class="pbtn" id="b2">Save idea</span></div>
+      </div>
+      <div class="hexes">
+        <div class="hx" id="hxH"><span></span><b></b></div><div class="hx" id="hxL"><span></span><b></b></div><div class="hx" id="hxS"><span></span><b></b></div>
+      </div>
+      <div class="strip" id="strip"></div>
+    </section>
+    <section class="card" aria-label="Controls">
+      <div class="tabs" role="tablist" id="tabs">
+        <button type="button" role="tab" data-tab="light">Light</button><button type="button" role="tab" data-tab="shadow">Shadow</button><button type="button" role="tab" data-tab="gradient">Gradient</button><button type="button" role="tab" data-tab="code">Code</button>
+      </div>
+      <div class="pane" data-pane="light">
+        <div class="hd"><h2>Light</h2><form class="match" id="matchForm"><input id="matchHex" maxlength="7" placeholder="#E6CD32" aria-label="Hex to match"><button type="submit">Match</button></form></div>
+        <div id="lightRows" style="display:grid;gap:4px"></div>
+      </div>
+      <div class="pane" data-pane="shadow" hidden>
+        <div class="hd"><h2>Shadow</h2><button type="button" class="act" id="one11" style="margin-left:auto">1-1-1</button></div>
+        <div id="shadowRows" style="display:grid;gap:4px"></div>
+        <div class="row plain"><label for="depth">Depth</label><input id="depth" type="range" min="0" max="100"><output id="oDepth"></output></div>
+      </div>
+      <div class="pane" data-pane="gradient" hidden>
+        <div class="row plain"><label for="feather">Feather</label><input id="feather" type="range" min="2" max="12"><output id="oFeather"></output></div>
+        <div class="row plain" id="yellowRow"><label for="yellow">More yellow</label><input id="yellow" type="range" min="-30" max="30"><output id="oYellow"></output></div>
+        <div class="row plain"><label for="brightness">Brightness</label><input id="brightness" type="range" min="-30" max="30"><output id="oBrightness"></output></div>
+        <div class="row plain"><label for="body">Body at</label><input id="body" type="range" min="0" max="60"><output id="oBody"></output></div>
+        <div class="row plain"><label for="bright">Bright at</label><input id="bright" type="range" min="0" max="40"><output id="oBright"></output></div>
+        <div class="row plain"><label for="hl">Highlight</label><input id="hl" type="range" min="0" max="100"><output id="oHl"></output></div>
+        <div class="row plain"><label for="band">Shadow at</label><input id="band" type="range" min="5" max="95"><output id="oBand"></output></div>
+        <div class="row plain"><label for="width">Shadow width</label><input id="width" type="range" min="6" max="60"><output id="oWidth"></output></div>
+        <div class="row plain"><label for="strength">Shadow strength</label><input id="strength" type="range" min="0" max="100"><output id="oStrength"></output></div>
+        <div class="row plain"><label for="gloss">Gloss</label><input id="gloss" type="range" min="0" max="100"><output id="oGloss"></output></div>
+      </div>
+      <div class="pane" data-pane="code" hidden><pre id="code"></pre></div>
+      <div class="actions"><button class="lock" id="lock" type="button">Lock (copy)</button><button class="act" id="reset" type="button">Reset</button><span class="msg" id="msg" aria-live="polite"></span></div>
+    </section>
+  </div>
+
+  <section class="board" id="board" aria-label="Mood board">
+    <div class="bhead"><span class="wm">GluMira</span><span class="spacer" style="flex:1"></span>
+      <div class="seg" id="views" role="group" aria-label="View"><button type="button" data-view="kit">Mood board</button><button type="button" data-view="chart">Colour chart</button></div></div>
+    <div class="kit" id="kit">
+      <div class="kcol">
+        <div class="kt">Cards</div>
+        <div class="cards">
+          <div class="surf kcard"><span class="ico"><svg viewBox="0 0 12 12"><path d="M3 1.5h6v9L6 8.5 3 10.5z"/></svg></span><b>Today</b>Time in range 78%, two meals logged.</div>
+          <div class="surf kcard alt"><span class="ico"><svg viewBox="0 0 12 12"><path d="M6 1.5 10.5 4 6 6.5 1.5 4z M1.5 6.5 6 9l4.5-2.5"/></svg></span><b>Meal plan</b>Breakfast, lunch and supper for the week.</div>
+        </div>
+        <div class="kt">Buttons</div>
+        <div class="kbtns"><span class="kb">Default</span><span class="kb hover">Hover</span><span class="kb pressed">Pressed</span><span class="kb disabled">Disabled</span><span class="kb loading">Loading <i class="spin"></i></span></div>
+        <div class="kt">Toggle switches</div>
+        <div class="toggles"><span><i class="tg on"><i></i></i>On</span><span><i class="tg off"><i></i></i>Off</span></div>
+        <div class="kt">Progress</div>
+        <div class="prog"><i></i></div>
+        <div class="kt">Notification toast</div>
+        <div class="toast"><span class="ck"><svg viewBox="0 0 10 10"><path d="M2 5.2 4.2 7.3 8 2.8"/></svg></span>Reading saved</div>
+        <div class="kt">Empty state</div>
+        <div class="surf empty"><span class="ico"><svg viewBox="0 0 12 12"><path d="M2 3h8M2 6h8M2 9h5"/></svg></span>No readings yet today.</div>
+      </div>
+      <div class="kcol">
+        <div class="kt">Inputs</div>
+        <div class="inp">Name</div>
+        <div class="inp focus">Focus</div>
+        <div class="kt">Select dropdown</div>
+        <div class="sel"><div class="on">Breakfast</div><div>Lunch</div><div>Supper</div><div>Snack</div></div>
+        <div class="kt">Slider</div>
+        <div class="sld"><i class="tr"></i><i class="fi"></i><i class="th"></i></div>
+        <div class="ticks"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+        <div class="kt">Modal dialog</div>
+        <div class="surf modal"><div class="mh">Save this meal?</div><div class="mb">It joins your cookbook.</div><div class="mf"><span class="cancel">Cancel</span><span class="ok">Save</span></div></div>
+        <div class="kt">Table rows</div>
+        <div class="trow"><span>Default</span><span>6.4</span></div>
+        <div class="trow hover"><span>Hover</span><span>7.1</span></div>
+        <div class="trow sel2"><span>Selected</span><span>8.0</span></div>
+      </div>
+      <div class="surf tokens">
+        <div class="h">Tokens</div>
+        <div>Radius steps<div class="tk"><span class="rad" style="border-radius:var(--k-r-sm)"></span><span class="rad" style="border-radius:var(--k-r-md)"></span><span class="rad" style="border-radius:var(--k-r-lg)"></span><span class="rad" style="border-radius:var(--k-r-ctl)"></span></div></div>
+        <div>Border thickness<div class="bt"><i style="border-top-width:.5px"></i><i style="border-top-width:1px"></i><i style="border-top-width:1.5px"></i></div></div>
+        <div>Shadow levels<div style="display:grid;gap:6px;margin-top:3px"><i class="lv" style="box-shadow:0 2px 4px var(--n-drop)"></i><i class="lv" style="box-shadow:0 5px 10px var(--n-drop)"></i><i class="lv" style="box-shadow:0 10px 18px var(--n-drop)"></i></div></div>
+        <div>Icon sizes<div class="tk"><span class="ico" style="width:14px;height:14px"></span><span class="ico" style="width:18px;height:18px"></span><span class="ico" style="width:22px;height:22px"></span></div></div>
+        <div>Spacing scale<div class="sp"><i style="width:var(--k-s-1)"></i><i style="width:var(--k-s-2)"></i><i style="width:var(--k-s-3)"></i><i style="width:var(--k-s-4)"></i><i style="width:calc(2*var(--k-s-4))"></i><i style="width:calc(4*var(--k-s-4))"></i></div></div>
+      </div>
+    </div>
+    <div class="chart" id="chart" hidden></div>
+  </section>
+</div>
