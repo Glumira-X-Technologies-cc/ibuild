@@ -1,0 +1,76 @@
+{
+  "registry": "REPO-REGISTRY",
+  "about": "Which repos exist and which one is active. Step 4 of PROTOCOL.md Article 1. The repos and their HEADs are the list the jev scan read on 2026-10-07 (Row 5.16, Book-Jev-Scan, Page-Git-Jev-Scan/PROVENANCE.json, repos_read). repo-confirm fails unless the checkout is the one active repo and the active commit is in its history.",
+  "as_of": "2026-10-07",
+  "source": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Git-Jev-Scan/PROVENANCE.json repos_read",
+  "active": "Glumira-X-Technologies-cc/Glumira-7.2",
+  "builder": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-ROADMAP/Page-Doc-ROADMAP/ROADMAP.md",
+  "repos": [
+    {
+      "label": "GluMira 7.2",
+      "repo": "Glumira-X-Technologies-cc/Glumira-7.2",
+      "active": true,
+      "branch": "main",
+      "commit": "d30628221b4ac12ebc64f653318bee66f43aa1c9",
+      "files": 191
+    },
+    {
+      "label": "GluMira 7.1",
+      "repo": "Glumira-X-Technologies-cc/glumira-7.1",
+      "active": false,
+      "branch": "detached",
+      "commit": "e6a413cd8e5410a8ae0e6541421e9e9a2618da53",
+      "files": 1836,
+      "frozen": true
+    },
+    {
+      "label": "Memory Governance Archive",
+      "repo": "Glumira-X-Technologies-cc/memory-governance-archive",
+      "active": false,
+      "branch": "main",
+      "commit": "b096951cef810cd989ed94f379f7bf77e8f0bfc4",
+      "files": 23237
+    },
+    {
+      "label": "GluMira Archive",
+      "repo": "Glumira-X-Technologies-cc/glumira-archive",
+      "active": false,
+      "branch": "main",
+      "commit": "f931435c51a62071c8eb58d08e2d0ec4d3a4c7da",
+      "files": 337
+    },
+    {
+      "label": "Sorting Station",
+      "repo": "Glumira-X-Technologies-cc/glumira-document-sorting-station",
+      "active": false,
+      "branch": "main",
+      "commit": "9e667265804d1f1ed39cbbc4fab9e3e99cd15bfb",
+      "files": 7084
+    },
+    {
+      "label": "Foundation Archive",
+      "repo": "Glumira-X-Technologies-cc/Foundation-Archive",
+      "active": false,
+      "branch": "main",
+      "commit": "01c73b50df6ded91102d7d522f2a6b77e807589f",
+      "files": 1001
+    },
+    {
+      "label": "GluMira 7.2.1",
+      "repo": "Glumira-X-Technologies-cc/GluMira-7.2.1",
+      "active": false,
+      "branch": "",
+      "commit": "",
+      "files": 0,
+      "status": "MISSING"
+    },
+    {
+      "label": "Claude export drop",
+      "repo": "Glumira-X-Technologies-cc/claude-export-drop",
+      "active": false,
+      "branch": "main",
+      "commit": "ee224f6c691ac15036262ff3a32886955595f5b7",
+      "files": 2
+    }
+  ]
+}

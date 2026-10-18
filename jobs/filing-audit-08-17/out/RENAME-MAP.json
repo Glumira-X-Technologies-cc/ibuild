@@ -1,0 +1,2085 @@
+{
+ "source_commit": "62eadaff4b3a2a53e81d73d41cb53df5b1bf9641",
+ "map": [
+  {
+   "from": "Library/OS/CHECK-errata.test.mjs",
+   "to": "OS/CHECK-errata.test.mjs"
+  },
+  {
+   "from": "Library/OS/CHECK-foyer.test.mjs",
+   "to": "OS/CHECK-foyer.test.mjs"
+  },
+  {
+   "from": "Library/OS/CHECK-queue.test.mjs",
+   "to": "OS/CHECK-queue.test.mjs"
+  },
+  {
+   "from": "Library/OS/CHECK-repo.test.mjs",
+   "to": "OS/CHECK-repo.test.mjs"
+  },
+  {
+   "from": "Library/OS/CHECK-routing.test.mjs",
+   "to": "OS/CHECK-routing.test.mjs"
+  },
+  {
+   "from": "Library/OS/CHECK.mjs",
+   "to": "OS/CHECK.mjs"
+  },
+  {
+   "from": "Library/OS/CHECK.test.mjs",
+   "to": "OS/CHECK.test.mjs"
+  },
+  {
+   "from": "Library/OS/CLOSE.mjs",
+   "to": "OS/CLOSE.mjs"
+  },
+  {
+   "from": "Library/OS/CLOSE.test.mjs",
+   "to": "OS/CLOSE.test.mjs"
+  },
+  {
+   "from": "Library/OS/ERRATA.json",
+   "to": "OS/ERRATA.json"
+  },
+  {
+   "from": "Library/OS/GUIDE.md",
+   "to": "OS/GUIDE.md"
+  },
+  {
+   "from": "Library/OS/JEV-MAP.json",
+   "to": "OS/JEV-MAP.json"
+  },
+  {
+   "from": "Library/OS/MEMORY-GUARD.md",
+   "to": "OS/MEMORY-GUARD.md"
+  },
+  {
+   "from": "Library/OS/PROTOCOL.md",
+   "to": "OS/PROTOCOL.md"
+  },
+  {
+   "from": "Library/OS/REPO-REGISTRY.json",
+   "to": "OS/REPO-REGISTRY.json"
+  },
+  {
+   "from": "Library/OS/RULES.md",
+   "to": "OS/RULES.md"
+  },
+  {
+   "from": "Library/OS/START.md",
+   "to": "OS/START.md"
+  },
+  {
+   "from": "Library/OS/STOP.md",
+   "to": "OS/STOP.md"
+  },
+  {
+   "from": "Library/OS/fixture.mjs",
+   "to": "OS/fixture.mjs"
+  },
+  {
+   "from": "Vaults/1-Operating-System/POINTER.md",
+   "to": "Archive/AR-Archive/AR1-Superseded/Retired-Pointer/D/POINTER.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/MEMORY.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/MEMORY.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/VERIFY-REPORT.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/D/VERIFY-REPORT.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-archive-or-delete-blue-block.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-archive-or-delete-blue-block.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-builder-desktop-only.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-builder-desktop-only.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-clean-slate-is-same-snapshot.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-clean-slate-is-same-snapshot.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-delete-is-gone-from-view.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-delete-is-gone-from-view.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-do-not-invent-work.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-do-not-invent-work.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-every-blue-from-navy.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-every-blue-from-navy.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-glumira-not-live-pages-as-built.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-glumira-not-live-pages-as-built.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-hide-out-of-credit-bot-notices.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-hide-out-of-credit-bot-notices.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-next-steps-always-blue-block.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-next-steps-always-blue-block.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-no-accreditation.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-no-accreditation.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-no-app-rules-this-phase.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-no-app-rules-this-phase.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-no-button-chips-autoclose.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-no-button-chips-autoclose.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-no-edition-in-names-done-stamp.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-no-edition-in-names-done-stamp.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-no-later-complete-scope.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-no-later-complete-scope.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-no-word-hub.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-no-word-hub.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-read-all-before-design.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-read-all-before-design.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-search-context-before-asking.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-search-context-before-asking.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-storage-github-d-onedrive.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-storage-github-d-onedrive.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-van-clief-protocol-gates-approved.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-van-clief-protocol-gates-approved.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-verify-with-gemini-not-nim.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-verify-with-gemini-not-nim.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/feedback-work-in-current-not-71.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/feedback-work-in-current-not-71.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/project-cerebras-parked-2026-10-09.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/project-cerebras-parked-2026-10-09.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/project-combined-build-list-brief-2026-10-07.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/project-combined-build-list-brief-2026-10-07.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/project-jev-scan-filed-2026-10-07.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/project-jev-scan-filed-2026-10-07.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/project-os-vault1-built-2026-10-06.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/project-os-vault1-built-2026-10-06.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/project-standards-spar-2026-10-08.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/project-standards-spar-2026-10-08.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/project-tree-shape-approved-2026-10-09.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/project-tree-shape-approved-2026-10-09.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/project-van-clief-governance-insulin-lock-vaults.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/project-van-clief-governance-insulin-lock-vaults.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Doc-Agent-Memory/reference-github-app-production-builder.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/S/reference-github-app-production-builder.md"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Books/Book-Agent-Memory/Page-Git-Agent-Memory/PROVENANCE.json",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/Records/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/2-Memory/Rows/2.1-Agent-Memory/Cabinet-Agent-Memory.md",
+   "to": "Memory/ME-Memory/ME1-Agent-Memory/ME1-CABINET.md"
+  },
+  {
+   "from": "Vaults/3-Archive/Rows/3.1-Superseded/Books/Book-Edition-Copy-Rule/Page-Doc-Edition-Copy-Rule/ARTICLE-6-5.md",
+   "to": "Archive/AR-Archive/AR1-Superseded/Edition-Copy-Rule/D/ARTICLE-6-5.md"
+  },
+  {
+   "from": "Vaults/3-Archive/Rows/3.1-Superseded/Books/Book-Edition-Copy-Rule/Page-Git-Edition-Copy-Rule/PROVENANCE.json",
+   "to": "Archive/AR-Archive/AR1-Superseded/Edition-Copy-Rule/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/3-Archive/Rows/3.1-Superseded/Books/Book-Van-Clief-Insulin-Mockup/Page-Doc-Van-Clief-Insulin-Mockup/VAN-CLIEF-INSULIN-MOCKUP_v0.1.txt",
+   "to": "Archive/AR-Archive/AR1-Superseded/Van-Clief-Insulin-Mockup/S/VAN-CLIEF-INSULIN-MOCKUP.txt"
+  },
+  {
+   "from": "Vaults/3-Archive/Rows/3.1-Superseded/Books/Book-Van-Clief-Insulin-Mockup/Page-Git-Van-Clief-Insulin-Mockup/PROVENANCE.json",
+   "to": "Archive/AR-Archive/AR1-Superseded/Van-Clief-Insulin-Mockup/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/3-Archive/Rows/3.1-Superseded/Cabinet-Superseded.md",
+   "to": "Archive/AR-Archive/AR1-Superseded/AR1-CABINET.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Filing-Law/Page-Doc-Filing-Law/GLUMIRA-FILING-LAW.md",
+   "to": "Governance/GO-Governance/GO5-Filing-Law/Records/S/GLUMIRA-FILING-LAW.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Filing-Law/Page-Git-Filing-Law/PROVENANCE.json",
+   "to": "Governance/GO-Governance/GO5-Filing-Law/Records/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Naming-Scheme/Page-Doc-Naming-Scheme/NAMING-SCHEME.md",
+   "to": "Governance/GO-Governance/GO5-Filing-Law/Naming-Scheme/D/NAMING-SCHEME.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.5-Filing-Law/Books/Book-Naming-Scheme/Page-Git-Naming-Scheme/PROVENANCE.json",
+   "to": "Governance/GO-Governance/GO5-Filing-Law/Naming-Scheme/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.5-Filing-Law/Cabinet-Filing-Law.md",
+   "to": "Governance/GO-Governance/GO5-Filing-Law/GO5-CABINET.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.6-Agent-OS/Books/Book-Agent-OS/Page-Doc-Agent-OS/AGENT-OS-HOSTS.md",
+   "to": "Governance/GO-Governance/GO6-Agent-OS/Records/S/AGENT-OS-HOSTS.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.6-Agent-OS/Books/Book-Agent-OS/Page-Doc-Agent-OS/AGENT-OS-TOOLS.md",
+   "to": "Governance/GO-Governance/GO6-Agent-OS/Records/S/AGENT-OS-TOOLS.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.6-Agent-OS/Books/Book-Agent-OS/Page-Doc-Agent-OS/AGENT-OS.md",
+   "to": "Governance/GO-Governance/GO6-Agent-OS/Records/S/AGENT-OS.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.6-Agent-OS/Books/Book-Agent-OS/Page-Git-Agent-OS/PROVENANCE.json",
+   "to": "Governance/GO-Governance/GO6-Agent-OS/Records/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.6-Agent-OS/Cabinet-Agent-OS.md",
+   "to": "Governance/GO-Governance/GO6-Agent-OS/GO6-CABINET.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T0830Z-os-vault1-roadmap-agent-os-close-doctor.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T0830Z-os-vault1-roadmap-agent-os-close-doctor.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1000Z-archive-repointed-os-first.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1000Z-archive-repointed-os-first.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1010Z-combined-build-list-brief.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1010Z-combined-build-list-brief.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1015Z-ui-ux-and-build-audits-filed.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1015Z-ui-ux-and-build-audits-filed.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1330Z-jev-scan-plan.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1330Z-jev-scan-plan.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1400Z-jev-scan-filed.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1400Z-jev-scan-filed.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1600Z-production-builder-operational.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1600Z-production-builder-operational.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1731Z-baseline-gap-filed.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1731Z-baseline-gap-filed.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1745Z-van-clief-protocol-os-layer.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1745Z-van-clief-protocol-os-layer.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1750Z-claude-production-builder.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1750Z-claude-production-builder.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T1830Z-orchestration-scan-protocol-baseline-spar.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T1830Z-orchestration-scan-protocol-baseline-spar.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-07T2030Z-sparring-build-project-tracker.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-07T2030Z-sparring-build-project-tracker.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-08T1021Z-production-builder-installed.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-08T1021Z-production-builder-installed.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-08T1115Z-roadmap-targets-boot-warnings.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-08T1115Z-roadmap-targets-boot-warnings.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-08T2025Z-standards-spar.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-08T2025Z-standards-spar.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-08T2226Z-function-register.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-08T2226Z-function-register.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T0652Z-function-register-resume.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T0652Z-function-register-resume.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T0914Z-function-tree.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T0914Z-function-tree.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T1800Z-function-tree-fix-1.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T1800Z-function-tree-fix-1.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T1805Z-std-b.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T1805Z-std-b.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T1851Z-vault2-agent-memory-filed.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T1851Z-vault2-agent-memory-filed.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2014Z-build-plan-cards.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2014Z-build-plan-cards.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2018Z-standards-a-trace.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2018Z-standards-a-trace.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2040Z-cards-tree-7d377cd.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2040Z-cards-tree-7d377cd.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2044Z-std-a-trace-code-column.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2044Z-std-a-trace-code-column.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2100Z-function-tree-fix-2.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2100Z-function-tree-fix-2.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2130Z-standards-documents-filed.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2130Z-standards-documents-filed.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2140Z-cards-council.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2140Z-cards-council.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2143Z-cards-tree-e5d0068.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2143Z-cards-tree-e5d0068.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2159Z-documents-finished-pickup.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2159Z-documents-finished-pickup.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2200Z-function-tree-fix-3.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2200Z-function-tree-fix-3.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2205Z-std-a-council.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2205Z-std-a-council.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2330Z-function-tree-cleanup-3.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2330Z-function-tree-cleanup-3.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2340Z-function-tree-source-filter.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2340Z-function-tree-source-filter.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2345Z-function-tree-allocations.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2345Z-function-tree-allocations.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2355Z-function-tree-allocations-2.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2355Z-function-tree-allocations-2.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-09T2359Z-function-tree-cleanup-4.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-09T2359Z-function-tree-cleanup-4.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-10T1249Z-close-documents-session.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-10T1249Z-close-documents-session.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-11T0950Z-shiny-gold-session.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-11T0950Z-shiny-gold-session.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-11T1357Z-six-libraries-cards-1-to-3.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-11T1357Z-six-libraries-cards-1-to-3.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-12T1330Z-check-and-test-speed.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-12T1330Z-check-and-test-speed.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-12T1340Z-boot-warnings-speed-audit.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-12T1340Z-boot-warnings-speed-audit.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-12T1805Z-builder-upgrade-design-deepseek.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-12T1805Z-builder-upgrade-design-deepseek.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-12T1903Z-builder-council-redesign.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-12T1903Z-builder-council-redesign.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-12T1930Z-builder-redesign-live.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-12T1930Z-builder-redesign-live.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-13T1821Z-context-and-boot-read.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-13T1821Z-context-and-boot-read.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-13T1908Z-vault5-rename.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-13T1908Z-vault5-rename.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-14T1616Z-session-close.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-14T1616Z-session-close.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-14T1622Z-libraries-brief.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-14T1622Z-libraries-brief.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-14T1715Z-one-builder.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-14T1715Z-one-builder.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-14T1744Z-one-builder-close.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-14T1744Z-one-builder-close.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-15T0725Z-builder-ideas-and-look.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-15T0725Z-builder-ideas-and-look.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-15T0803Z-warnings-layout-chat.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-15T0803Z-warnings-layout-chat.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-15T0858Z-grok-minimax-cli.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-15T0858Z-grok-minimax-cli.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-15T0923Z-builder-look.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-15T0923Z-builder-look.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-15T1059Z-navy-buttons.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-15T1059Z-navy-buttons.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-15T1651Z-fork-sync-coordinator-close.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-15T1651Z-fork-sync-coordinator-close.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-15T1652Z-colour-mixer.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-15T1652Z-colour-mixer.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Doc-Handover/2026-10-16T1725Z-estate-one-build.md",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/D/2026-10-16T1725Z-estate-one-build.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Books/Book-Handover/Page-Git-Handover/PROVENANCE.json",
+   "to": "Governance/GO-Governance/GO7-Handover/Records/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.7-Handover/Cabinet-Handover.md",
+   "to": "Governance/GO-Governance/GO7-Handover/GO7-CABINET.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/DECISIONS.md",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/D/DECISIONS.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/LEDGER.md",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/D/LEDGER.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/SYSTEM.md",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/D/SYSTEM.md"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/ledger.json",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/D/ledger.json"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Git-Design-System/PROVENANCE.json",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/bundle.css",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/PR/bundle.css"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/ledger.mjs",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/PR/ledger.mjs"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/tokens.css",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/PR/tokens.css"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/tokens.json",
+   "to": "Design/DS-Design/DS8-Design-System/Rules/PR/tokens.json"
+  },
+  {
+   "from": "Vaults/4-Governance/Rows/4.8-Design-System/Cabinet-Design-System.md",
+   "to": "Design/DS-Design/DS8-Design-System/DS8-CABINET.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Doc-Production-Builder/Daily-Diary-README_49f781f.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/Daily-Diary-README_49f781f.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Doc-Production-Builder/GluMira-7.2-Production-Builder-Prompt-Kit.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/D/GluMira-Production-Builder-Prompt-Kit.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Doc-Production-Builder/Production-Builder-OS-Architecture_v1.0.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/Production-Builder-OS-Architecture.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Doc-Production-Builder/Production-Builder-Operations.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/D/Production-Builder-Operations.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Git-Production-Builder/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/.gitattributes",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/.gitattributes"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/.gitignore",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/.gitignore"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/README.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/README.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-context.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-context.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-data-api.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-data-api.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-ideas-kind.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-ideas-kind.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-ideas.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-ideas.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-jobs.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-jobs.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-page-context.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-page-context.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-providers.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-providers.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-research.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-research.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-runtime.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-runtime.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-scan.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-scan.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-store.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-store.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/builder-web.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/builder-web.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/chat.html",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/chat.html"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/lane-bridge.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/lane-bridge.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/lib/complete.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/lib/complete.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/lib/guard.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/lib/guard.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/lib/modelFormat.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/lib/modelFormat.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/lib/questions.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/lib/questions.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/lib/rules.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/lib/rules.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/lib/skills.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/lib/skills.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/lib/sources.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/lib/sources.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/package-lock.json",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/package-lock.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/package.json",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/package.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/production-builder/builder-client.css",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/production-builder/builder-client.css"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/production-builder/builder-client.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/production-builder/builder-client.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/production-builder/index.html",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/production-builder/index.html"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/production-builder/theme.css",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/production-builder/theme.css"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/server.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/server.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/setup-service.ps1",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/setup-service.ps1"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/start-proxy.bat",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/start-proxy.bat"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-colour.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-colour.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-data-api.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-data-api.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-data.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-data.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-ideas.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-ideas.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-jobs.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-jobs.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-layout.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-layout.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-page-context.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-page-context.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-providers.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-providers.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-research.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-research.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-runtime.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-runtime.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-scan.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-scan.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/builder-web.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/builder-web.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/lane-bridge.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/test/lane-bridge.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/proxy-routing.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/proxy-routing.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/test/server-page.test.js",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/PR/test/server-page.test.js"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Books/Book-Production-Builder/Page-Prog-Production-Builder/verify/qwen-verify.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Production-Builder/S/verify/qwen-verify.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder/Cabinet-Production-Builder.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/PB13-CABINET.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Cards/Page-Doc-Cards/CARDS.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Cards/D/CARDS.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Cards/Page-Doc-Cards/CARDS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Cards/D/CARDS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Cards/Page-Doc-Cards/PLAN.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Cards/D/PLAN.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Cards/Page-Doc-Cards/SUMMARY.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Cards/D/SUMMARY.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Cards/Page-Git-Cards/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Cards/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Cards/Page-Prog-Cards/cards.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Cards/PR/cards.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/ARENA-SUPERSEDED.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/ARENA-SUPERSEDED.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/ARENA.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/ARENA.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/ASK.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/ASK.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/CALLS.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/CALLS.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/COUNCIL-SUPERSEDED.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/COUNCIL-SUPERSEDED.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/COUNCIL.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/COUNCIL.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/DEV-TEAM.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/DEV-TEAM.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/DOC-SET.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/DOC-SET.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/E01-Engine-IOB-Hunter.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/E01-Engine-IOB-Hunter.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/E02-Engine-What-If.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/E02-Engine-What-If.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/E03-Engine-Food-To-Curve.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/E03-Engine-Food-To-Curve.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/E04-Engine-6-Hour-Prediction.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/E04-Engine-6-Hour-Prediction.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/E05-Engine-Basal-Rate-Score.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/E05-Engine-Basal-Rate-Score.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/FINAL.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/FINAL.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/PROMPTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/PROMPTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/PROOF.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/PROOF.svg"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/QUESTIONS.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/QUESTIONS.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S01-Intended-Use-And-Non-Device-Qualification.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S01-Intended-Use-And-Non-Device-Qualification.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S03-Requirements-Functional-And-Non-Functional.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S03-Requirements-Functional-And-Non-Functional.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S04-Risk-Management-File-And-Hazard-Log.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S04-Risk-Management-File-And-Hazard-Log.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S05-Architecture-And-Data-Design.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S05-Architecture-And-Data-Design.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S06-AUDIT.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S06-AUDIT.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S06-SBOM.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S06-SBOM.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S06-SOUP-And-SBOM.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S06-SOUP-And-SBOM.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S07-Privacy-DPIA.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S07-Privacy-DPIA.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S08-Threat-Model.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S08-Threat-Model.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S09-Test-Plan-And-Traceability.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S09-Test-Plan-And-Traceability.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/S10-Release-Rollback-Incident-Runbook.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/S10-Release-Rollback-Incident-Runbook.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/SLOTS.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/SLOTS.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/SUMMARY.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/SUMMARY.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/SUMMARY.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/SUMMARY.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/TRACE-MATRIX.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/TRACE-MATRIX.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/TRACE-MATRIX.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/TRACE-MATRIX.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/TRACE.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/TRACE.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/TRACE.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/TRACE.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/TRACE0.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/TRACE0.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Doc-Document-Set/VERIFY.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/D/VERIFY.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Git-Document-Set/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Prog-Document-Set/docset-build.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/PR/docset-build.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Prog-Document-Set/docset-check.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/PR/docset-check.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Prog-Document-Set/docset-inputs.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/PR/docset-inputs.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Prog-Document-Set/docset-questions.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/PR/docset-questions.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Prog-Document-Set/docset-report.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/PR/docset-report.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Prog-Document-Set/docset-stamp.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/PR/docset-stamp.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Document-Set/Page-Prog-Document-Set/docset.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Document-Set/PR/docset.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/ARENA.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/ARENA.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/ASK.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/ASK.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/CALLS.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/CALLS.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/COUNCIL.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/COUNCIL.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/COVERED.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/COVERED.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/DROPPED.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/DROPPED.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/PROMPTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/PROMPTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/PROOF.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/PROOF.svg"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/SUMMARY.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/SUMMARY.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/SUMMARY.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/SUMMARY.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/TRACKER.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/TRACKER.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/TRACKER.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/TRACKER.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Doc-Project-Tracker/VERIFY.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/D/VERIFY.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Git-Project-Tracker/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Prog-Project-Tracker/spar-common.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/PR/spar-common.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Prog-Project-Tracker/spar-inputs.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/PR/spar-inputs.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Prog-Project-Tracker/spar.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/PR/spar.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Project-Tracker/Page-Prog-Project-Tracker/tracker.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Project-Tracker/PR/tracker.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-ROADMAP/Page-Doc-ROADMAP/ROADMAP.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/ROADMAP/S/ROADMAP.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-ROADMAP/Page-Git-ROADMAP/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/ROADMAP/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Six-Libraries/Page-Doc-Six-Libraries/SIX-LIBRARIES-PLAN.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Six-Libraries/D/SIX-LIBRARIES-PLAN.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Books/Book-Six-Libraries/Page-Git-Six-Libraries/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/Six-Libraries/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan/Cabinet-Build-Plan.md",
+   "to": "Production-Builder/PB-Production-Builder/PB14-Build-Plan/PB14-CABINET.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.15-Build-Project-UI-UX/Books/Book-Build-UI-UX/Page-Doc-Build-UI-UX/Founder-Daily-Diary_Design_v1.0.md",
+   "to": "Production-Builder/PB-Production-Builder/PB15-Build-Project-UI-UX/Build-UI-UX/S/Founder-Daily-Diary_Design.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.15-Build-Project-UI-UX/Books/Book-Build-UI-UX/Page-Doc-Build-UI-UX/PRODUCTION-BUILDER-V2-PROMPT.md",
+   "to": "Production-Builder/PB-Production-Builder/PB15-Build-Project-UI-UX/Build-UI-UX/S/PRODUCTION-BUILDER-V2-PROMPT.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.15-Build-Project-UI-UX/Books/Book-Build-UI-UX/Page-Doc-Build-UI-UX/samples/2026-09-30.md",
+   "to": "Production-Builder/PB-Production-Builder/PB15-Build-Project-UI-UX/Build-UI-UX/S/samples/2026-09-30.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.15-Build-Project-UI-UX/Books/Book-Build-UI-UX/Page-Git-Build-UI-UX/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB15-Build-Project-UI-UX/Build-UI-UX/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.15-Build-Project-UI-UX/Cabinet-Build-UI-UX.md",
+   "to": "Production-Builder/PB-Production-Builder/PB15-Build-Project-UI-UX/PB15-CABINET.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Astra-Audit/Page-Doc-Astra-Audit/ASTRA-AUDIT-TRACK.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Astra-Audit/S/ASTRA-AUDIT-TRACK.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Astra-Audit/Page-Doc-Astra-Audit/ASTRA-SOURCE-INTEGRITY-AUDIT.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Astra-Audit/S/ASTRA-SOURCE-INTEGRITY-AUDIT.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Astra-Audit/Page-Git-Astra-Audit/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Astra-Audit/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/FUNCTIONS.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/FUNCTIONS.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/GAP.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/GAP.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/GAP.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/GAP.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/HOURS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/HOURS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/PAGES.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/PAGES.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/PROOF.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/PROOF.svg"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/SUMMARY.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/SUMMARY.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/SUMMARY.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/SUMMARY.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Doc-Baseline/pages.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/D/pages.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Git-Baseline/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Prog-Baseline/baseline-common.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/PR/baseline-common.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Prog-Baseline/baseline-inputs.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/PR/baseline-inputs.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Prog-Baseline/drops.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/PR/drops.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Prog-Baseline/gap.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/PR/gap.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Prog-Baseline/pages.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/PR/pages.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Baseline/Page-Prog-Baseline/provenance.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Baseline/PR/provenance.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Catalogue/Page-Doc-Catalogue/FILING-RECEIPT.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Catalogue/S/FILING-RECEIPT.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Catalogue/Page-Doc-Catalogue/VAN-CLIEF.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Catalogue/S/VAN-CLIEF.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Catalogue/Page-Doc-Catalogue/catalogue.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Catalogue/S/catalogue.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Catalogue/Page-Doc-Catalogue/vaults.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Catalogue/S/vaults.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Catalogue/Page-Git-Catalogue/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Catalogue/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Catalogue/Page-Prog-Catalogue/catalogue.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Catalogue/S/catalogue.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/INDEX.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/INDEX.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/alarms-and-settings.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/alarms-and-settings.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/cabinets.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/cabinets.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/cannot-tell-from-the-path-title-and-excerpt.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/cannot-tell-from-the-path-title-and-excerpt.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/care-circle.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/care-circle.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/cookbook-and-meals.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/cookbook-and-meals.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/dashboard.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/dashboard.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/education-and-library.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/education-and-library.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/engines.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/engines.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/glumira-ai.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/glumira-ai.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/glumira-clinician-interface.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/glumira-clinician-interface.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/glumira-insight.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/glumira-insight.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/glumira-research.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/glumira-research.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/glumira.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/glumira.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/insulin-and-what-if.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/insulin-and-what-if.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/mira-media.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/mira-media.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/onboarding.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/onboarding.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/reports-and-logs.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/reports-and-logs.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/special-provisions.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/special-provisions.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/subscription-tiers.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/subscription-tiers.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Doc-Codebase-Cabinets/topic-iob-hunter.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/S/topic-iob-hunter.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Cabinets/Page-Git-Codebase-Cabinets/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Cabinets/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Maps/Page-Doc-Codebase-Maps/ESTATE-MAP.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Maps/S/ESTATE-MAP.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Maps/Page-Doc-Codebase-Maps/REPOSITORY-IDENTITIES.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Maps/S/REPOSITORY-IDENTITIES.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Maps/Page-Doc-Codebase-Maps/VAN-CLIEF-STRUCTURE.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Maps/S/VAN-CLIEF-STRUCTURE.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Maps/Page-Doc-Codebase-Maps/VAN-CLIEF-STRUCTURE.txt",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Maps/S/VAN-CLIEF-STRUCTURE.txt"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Codebase-Maps/Page-Git-Codebase-Maps/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Codebase-Maps/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/CLAUDE-PASS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/CLAUDE-PASS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/claude-pass.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/claude-pass.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-001.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-001.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-002.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-002.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-003.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-003.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-004.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-004.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-005.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-005.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-006.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-006.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-007.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-007.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-008.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-008.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-009.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-009.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-010.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-010.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-011.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-011.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-012.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-012.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-013.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-013.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-014.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-014.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-015.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-015.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-016.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-016.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-017.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-017.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Doc-Combined-List/parcels/P-018.claude.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/parcels/P-018.claude.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Git-Combined-List/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Prog-Combined-List/combined-list.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/combined-list.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Combined-List/Page-Prog-Combined-List/combined-list.rules.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Combined-List/S/combined-list.rules.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.1/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-7.1/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.1/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-7.1/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.1/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-7.1/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.2.1/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-original-1/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.2.1/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-original-1/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.2.1/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-original-1/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.2/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-original/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.2/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-original/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-7.2/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-original/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-archive/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-archive/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-archive/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-archive/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-archive/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-archive/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-document-sorting-station/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-document-sorting-station/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-document-sorting-station/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-document-sorting-station/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-document-sorting-station/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-document-sorting-station/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-iob-live/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-iob-live/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-iob-live/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-iob-live/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-iob-live/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-iob-live/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-version-archive-org/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-version-archive-org/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-version-archive-org/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-version-archive-org/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-version-archive-org/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-version-archive-org/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-version-archive-personal/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-version-archive-personal/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-version-archive-personal/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-version-archive-personal/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/glumira-version-archive-personal/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/glumira-version-archive-personal/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/iob-engine-research/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/iob-engine-research/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/iob-engine-research/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/iob-engine-research/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/iob-engine-research/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/iob-engine-research/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/memory-governance-archive/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/memory-governance-archive/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/memory-governance-archive/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/memory-governance-archive/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/memory-governance-archive/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/memory-governance-archive/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/mira-media/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/mira-media/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/mira-media/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/mira-media/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/mira-media/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/mira-media/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/mira-whisper/EGRESS-AND-RESULTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/mira-whisper/EGRESS-AND-RESULTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/mira-whisper/proposal-map.csv.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/mira-whisper/proposal-map.csv.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/mira-whisper/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/mira-whisper/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Doc-Estate-Mapping/summary.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/S/summary.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Estate-Mapping/Page-Git-Estate-Mapping/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Estate-Mapping/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/ARENA.jsonl.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/ARENA.jsonl.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/BRIEFS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/BRIEFS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/CALLS.jsonl.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/CALLS.jsonl.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/COUNCIL.jsonl.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/COUNCIL.jsonl.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/COVERAGE.jsonl.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/COVERAGE.jsonl.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/COVERAGE.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/COVERAGE.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/PROMPTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/PROMPTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/PROOF.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/PROOF.svg"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/REGISTER-SUMMARY.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/REGISTER-SUMMARY.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/REGISTER.jsonl.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/REGISTER.jsonl.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/REGISTER.md.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/REGISTER.md.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/SOURCES-FILTER.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/SOURCES-FILTER.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/SPAR-SUMMARY.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/SPAR-SUMMARY.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/SPAR.jsonl.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/SPAR.jsonl.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/SUMMARY.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/SUMMARY.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/SUMMARY.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/SUMMARY.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/TOOLBOX.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/TOOLBOX.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/TOOLBOX.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/TOOLBOX.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/TREE-EVIDENCE.json.gz",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/TREE-EVIDENCE.json.gz"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/TREE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/TREE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/TREE.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/TREE.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/TREE.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/TREE.svg"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/UNPLACED.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/UNPLACED.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Doc-Function-Register/VERIFY.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/D/VERIFY.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Git-Function-Register/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/anchors.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/anchors.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/baseline-common.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/baseline-common.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/coverage.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/coverage.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/provenance-inputs.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/provenance-inputs.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/provenance.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/provenance.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/register.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/register.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/spar-common.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/spar-common.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/spar.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/spar.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/summary.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/summary.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/toolbox.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/toolbox.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/tree-design.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/tree-design.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/tree-place.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/tree-place.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/tree-spar.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/tree-spar.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Function-Register/Page-Prog-Function-Register/tree.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Function-Register/PR/tree.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/BASELINE.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/BASELINE.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/PROOF.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/PROOF.svg"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/README.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/README.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/SUMMARY.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/SUMMARY.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/SUMMARY.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/SUMMARY.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/document-checkpoint-evidence.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/document-checkpoint-evidence.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/document-checkpoint-inventory.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/document-checkpoint-inventory.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/document-checkpoint.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/document-checkpoint.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/document-checkpoint.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/document-checkpoint.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Doc-Jev-Scan/scan.jsonl",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/D/scan.jsonl"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Git-Jev-Scan/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Prog-Jev-Scan/document-checkpoint.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/PR/document-checkpoint.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Prog-Jev-Scan/document-checkpoint.test.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/PR/document-checkpoint.test.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Jev-Scan/Page-Prog-Jev-Scan/jev-scan.mjs",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Jev-Scan/PR/jev-scan.mjs"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-OS-Audit-Record/Page-Doc-OS-Audit-Record/handover/2026-10-06T1959Z-os-vault1-audit-stopped.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/OS-Audit-Record/S/handover/2026-10-06T1959Z-os-vault1-audit-stopped.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-OS-Audit-Record/Page-Doc-OS-Audit-Record/state/2026-10-06T1959Z-os-vault1-audit-stopped.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/OS-Audit-Record/S/state/2026-10-06T1959Z-os-vault1-audit-stopped.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-OS-Audit-Record/Page-Git-OS-Audit-Record/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/OS-Audit-Record/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Phase-Briefs/Page-Doc-Phase-Briefs/BOOK-FUNCTION-SHEET-BRIEF.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Phase-Briefs/S/BOOK-FUNCTION-SHEET-BRIEF.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Phase-Briefs/Page-Doc-Phase-Briefs/COVERAGE-71-ALL.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Phase-Briefs/S/COVERAGE-71-ALL.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Phase-Briefs/Page-Doc-Phase-Briefs/IOB-DOCS-COVERAGE.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Phase-Briefs/S/IOB-DOCS-COVERAGE.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Phase-Briefs/Page-Doc-Phase-Briefs/IOB-PILOT-BRIEF.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Phase-Briefs/S/IOB-PILOT-BRIEF.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Phase-Briefs/Page-Doc-Phase-Briefs/IOB-PILOT-REFERENCES.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Phase-Briefs/S/IOB-PILOT-REFERENCES.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Phase-Briefs/Page-Git-Phase-Briefs/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Phase-Briefs/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Planning-Files/Page-Doc-Planning-Files/PROJECT.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Planning-Files/S/PROJECT.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Planning-Files/Page-Doc-Planning-Files/REQUIREMENTS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Planning-Files/S/REQUIREMENTS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Planning-Files/Page-Doc-Planning-Files/STATE.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Planning-Files/S/STATE.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Planning-Files/Page-Doc-Planning-Files/config.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Planning-Files/S/config.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Planning-Files/Page-Git-Planning-Files/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Planning-Files/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Research-Notes/Page-Doc-Research-Notes/BIG-PICTURE-2026-09-12-to-26.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Research-Notes/S/BIG-PICTURE-2026-09-12-to-26.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Research-Notes/Page-Doc-Research-Notes/CODEX-SPAR-BRIEF.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Research-Notes/S/CODEX-SPAR-BRIEF.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Research-Notes/Page-Doc-Research-Notes/FOUNDER-WORDS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Research-Notes/S/FOUNDER-WORDS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Research-Notes/Page-Doc-Research-Notes/KOSMO-ANALYSIS.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Research-Notes/D/KOSMO-ANALYSIS.md"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Books/Book-Research-Notes/Page-Git-Research-Notes/PROVENANCE.json",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/Research-Notes/G/PROVENANCE.json"
+  },
+  {
+   "from": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents/Cabinet-Build-Audits-Documents.md",
+   "to": "Production-Builder/PB-Production-Builder/PB16-Build-Audits-Documents/PB16-CABINET.md"
+  },
+  {
+   "from": "apps/ais-builder/.env.example",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/.env.example"
+  },
+  {
+   "from": "apps/ais-builder/.gitignore",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/.gitignore"
+  },
+  {
+   "from": "apps/ais-builder/README.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/README.md"
+  },
+  {
+   "from": "apps/ais-builder/SCREEN-MAP.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/SCREEN-MAP.md"
+  },
+  {
+   "from": "apps/ais-builder/handover/HANDOVER-supergrok-PB.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/handover/HANDOVER-supergrok-PB.md"
+  },
+  {
+   "from": "apps/ais-builder/handover/stella-verdicts.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/handover/stella-verdicts.md"
+  },
+  {
+   "from": "apps/ais-builder/index.html",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/index.html"
+  },
+  {
+   "from": "apps/ais-builder/metadata.json",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/metadata.json"
+  },
+  {
+   "from": "apps/ais-builder/package-lock.json",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/package-lock.json"
+  },
+  {
+   "from": "apps/ais-builder/package.json",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/package.json"
+  },
+  {
+   "from": "apps/ais-builder/public/favicon.ico",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/public/favicon.ico"
+  },
+  {
+   "from": "apps/ais-builder/public/header-logo.png",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/public/header-logo.png"
+  },
+  {
+   "from": "apps/ais-builder/public/iob-hunter-shield.png",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/public/iob-hunter-shield.png"
+  },
+  {
+   "from": "apps/ais-builder/public/pb-logo.png",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/public/pb-logo.png"
+  },
+  {
+   "from": "apps/ais-builder/public/pb.ico",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/public/pb.ico"
+  },
+  {
+   "from": "apps/ais-builder/src/App.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/App.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/IdeasWork.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/IdeasWork.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/api.ts",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/api.ts"
+  },
+  {
+   "from": "apps/ais-builder/src/brand.ts",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/brand.ts"
+  },
+  {
+   "from": "apps/ais-builder/src/format.ts",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/format.ts"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/LICENSE.md",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/LICENSE.md"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/index.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/index.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/add-1.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/add-1.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/arrow-down-2.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/arrow-down-2.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/arrow-reload-horizontal-1.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/arrow-reload-horizontal-1.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/brightness-1.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/brightness-1.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/bug.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/bug.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/circle-clock.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/circle-clock.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/delete-1.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/delete-1.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/layout-panes.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/layout-panes.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/shield-1.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/shield-1.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/voice-mail.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/voice-mail.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/icons/svg/waning-cresent-moon.svg",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/icons/svg/waning-cresent-moon.svg"
+  },
+  {
+   "from": "apps/ais-builder/src/index.css",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/index.css"
+  },
+  {
+   "from": "apps/ais-builder/src/layout.ts",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/layout.ts"
+  },
+  {
+   "from": "apps/ais-builder/src/library-law.ts",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/library-law.ts"
+  },
+  {
+   "from": "apps/ais-builder/src/main.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/main.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/BuildList.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/BuildList.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/Conscience.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/Conscience.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/Diary.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/Diary.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/Estate.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/Estate.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/EstateStatus.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/EstateStatus.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/Library.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/Library.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/Modules.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/Modules.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/PromptKit.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/PromptKit.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/Resources.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/Resources.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/Structure.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/Structure.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/Today.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/Today.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/index.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/index.tsx"
+  },
+  {
+   "from": "apps/ais-builder/src/screens/ui.tsx",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/src/screens/ui.tsx"
+  },
+  {
+   "from": "apps/ais-builder/start-ais-builder.cmd",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/start-ais-builder.cmd"
+  },
+  {
+   "from": "apps/ais-builder/tsconfig.json",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/tsconfig.json"
+  },
+  {
+   "from": "apps/ais-builder/vite.config.ts",
+   "to": "Production-Builder/PB-Production-Builder/PB13-Builder-App/Ais-Builder/PR/vite.config.ts"
+  },
+  {
+   "from": "docs/04_Brand/App-Locked-Palette_v1.0.md",
+   "to": "Design/DS-Design/DS8-Design-System/Colour/D/App-Locked-Palette.md"
+  },
+  {
+   "from": "docs/04_Brand/GluMira-Color-Swatches_v1.0.html",
+   "to": "Design/DS-Design/DS8-Design-System/Colour/D/GluMira-Color-Swatches.html"
+  },
+  {
+   "from": "docs/04_Brand/Living-Color-System_v1.0.md",
+   "to": "Design/DS-Design/DS8-Design-System/Colour/D/Living-Color-System.md"
+  },
+  {
+   "from": "docs/04_Brand/Living-Light-Shadow-Application_v1.0.md",
+   "to": "Design/DS-Design/DS8-Design-System/Colour/D/Living-Light-Shadow-Application.md"
+  }
+ ],
+ "keep": [
+  ".cursor/commands/check.md",
+  ".cursor/commands/close.md",
+  ".cursor/commands/route.md",
+  ".cursor/commands/start.md",
+  ".cursor/rules/van-clief-protocol.mdc",
+  ".githooks/.gitattributes",
+  ".githooks/check-gates.mjs",
+  ".githooks/check-gates.test.mjs",
+  ".githooks/commit-msg",
+  ".githooks/pre-commit",
+  ".githooks/prepare-commit-msg",
+  "Foyer/FOYER.json"
+ ],
+ "unplaced": [],
+ "needsName": []
+}

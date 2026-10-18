@@ -1,0 +1,534 @@
+{
+  "jev_revision": "0bbf76fda660ebf2",
+  "routes": {
+    "Operating System": "1",
+    "Memory": "2",
+    "Archive": "3",
+    "Governance": "4",
+    "Insulin Lock": "6",
+    "Production Builder": "5",
+    "Engines": "7",
+    "USER DATA INFO": "8",
+    "Modules": "9",
+    "Dashboard and Home": "10",
+    "Glucose and CGM": "11",
+    "Meals and Cookbook": "12",
+    "Pumps and Device Integration": "13",
+    "Alarms and Alerts": "14",
+    "Emergency and Hypo Safety": "15",
+    "Reports and Logs": "16",
+    "Learning and Education": "17",
+    "Mira Assistant": "18",
+    "Account and Subscription": "19",
+    "Clinic and Care Team": "20",
+    "Insulin Academic Reference": "21",
+    "Gamification and Rewards": "22"
+  },
+  "vaults": {
+    "1": {
+      "name": "Operating System",
+      "path": "Vaults/1-Operating-System",
+      "rows": {}
+    },
+    "2": {
+      "name": "Memory",
+      "path": "Vaults/2-Memory",
+      "rows": {
+        "2.1": {
+          "name": "Agent Memory",
+          "path": "Vaults/2-Memory/Rows/2.1-Agent-Memory"
+        }
+      }
+    },
+    "3": {
+      "name": "Archive",
+      "path": "Vaults/3-Archive",
+      "rows": {
+        "3.1": {
+          "name": "Superseded",
+          "path": "Vaults/3-Archive/Rows/3.1-Superseded"
+        }
+      }
+    },
+    "4": {
+      "name": "Governance",
+      "path": "Vaults/4-Governance",
+      "rows": {
+        "4.1": {
+          "name": "Skills",
+          "path": "Vaults/4-Governance/Rows/4.1-Skills",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "4.2": {
+          "name": "Tools",
+          "path": "Vaults/4-Governance/Rows/4.2-Tools",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "4.3": {
+          "name": "Agents",
+          "path": "Vaults/4-Governance/Rows/4.3-Agents",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "4.5": {
+          "name": "Filing Law",
+          "path": "Vaults/4-Governance/Rows/4.5-Filing-Law"
+        },
+        "4.6": {
+          "name": "Agent OS",
+          "path": "Vaults/4-Governance/Rows/4.6-Agent-OS"
+        },
+        "4.7": {
+          "name": "Handover",
+          "path": "Vaults/4-Governance/Rows/4.7-Handover"
+        },
+        "4.8": {
+          "name": "Design System",
+          "path": "Vaults/4-Governance/Rows/4.8-Design-System"
+        }
+      }
+    },
+    "5": {
+      "name": "Production Builder",
+      "path": "Vaults/5-Production-Builder",
+      "rows": {
+        "5.13": {
+          "name": "Builder App",
+          "path": "Vaults/5-Production-Builder/Rows/5.13-Production-Builder"
+        },
+        "5.14": {
+          "name": "Build Plan",
+          "path": "Vaults/5-Production-Builder/Rows/5.14-Build-Plan"
+        },
+        "5.15": {
+          "name": "Build Project UI/UX",
+          "path": "Vaults/5-Production-Builder/Rows/5.15-Build-Project-UI-UX"
+        },
+        "5.16": {
+          "name": "All Build Audits and Documents",
+          "path": "Vaults/5-Production-Builder/Rows/5.16-Build-Audits-Documents"
+        }
+      }
+    },
+    "6": {
+      "name": "Insulin-Lock",
+      "path": "Vaults/6-Insulin-Lock",
+      "rows": {
+        "6.1": {
+          "name": "Insulin-Lock-Law",
+          "path": "Vaults/6-Insulin-Lock/Rows/6.1-Insulin-Lock-Law"
+        }
+      }
+    },
+    "7": {
+      "name": "Engines",
+      "path": "Vaults/7-Engines",
+      "rows": {
+        "7.1": {
+          "name": "IOB Hunter",
+          "path": "Vaults/7-Engines/Rows/7.1-IOB-Hunter",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "7.2": {
+          "name": "What If",
+          "path": "Vaults/7-Engines/Rows/7.2-What-If",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "7.3": {
+          "name": "Food to Curve",
+          "path": "Vaults/7-Engines/Rows/7.3-Food-to-Curve",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "7.4": {
+          "name": "6 Hour Prediction",
+          "path": "Vaults/7-Engines/Rows/7.4-6-Hour-Prediction",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "7.5": {
+          "name": "Basal Rate Score",
+          "path": "Vaults/7-Engines/Rows/7.5-Basal-Rate-Score",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "8": {
+      "name": "USER DATA INFO",
+      "path": "Vaults/8-User-Data-Info",
+      "rows": {
+        "8.1": {
+          "name": "Clinical Intake Form",
+          "path": "Vaults/8-User-Data-Info/Rows/8.1-Clinical-Intake-Form",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "8.2": {
+          "name": "Onboarding",
+          "path": "Vaults/8-User-Data-Info/Rows/8.2-Onboarding",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "8.3": {
+          "name": "Special Conditions",
+          "path": "Vaults/8-User-Data-Info/Rows/8.3-Special-Conditions",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "8.4": {
+          "name": "Medical",
+          "path": "Vaults/8-User-Data-Info/Rows/8.4-Medical",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "8.5": {
+          "name": "Care Circle",
+          "path": "Vaults/8-User-Data-Info/Rows/8.5-Care-Circle",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "8.6": {
+          "name": "Emergency Contacts",
+          "path": "Vaults/8-User-Data-Info/Rows/8.6-Emergency-Contacts",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "8.7": {
+          "name": "Profile",
+          "path": "Vaults/8-User-Data-Info/Rows/8.7-Profile",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "8.8": {
+          "name": "Consent & Privacy",
+          "path": "Vaults/8-User-Data-Info/Rows/8.8-Consent-Privacy",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "9": {
+      "name": "Modules",
+      "path": "Vaults/9-Modules",
+      "rows": {
+        "9.1": {
+          "name": "Ramadan",
+          "path": "Vaults/9-Modules/Rows/9.1-Ramadan",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.2": {
+          "name": "Male Health",
+          "path": "Vaults/9-Modules/Rows/9.2-Male-Health",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.3": {
+          "name": "Female Health",
+          "path": "Vaults/9-Modules/Rows/9.3-Female-Health",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.4": {
+          "name": "Alcohol",
+          "path": "Vaults/9-Modules/Rows/9.4-Alcohol",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.5": {
+          "name": "Diet & Regime",
+          "path": "Vaults/9-Modules/Rows/9.5-Diet-Regime",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.6": {
+          "name": "Exercise",
+          "path": "Vaults/9-Modules/Rows/9.6-Exercise",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.7": {
+          "name": "Illness Recovery",
+          "path": "Vaults/9-Modules/Rows/9.7-Illness-Recovery",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.8": {
+          "name": "Sick Day",
+          "path": "Vaults/9-Modules/Rows/9.8-Sick-Day",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.9": {
+          "name": "Mental Health",
+          "path": "Vaults/9-Modules/Rows/9.9-Mental-Health",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.10": {
+          "name": "Paediatric",
+          "path": "Vaults/9-Modules/Rows/9.10-Paediatric",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.11": {
+          "name": "Teen",
+          "path": "Vaults/9-Modules/Rows/9.11-Teen",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.12": {
+          "name": "Shift Work",
+          "path": "Vaults/9-Modules/Rows/9.12-Shift-Work",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.13": {
+          "name": "Stress & Sleep",
+          "path": "Vaults/9-Modules/Rows/9.13-Stress-Sleep",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.14": {
+          "name": "Travel",
+          "path": "Vaults/9-Modules/Rows/9.14-Travel",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.15": {
+          "name": "Weight",
+          "path": "Vaults/9-Modules/Rows/9.15-Weight",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.16": {
+          "name": "Thyroid",
+          "path": "Vaults/9-Modules/Rows/9.16-Thyroid",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.17": {
+          "name": "Pregnancy",
+          "path": "Vaults/9-Modules/Rows/9.17-Pregnancy",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.18": {
+          "name": "School Care",
+          "path": "Vaults/9-Modules/Rows/9.18-School-Care",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "9.19": {
+          "name": "Religious Observance",
+          "path": "Vaults/9-Modules/Rows/9.19-Religious-Observance",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "10": {
+      "name": "Dashboard and Home",
+      "path": "Vaults/10-Dashboard-and-Home",
+      "rows": {
+        "10.1": {
+          "name": "Home Dashboard",
+          "path": "Vaults/10-Dashboard-and-Home/Rows/10.1-Home-Dashboard",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "10.2": {
+          "name": "Status Tiles & Trends",
+          "path": "Vaults/10-Dashboard-and-Home/Rows/10.2-Status-Tiles-Trends",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "11": {
+      "name": "Glucose and CGM",
+      "path": "Vaults/11-Glucose-and-CGM",
+      "rows": {
+        "11.1": {
+          "name": "CGM Sync & Devices",
+          "path": "Vaults/11-Glucose-and-CGM/Rows/11.1-CGM-Sync-Devices",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "11.2": {
+          "name": "Glucose Trends & Time in Range",
+          "path": "Vaults/11-Glucose-and-CGM/Rows/11.2-Glucose-Trends-Time-in-Range",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "11.3": {
+          "name": "Nightscout, Loop & OpenAPS Bridges",
+          "path": "Vaults/11-Glucose-and-CGM/Rows/11.3-Nightscout-Loop-OpenAPS-Bridges",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "12": {
+      "name": "Meals and Cookbook",
+      "path": "Vaults/12-Meals-and-Cookbook",
+      "rows": {
+        "12.1": {
+          "name": "Cookbook & Recipes",
+          "path": "Vaults/12-Meals-and-Cookbook/Rows/12.1-Cookbook-Recipes",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "12.2": {
+          "name": "Meal Regime Profiles",
+          "path": "Vaults/12-Meals-and-Cookbook/Rows/12.2-Meal-Regime-Profiles",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "12.3": {
+          "name": "Dietary Modules",
+          "path": "Vaults/12-Meals-and-Cookbook/Rows/12.3-Dietary-Modules",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "13": {
+      "name": "Pumps and Device Integration",
+      "path": "Vaults/13-Pumps-and-Device-Integration",
+      "rows": {
+        "13.1": {
+          "name": "Pump Models & Auto Mode",
+          "path": "Vaults/13-Pumps-and-Device-Integration/Rows/13.1-Pump-Models-Auto-Mode",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "13.2": {
+          "name": "Infusion Site & Setup",
+          "path": "Vaults/13-Pumps-and-Device-Integration/Rows/13.2-Infusion-Site-Setup",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "14": {
+      "name": "Alarms and Alerts",
+      "path": "Vaults/14-Alarms-and-Alerts",
+      "rows": {
+        "14.1": {
+          "name": "Alarm Thresholds & Settings",
+          "path": "Vaults/14-Alarms-and-Alerts/Rows/14.1-Alarm-Thresholds-Settings",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "14.2": {
+          "name": "Notifications",
+          "path": "Vaults/14-Alarms-and-Alerts/Rows/14.2-Notifications",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "15": {
+      "name": "Emergency and Hypo Safety",
+      "path": "Vaults/15-Emergency-and-Hypo-Safety",
+      "rows": {
+        "15.1": {
+          "name": "Hypo Survival",
+          "path": "Vaults/15-Emergency-and-Hypo-Safety/Rows/15.1-Hypo-Survival",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "15.2": {
+          "name": "Safety Flags & Rules",
+          "path": "Vaults/15-Emergency-and-Hypo-Safety/Rows/15.2-Safety-Flags-Rules",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "16": {
+      "name": "Reports and Logs",
+      "path": "Vaults/16-Reports-and-Logs",
+      "rows": {
+        "16.1": {
+          "name": "Clinical Report (PDF)",
+          "path": "Vaults/16-Reports-and-Logs/Rows/16.1-Clinical-Report-PDF",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "16.2": {
+          "name": "Logs & History",
+          "path": "Vaults/16-Reports-and-Logs/Rows/16.2-Logs-History",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "17": {
+      "name": "Learning and Education",
+      "path": "Vaults/17-Learning-and-Education",
+      "rows": {
+        "17.1": {
+          "name": "Education Topics & Library",
+          "path": "Vaults/17-Learning-and-Education/Rows/17.1-Education-Topics-Library",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "17.2": {
+          "name": "Learning Suite & Lessons",
+          "path": "Vaults/17-Learning-and-Education/Rows/17.2-Learning-Suite-Lessons",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "18": {
+      "name": "Mira Assistant",
+      "path": "Vaults/18-Mira-Assistant",
+      "rows": {
+        "18.1": {
+          "name": "Mira Media",
+          "path": "Vaults/18-Mira-Assistant/Rows/18.1-Mira-Media",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "18.2": {
+          "name": "Mira Whisper",
+          "path": "Vaults/18-Mira-Assistant/Rows/18.2-Mira-Whisper",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "18.3": {
+          "name": "Mira Chat & Companion",
+          "path": "Vaults/18-Mira-Assistant/Rows/18.3-Mira-Chat-Companion",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "19": {
+      "name": "Account and Subscription",
+      "path": "Vaults/19-Account-and-Subscription",
+      "rows": {
+        "19.1": {
+          "name": "Subscription Tiers",
+          "path": "Vaults/19-Account-and-Subscription/Rows/19.1-Subscription-Tiers",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "19.2": {
+          "name": "Free Tier Limits",
+          "path": "Vaults/19-Account-and-Subscription/Rows/19.2-Free-Tier-Limits",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "19.3": {
+          "name": "Pricing & Billing",
+          "path": "Vaults/19-Account-and-Subscription/Rows/19.3-Pricing-Billing",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "19.4": {
+          "name": "Account Access & Settings",
+          "path": "Vaults/19-Account-and-Subscription/Rows/19.4-Account-Access-Settings",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "20": {
+      "name": "Clinic and Care Team",
+      "path": "Vaults/20-Clinic-and-Care-Team",
+      "rows": {
+        "20.1": {
+          "name": "Clinician Sharing",
+          "path": "Vaults/20-Clinic-and-Care-Team/Rows/20.1-Clinician-Sharing",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "20.2": {
+          "name": "Pro Tier Clinical Tools",
+          "path": "Vaults/20-Clinic-and-Care-Team/Rows/20.2-Pro-Tier-Clinical-Tools",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "21": {
+      "name": "Insulin Academic Reference",
+      "path": "Vaults/21-Insulin-Academic-Reference",
+      "rows": {
+        "21.1": {
+          "name": "Pharmacokinetic Models & Brand Profiles",
+          "path": "Vaults/21-Insulin-Academic-Reference/Rows/21.1-Pharmacokinetic-Models-Brand-Profiles",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "21.2": {
+          "name": "Research & Clinical Studies",
+          "path": "Vaults/21-Insulin-Academic-Reference/Rows/21.2-Research-Clinical-Studies",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    },
+    "22": {
+      "name": "Gamification and Rewards",
+      "path": "Vaults/22-Gamification-and-Rewards",
+      "rows": {
+        "22.1": {
+          "name": "Rewards & Badges",
+          "path": "Vaults/22-Gamification-and-Rewards/Rows/22.1-Rewards-Badges",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        },
+        "22.2": {
+          "name": "Mascot & Streaks",
+          "path": "Vaults/22-Gamification-and-Rewards/Rows/22.2-Mascot-Streaks",
+          "status": "[OPEN] NO BOOK - unaccounted for"
+        }
+      }
+    }
+  }
+}

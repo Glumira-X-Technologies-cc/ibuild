@@ -1,0 +1,254 @@
+{
+  "ledger": "ERRATA",
+  "version": "2.0",
+  "about": "Every mistake becomes a check (PROTOCOL.md Article 3.5, GUIDE.md THE SELF-IMPROVING LOOP). A row is added only together with the gate it names (a gate in Library/OS/CHECK.mjs) and the test it names (a test(\"...\") in Library/OS/CHECK.test.mjs). The errata gate fails a row whose gate is not implemented, whose test is missing, or whose gate does not pass. Founder words in `source`, and the GUIDE.md wording in `error` and `rule` of rows E-001 to E-003, are verbatim. A row whose rule was replaced keeps its first wording and says what replaced it in `superseded`. A row with \"edition_change\" names the edition before and after a change and the commit before it (PROTOCOL.md Article 6.5): a Page whose blob is unchanged since that commit keeps the old edition line, and the Foyer counter stays at \"foyer_version_frozen\".",
+  "rows": [
+    {
+      "id": "E-20261005-wrong-repo-under-72-name",
+      "date": "2026-10-05",
+      "error": "An outside review audited a folder named 7.2 whose origin was the frozen glumira-7.1 repo, and the fixes landed in the wrong repo.",
+      "root_cause": "A folder name was trusted as proof of the repo.",
+      "source": ".githooks/check-gates.mjs header: \"2026-10-05: an outside review audited D:\\glumira-7.2, a folder named 7.2 whose origin is the frozen glumira-7.1 repo, and the fixes landed in the wrong repo.\"",
+      "check": "repo-confirm",
+      "proof": "repo-confirm: an origin that is another repo fails"
+    },
+    {
+      "id": "E-20261006-frozen-task-list-loaded",
+      "date": "2026-10-06",
+      "error": "A 7.2 session was handed the task list of the frozen glumira-7.1 repo.",
+      "root_cause": "The boot card named one task list for every repo.",
+      "source": "Founder, verbatim: \"why did you load 7.1 punchlist if we work in 7.2\"",
+      "check": "no-71-source",
+      "proof": "no-71-source: a pointer to the glumira-7.1 task list fails"
+    },
+    {
+      "id": "E-20261006-second-queue",
+      "date": "2026-10-06",
+      "error": "Task lists exist in more than one place: the ROADMAP, the build plan, and the Outstanding section of every handover.",
+      "root_cause": "Nothing counted queue files.",
+      "source": "ROADMAP.md line 19: \"Priority lives here and nowhere else.\"",
+      "check": "single-queue",
+      "proof": "single-queue: two queue files fail"
+    },
+    {
+      "id": "E-20261006-second-routing-table",
+      "date": "2026-10-06",
+      "error": "A second subject-to-Vault table (a JEV-MAP file) was proposed beside the Foyer routes.",
+      "root_cause": "A derived copy of the authority drifts from it.",
+      "source": "Founder, verbatim: \"The file is now the authority.\"",
+      "check": "single-routing-source",
+      "proof": "single-routing-source: any third routing table fails",
+      "superseded": "2026-10-07. PROTOCOL.md Article 3.3, verbatim: \"Keep the JEV map as the routing authority. FOYER.json is a generated view, tied to the same revision.\" Founder, verbatim: \"Start the filing build\" and \"Fix approved\". JEV-MAP.json is now the one authority, the Foyer its generated view; the root cause above (a derived copy drifts) is why the two revisions must match."
+    },
+    {
+      "id": "E-20261006-foyer-out-of-step-with-disk",
+      "date": "2026-10-06",
+      "error": "Nothing compared the Foyer with the files under Vaults, so a Page could be filed that the Foyer did not name, or a Foyer line could outlive its file.",
+      "root_cause": "The Foyer is a hand-kept file and had no reader.",
+      "source": "Founder, verbatim: \"Everything must be accounted for\"",
+      "check": "foyer-valid",
+      "proof": "foyer-valid: a stale blob fails"
+    },
+    {
+      "id": "E-20261006-memory-ban-as-boot-gate",
+      "date": "2026-10-06",
+      "error": "A proposal wrote the clean-slate rule as a gate that fails the boot when a memory file is seen.",
+      "root_cause": "An instruction was turned into a gate. Memory is a Vault, and the harness injects memory before any gate can run.",
+      "source": "Founder, verbatim: \"clean slate was to get al agents the same snapshot to start from\"",
+      "check": "memory-guard",
+      "proof": "memory-guard: an intentional read after JEV routing is never a failure",
+      "superseded": "2026-10-07, for the boot path only. PROTOCOL.md Article 2.3, verbatim: \"Refuse to load any memory file in the boot path. A memory file in the boot path is a FLAG, not proof.\" Founder, verbatim: \"Fix approved\". Outside the boot path the 2026-10-06 ruling stands: a read after the JEV map has routed is never a failure, and Vault 2 Memory is its home."
+    },
+    {
+      "id": "E-20261006-no-pinned-snapshot",
+      "date": "2026-10-06",
+      "error": "Agents started from different snapshots of the repo.",
+      "root_cause": "No single fingerprint of the pinned snapshot was printed or compared at boot.",
+      "source": "Founder, verbatim: \"After the jev scan you will have context and read from the start\"",
+      "check": "snapshot-fingerprint",
+      "proof": "snapshot-fingerprint: a checkout that differs from the pinned snapshot fails"
+    },
+    {
+      "id": "E-20261006-open-queue-blocked-start",
+      "date": "2026-10-06",
+      "error": "The check was wired into /start as doctor:boot while the queue was still [OPEN], so /start printed BLOCKED and gave no product tools to any 7.2 session.",
+      "root_cause": "A named open item was wired into a harness that treats any exit 1 as a lockout.",
+      "source": "start.mjs output on merged main: \"/START BLOCKED - repo boot check failed; no product tools\"",
+      "check": "single-queue",
+      "proof": "single-queue: doctor:boot wired while the queue is OPEN fails"
+    },
+    {
+      "id": "E-20261007-cabinet-counted-as-queue",
+      "date": "2026-10-07",
+      "error": "Filing the ROADMAP in Row 5.14 Build Plan made the check count that Row's Cabinet file as a second queue, because the file is named after the Row.",
+      "root_cause": "The queue-name rule tested every document name, and a Cabinet is named after its Row.",
+      "source": "single-queue output on the filing build: \"2 queue files, one is allowed\" naming ROADMAP.md and Cabinet-Build-Plan.md",
+      "check": "single-queue",
+      "proof": "single-queue: a Cabinet named after the queue's Row is not a second queue, but card lines in it are"
+    },
+    {
+      "id": "E-20261007-handover-counted-as-queue",
+      "date": "2026-10-07",
+      "error": "A handover whose slug names the ROADMAP was counted as a second queue.",
+      "root_cause": "The queue-name rule tested every document name, and a handover is named for what the session did.",
+      "source": "single-queue output on the close-doctor build: \"2 queue files, one is allowed\" naming the handover and ROADMAP.md",
+      "check": "single-queue",
+      "proof": "single-queue: a handover named after the queue is not a second queue, but card lines in it are"
+    },
+    {
+      "id": "E-20261007-os-not-read-first",
+      "date": "2026-10-07",
+      "error": "The Foyer, which every agent opens, did not name the OS Page, so an agent could start at the Foyer and never read the OS.",
+      "root_cause": "The OS is Vault 1, reached through the Foyer, and nothing in the Foyer said to read the OS Page before it.",
+      "source": "Founder, verbatim: \"all must read os\"",
+      "check": "foyer-valid",
+      "proof": "foyer-valid: a Foyer that does not name the OS start Page fails"
+    },
+    {
+      "id": "E-20261009-prose-vault-list-false-positive",
+      "date": "2026-10-09",
+      "error": "single-routing-source's third-routing-table-by-content heuristic flagged a founder-dictation memory file (filed into Vault 2 Row 2.1) as a second routing table, because its prose names several Vaults next to their numbers while quoting a past Foyer summary.",
+      "root_cause": "The heuristic cannot tell a genuine second routing table apart from prose that merely quotes the Foyer's own Vault numbers inside a founder ruling.",
+      "source": "Founder, verbatim, relayed mid-build: \"we are not blindly moving over everything must be verified before we enter\" — the file was checked and is accurate; the variance is genuine, so it gets a named, explicit exception rather than a weakened gate.",
+      "check": "single-routing-source",
+      "proof": "single-routing-source: X-007 exempts a named founder-dictation file from the by-content heuristic"
+    },
+    {
+      "id": "E-001",
+      "date": "2026-10-07",
+      "error": "loaded 7.1 punch list",
+      "rule": "no 7.1 source in the boot reading path",
+      "root_cause": "The boot card named one task list for every repo (row E-20261006-frozen-task-list-loaded).",
+      "source": "GUIDE.md, THE SELF-IMPROVING LOOP, \"First three ERRATA rows to add now\". Founder, verbatim: \"why did you load 7.1 punchlist if we work in 7.2\"",
+      "check": "no-71-source",
+      "proof": "no-71-source: a registry that makes glumira-7.1 the active repo fails"
+    },
+    {
+      "id": "E-002",
+      "date": "2026-10-07",
+      "error": "created duplicate task names",
+      "rule": "no task name appears in more than one source",
+      "root_cause": "Not stated in the Guide. Nothing compared the task names of the one queue with task lines elsewhere.",
+      "source": "GUIDE.md, THE SELF-IMPROVING LOOP, \"First three ERRATA rows to add now\"",
+      "check": "single-queue",
+      "proof": "single-queue: a task name of the queue in a second source fails"
+    },
+    {
+      "id": "E-003",
+      "date": "2026-10-07",
+      "error": "memory injected at boot",
+      "rule": "no memory file in the boot path",
+      "root_cause": "Not stated in the Guide. Nothing listed the boot reading path, so a memory file could sit on it unseen.",
+      "source": "GUIDE.md, THE SELF-IMPROVING LOOP, \"First three ERRATA rows to add now\"",
+      "check": "memory-guard",
+      "proof": "memory-guard: a memory file in the boot reading path fails"
+    },
+    {
+      "id": "E-004",
+      "date": "2026-10-07",
+      "error": "File names carried the edition (72, 7.2, -v0, -v1.0), and no file said whether it was DONE.",
+      "rule": "A name carries the subject only, never the edition. Every Page file carries the stamp: edition, status (DONE or Mid Flight), date.",
+      "root_cause": "Names were made per edition, and nothing marked a file's state inside the file.",
+      "source": "Founder 2026-10-07, verbatim: \"we must please get rid of this 72 iin the file names and mke a clean start for 7.2 that we can recognize all files as DONE in 7.2\". PROTOCOL.md Article 6.5, verbatim: \"The name travels. Only the edition line changes.\"",
+      "check": "edition-stamp",
+      "proof": "edition-stamp: a name with the edition and a Page file with no stamp fail"
+    },
+    {
+      "id": "E-20261008-readonly-row-routing-false-positive",
+      "date": "2026-10-08",
+      "error": "Filing the Modules Vault made the read-only Builder document in Row 5.13 read as a third routing table (its table row \"18 | Modules tab\").",
+      "root_cause": "The content scan of single-routing-source read Row 5.13, which X-004 already exempts from names and stamps.",
+      "source": "Founder 2026-10-08, verbatim: \"The vault will be Engines / Each engine a row and then breaks down, up to page level / This rule applies to all filing\".",
+      "check": "single-routing-source",
+      "proof": "single-routing-source: read-only Row 5.13 text is never a routing table (X-004)"
+    },
+    {
+      "id": "E-20261009-counts-read-as-routing-table",
+      "date": "2026-10-09",
+      "error": "Writing the 16 product Vaults into the JEV map made a Cabinet that reports function counts (\"720 under USER DATA INFO, 560 under Engines\", \"Engines 560, Modules 125\") read as a third routing table.",
+      "root_cause": "The content scan counted any digit beside a Vault name, so a count looked like a Vault number.",
+      "source": "Founder 2026-10-09, verbatim: \"Everything sorted in main groups related to function\"; picked \"Approve the 16 Vaults (Recommended)\".",
+      "check": "single-routing-source",
+      "proof": "single-routing-source: counts beside Vault names are not a routing table"
+    },
+    {
+      "id": "E-20261009-small-counts-read-as-routes",
+      "date": "2026-10-09",
+      "error": "With 22 Vaults, the build-plan cards table (\"Modules | 18\", a card count) and the trace matrix (hex ids ending in a digit, \"...ab7 | Engines > IOB Hunter\") read as routing tables.",
+      "root_cause": "A hit counted any Vault number beside a name, including digits at the end of an id, not that Vault's own number as a standalone token.",
+      "source": "Founder 2026-10-09, verbatim: \"I want to create a build plan to the fullest extent\"; picked \"Approve the 16 Vaults (Recommended)\".",
+      "check": "single-routing-source",
+      "proof": "single-routing-source: a small count beside a Vault name is not that Vault's route"
+    },
+    {
+      "id": "E-20261011-edition-is-a-word",
+      "date": "2026-10-11",
+      "error": "The edition line was a number, so every new Page added a version number, and every Foyer change raised a version counter.",
+      "rule": "The edition line names the edition in a word, never a number. A Page unchanged since the edition change keeps its old line; every Page added or edited after it carries the new one. The Foyer counter is frozen.",
+      "root_cause": "Article 6.5 made a change of edition a copy that only changes the edition line, and STOP step 4 raised the Foyer version on every Cabinet change.",
+      "source": "Founder 2026-10-10, verbatim: \"The official launch name is Glumira\nDo not add any version numbers in the 7.2 documents - that is only for you to keep track\" and \"I want to launch with everything in 1 repo / it becomes the Original launch version\". Founder pick 2026-10-11, verbatim: \"Original (Recommended)\". The old Article 6.5 is archived word for word in Row 3.1, Book-Edition-Copy-Rule.",
+      "check": "edition-stamp",
+      "proof": "edition-stamp: a new Page with the past edition fails, an unchanged one passes",
+      "edition_change": {
+        "from": "7.2",
+        "to": "Original",
+        "commit": "02283a5fe676bd81a8fc3b537164cbcc68a396e6",
+        "foyer_version_frozen": "2.11"
+      }
+    },
+    {
+      "id": "E-20261011-spar-plan-read-as-routing-table",
+      "date": "2026-10-11",
+      "error": "Filing the approved Six Libraries spar plan word for word made it read as a third routing table: its tables name seven of today's Vaults next to their numbers to say where each one lands.",
+      "root_cause": "The by-content heuristic cannot tell a document of record that describes the Vault table from a second routing table, and the plan may not be reworded (never paraphrase).",
+      "source": "Founder pick 2026-10-11, verbatim: \"Approve (Recommended)\". ROADMAP card 08-01: \"Then file the winning spar plan as a Page in this Row.\"",
+      "check": "single-routing-source",
+      "proof": "single-routing-source: X-009 exempts the filed Six Libraries plan from the by-content heuristic"
+    },
+    {
+      "id": "E-20261011-row-number-read-as-edition",
+      "date": "2026-10-11",
+      "error": "The edition-name test read the number of a Row folder (7.2-What-If, 17.2-Learning-Suite-Lessons) as the edition 7.2, so the first Page filed in either Row would fail.",
+      "root_cause": "The test looked for 7.2 anywhere in a name and did not take off the Vault or Row number that starts a Vault or Row folder.",
+      "source": "Six Libraries plan (Row 5.14, Book-Six-Libraries-Plan), founder pick 2026-10-11, verbatim: \"Approve (Recommended)\". Plan, function table: \"Fix a bug that is live today. /72|7\\.2|-v0|-v1\\.0/ matches Row folders 7.2-What-If and 17.2-Learning-Suite-Lessons\".",
+      "check": "edition-stamp",
+      "proof": "edition-stamp: a Vault or Row number is not an edition"
+    },
+    {
+      "id": "E-20261011-one-name-on-two-levels",
+      "date": "2026-10-11",
+      "error": "The subject \"Production Builder\" had two records, one routing to Vault 5 and one to Row 5.13, so one name sat on two levels.",
+      "root_cause": "jevErrors let a Vault record and a Row record of the same Vault share a subject.",
+      "source": "Six Libraries plan (Row 5.14, Book-Six-Libraries-Plan), founder pick 2026-10-11, verbatim: \"Approve (Recommended)\". Plan, question 2: \"One subject, one record. ... Row 5.13's subject becomes \\\"Builder App\\\".\"",
+      "check": "single-routing-source",
+      "proof": "single-routing-source: one subject, one record"
+    },
+    {
+      "id": "E-20261011-live-file-names-moved-path",
+      "date": "2026-10-11",
+      "error": "Nothing would notice a live file, a program or an open card that still names a folder after the folder moved, so a move could leave tools broken while every gate passed.",
+      "root_cause": "The check had no list of retired path prefixes and no reader of live text outside the Vault scans.",
+      "source": "Six Libraries plan (Row 5.14, Book-Six-Libraries-Plan), founder pick 2026-10-11, verbatim: \"Approve (Recommended)\". Plan, question 5, \"The moved-prefix rule, defined exactly\": \"Its ERRATA row is \\\"a live file names a moved path\\\".\"",
+      "check": "foyer-valid",
+      "proof": "foyer-valid: a live file or an open card that names a moved path fails"
+    },
+    {
+      "id": "E-20261013-path-length-grew",
+      "date": "2026-10-13",
+      "error": "The Vault 5 folder carried the brand and the edition (5-GluMira-7.2-Production-Builder), and Book and Page names repeated their Row, so paths grew long enough to need a named exception (X-005) and to press on the Windows path limit.",
+      "root_cause": "No gate measured path length, so a long name could be added, or grow back after a rename, with every gate passing.",
+      "source": "Founder order 2026-10-13, verbatim: \"fix\", given to: \"Rename Vault 5 to `5-Production-Builder`, remove exception X-005, and add a path-length gate to CHECK.mjs so this cannot grow back.\" Then, verbatim: \"do same for all vaults\".",
+      "check": "path-length",
+      "proof": "path-length: a tracked path longer than the limit fails"
+    },
+    {
+      "id": "E-20261013-moved-page-lost-past-edition",
+      "date": "2026-10-13",
+      "error": "A Page stamped with the past edition, unchanged since the edition change, failed edition-stamp once its folder was renamed, because the gate looked for its blob only at its new path.",
+      "root_cause": "pastEditionOk read the edition-change commit at the file's current path and never followed the JEV moved list back to the path it had then.",
+      "source": "Founder order 2026-10-13, verbatim: \"fix\" (the Vault 5 rename), and the Six Libraries plan's moved list, which records every renamed path.",
+      "check": "edition-stamp",
+      "proof": "edition-stamp: a moved Page unchanged since the edition change keeps its past edition"
+    }
+  ]
+}

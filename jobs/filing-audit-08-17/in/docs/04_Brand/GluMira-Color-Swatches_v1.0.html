@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GluMira — Full Colour Swatches v1.0 (.ai + .app)</title>
+<style>
+  :root{
+    --bone:#F7F6F1; --ink:#29313D; --ink-strong:#16233F; --hair:#E0DBCF;
+    --mute:#6B7280; --maxw:1100px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bone);color:var(--ink);
+    font:15px/1.5 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:40px 28px 80px}
+  header h1{font-size:26px;margin:0 0 4px;color:var(--ink-strong);letter-spacing:-.01em}
+  header p{margin:2px 0;color:var(--mute);font-size:13px}
+  .legend{margin:14px 0 0;font-size:12.5px;color:var(--mute)}
+  .legend b{color:var(--ink)}
+
+  section{margin-top:40px}
+  .site-h{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid var(--hair);
+    padding-bottom:8px;margin-bottom:6px}
+  .site-h h2{font-size:20px;margin:0;color:var(--ink-strong)}
+  .site-h .tag{font-size:12px;color:var(--mute)}
+  .grp{margin-top:24px}
+  .grp h3{font-size:14px;margin:0 0 2px;color:var(--ink-strong);text-transform:uppercase;
+    letter-spacing:.06em}
+  .grp .sub{font-size:12.5px;color:var(--mute);margin:0 0 12px}
+
+  .row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .sw{border:1px solid var(--hair);border-radius:8px;overflow:hidden;background:#fff;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .chip{height:88px;display:flex;width:100%}
+  .chip .cell{flex:1;position:relative;display:block;height:100%}
+  .chip .cell+.cell{box-shadow:inset 1px 0 0 rgba(255,255,255,.35)}
+  .chip .cell i{position:absolute;left:0;right:0;bottom:3px;text-align:center;font-style:normal;
+    font:7.5px/1 ui-monospace,Consolas,monospace;letter-spacing:.04em;text-transform:uppercase;
+    color:rgba(255,255,255,.92);text-shadow:0 1px 1px rgba(0,0,0,.55);pointer-events:none}
+  .meta{padding:8px 10px}
+  .meta .name{font-size:12px;font-weight:600;color:var(--ink-strong);line-height:1.25}
+  .meta .hex{font:12px/1.4 ui-monospace,"SF Mono",Consolas,monospace;color:var(--mute);
+    text-transform:uppercase;letter-spacing:.02em}
+  .meta .note{font-size:11px;color:var(--mute);margin-top:3px;line-height:1.3}
+
+  /* wide cards for gradients / text demos */
+  .grad-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+  .grad{border:1px solid var(--hair);border-radius:8px;overflow:hidden;background:#fff}
+  .grad .band{display:block;height:60px}
+  .grad .gmeta{padding:9px 11px}
+  .grad .gname{font-size:12.5px;font-weight:600;color:var(--ink-strong)}
+  .grad .gcss{font:11px/1.4 ui-monospace,Consolas,monospace;color:var(--mute);
+    word-break:break-all;margin-top:3px}
+
+  .textdemo{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+  .td{border:1px solid var(--hair);border-radius:8px;padding:14px;}
+  .td .big{font-size:17px;font-weight:600;margin-bottom:2px}
+  .td .sm{font-size:13px}
+  .td .lbl{font:11px/1.4 ui-monospace,Consolas,monospace;color:var(--mute);margin-top:8px}
+
+  .locked{border:1.5px solid #C9A24B;border-radius:10px;padding:16px 18px;margin-top:18px;
+    background:linear-gradient(0deg,rgba(201,162,75,.05),rgba(201,162,75,.05))}
+  .locked h3{color:#7A5C0A}
+  .note-firewall{font-size:12.5px;color:var(--mute);margin-top:8px;
+    border-left:3px solid #C9A24B;padding-left:10px}
+
+  footer{margin-top:56px;border-top:1px solid var(--hair);padding-top:14px;
+    font-size:11.5px;color:var(--mute)}
+  a{color:#0F52BA}
+
+  /* tab bar */
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 0;
+    border-bottom:2px solid var(--hair);padding-bottom:0}
+  .tab{appearance:none;border:1px solid var(--hair);border-bottom:none;
+    background:#fff;color:var(--mute);font:600 13px/1 inherit;
+    padding:10px 16px;border-radius:8px 8px 0 0;cursor:pointer;
+    margin-bottom:-2px;letter-spacing:.01em}
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected="true"]{color:var(--ink-strong);border-color:var(--hair);
+    border-bottom:2px solid var(--bone);background:var(--bone)}
+  body.tabbed section[data-tab]{display:none}
+  body.tabbed section[data-tab].active{display:block}
+
+  /* big sheen panels (Sheen tab) */
+  .sheen-big{border:1px solid var(--hair);border-radius:12px;overflow:hidden;
+    background:#fff;margin-top:18px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .sheen-big .band{height:120px;display:flex;align-items:center;justify-content:center}
+  .sheen-big .band .clip{font-size:34px;font-weight:800;letter-spacing:-.01em;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    -webkit-text-fill-color:transparent}
+  .sheen-big .sbmeta{padding:13px 16px}
+  .sheen-big .sbname{font-size:14px;font-weight:700;color:var(--ink-strong)}
+  .sheen-big .sbuse{font-size:12.5px;color:var(--mute);margin:3px 0 7px}
+  .sheen-big .sbcss{font:11px/1.45 ui-monospace,Consolas,monospace;color:var(--mute);
+    word-break:break-all;background:#FAFAF7;border:1px solid var(--hair);
+    border-radius:6px;padding:8px 10px}
+
+  /* texture card — muslin / plaster backdrop tiles, one card per group */
+  .texlabel{font-size:12px;font-weight:700;color:var(--ink-strong);text-transform:uppercase;
+    letter-spacing:.06em;margin:18px 0 8px}
+  .texcard{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
+  .textile{border:1px solid var(--hair);border-radius:7px;overflow:hidden;background:#fff;
+    box-shadow:0 1px 2px rgba(0,0,0,.04)}
+  .textile .tex{height:180px;position:relative;background-size:cover;background-position:center}
+  /* fine canvas/cloth weave over the baked cloud depth */
+  .textile .tex::before{content:"";position:absolute;inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:130px 130px;mix-blend-mode:overlay;opacity:.16}
+  .textile .tlbl{font:11.5px/1.4 ui-monospace,Consolas,monospace;text-align:center;
+    padding:7px 4px;color:var(--ink-strong);text-transform:uppercase;letter-spacing:.03em}
+
+  @media print{
+    html,body{background:#fff}
+    .wrap{max-width:none;padding:0 8mm}
+    .sw,.grad,.td,.sheen-big,.textile{box-shadow:none;break-inside:avoid}
+    .texcard{break-inside:avoid-page}
+    section{break-inside:avoid-page}
+    header{margin-bottom:6mm}
+    a{color:inherit;text-decoration:none}
+    .tabs{display:none}
+    body.tabbed section[data-tab]{display:block !important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>GluMira — Full Colour Swatches v1.0</h1>
+  <p><b>Blue, gold and bone: no colour restriction on .app or .ai</b> · clinical hues never become chrome</p>
+  <p>Founder, 2026-10-12: <i>"update color that there are no color restriction for blue and gold and bone for .app and .ai"</i></p>
+  <p>Transcribed verbatim from the locked canon — no colour chosen here.
+     Sources: <b>Living-Color-System_v1.0.md</b>, <b>App-Locked-Palette_v1.0.md</b>,
+     <b>Living-Light-Shadow-Application_v1.0.md</b> · 2026-06-14</p>
+  <p class="legend"><b>Every swatch is shown three ways:</b> <b>flat</b> (the solid colour, as labelled) ·
+     <b>sheen</b> (the same colour alive — deep edge → bright centre → deep edge) ·
+     <b>watercolour</b> (the same colour as a soft pigment wash). Hex labels each row. The sheen and wash are
+     forms of the one colour, not new colours.</p>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button class="tab" role="tab" data-target="all" aria-selected="true">All</button>
+  <button class="tab" role="tab" data-target="ai">glumira.ai</button>
+  <button class="tab" role="tab" data-target="bone">bone</button>
+  <button class="tab" role="tab" data-target="app">glumira.app</button>
+  <button class="tab" role="tab" data-target="sheen">Sheen</button>
+  <button class="tab" role="tab" data-target="resource">Yellows &amp; Reds</button>
+  <button class="tab" role="tab" data-target="stacking">Stacking ramp</button>
+  <button class="tab" role="tab" data-target="clinical">Clinical</button>
+</nav>
+
+<!-- ============================== .ai ============================== -->
+<section data-tab="ai">
+  <div class="site-h"><h2>glumira.ai</h2><span class="tag">Clinicians · researchers · science — NAVY + shiny GOLD</span></div>
+
+  <div class="grp">
+    <h3>Navy surfaces (solid)</h3>
+    <p class="sub">The world / shadow foundation that gold-light moves across.</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#102347"></span><div class="meta"><div class="name">Navy primary</div><div class="hex">#102347</div></div></div>
+      <div class="sw"><span class="chip" style="background:#0B1733"></span><div class="meta"><div class="name">Navy deep edge</div><div class="hex">#0B1733</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Shiny-gold sheen (gradient — wordmark / dividers / accents / buttons) · LOCKED 2026-10-12</h3>
+    <p class="sub">The one gold everywhere, founder-locked 2026-10-12 from the slider. Feathered gold, top to bottom, with a clear coat and a specular streak. Supersedes the 2026-10-10 merged gold. Applied via <code>background-clip:text</code> on display elements only.</p>
+    <div class="grad-row">
+      <div class="grad">
+        <span class="band" style="background-image:linear-gradient(180deg,rgba(255,255,255,0.00) 4.50%,rgba(255,255,255,0.50) 4.85%,rgba(255,255,255,1.00) 5.00%,rgba(255,255,255,0.50) 5.15%,rgba(255,255,255,0.00) 5.50%),linear-gradient(180deg,rgba(255,255,255,0.60) 0%,rgba(255,255,255,0.25) 38%,rgba(255,255,255,0.05) 49%,rgba(255,255,255,0.00) 50%,rgba(255,255,255,0.00) 100%),linear-gradient(180deg,#BEA106 0%,#C3A609 4%,#C9AD0E 8%,#D0B414 12%,#D7BC1C 16%,#DFC526 20%,#E6CD32 24%,#ECD53F 28%,#F1DC4C 32%,#F5E259 36%,#F8E663 40%,#F9E96B 44%,#FAEB6F 48%,#FAEB6F 52%,#F9E96B 56%,#F8E663 60%,#F5E259 64%,#F1DC4C 68%,#ECD53F 72%,#E6CD32 76%,#DFC526 80%,#D7BC1C 84%,#D0B414 88%,#C9AD0E 92%,#C3A609 96%,#BEA106 100%)"></span>
+        <div class="gmeta"><div class="gname">Shiny gold sheen (both sites)</div>
+        <div class="gcss">background-image: linear-gradient(180deg,rgba(255,255,255,0.00) 4.50%,rgba(255,255,255,0.50) 4.85%,rgba(255,255,255,1.00) 5.00%,rgba(255,255,255,0.50) 5.15%,rgba(255,255,255,0.00) 5.50%),linear-gradient(180deg,rgba(255,255,255,0.60) 0%,rgba(255,255,255,0.25) 38%,rgba(255,255,255,0.05) 49%,rgba(255,255,255,0.00) 50%,rgba(255,255,255,0.00) 100%),linear-gradient(180deg,#BEA106 0%,#C3A609 4%,#C9AD0E 8%,#D0B414 12%,#D7BC1C 16%,#DFC526 20%,#E6CD32 24%,#ECD53F 28%,#F1DC4C 32%,#F5E259 36%,#F8E663 40%,#F9E96B 44%,#FAEB6F 48%,#FAEB6F 52%,#F9E96B 56%,#F8E663 60%,#F5E259 64%,#F1DC4C 68%,#ECD53F 72%,#E6CD32 76%,#DFC526 80%,#D7BC1C 84%,#D0B414 88%,#C9AD0E 92%,#C3A609 96%,#BEA106 100%)</div></div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <div class="sw"><span class="chip" style="background:#BEA106"></span><div class="meta"><div class="name">Gold edge</div><div class="hex">#BEA106</div></div></div>
+      <div class="sw"><span class="chip" style="background:#E6CD32"></span><div class="meta"><div class="name">Gold body</div><div class="hex">#E6CD32</div></div></div>
+      <div class="sw"><span class="chip" style="background:#F8E663"></span><div class="meta"><div class="name">Gold bright</div><div class="hex">#F8E663</div></div></div>
+      <div class="sw"><span class="chip" style="background:#FAEB6F"></span><div class="meta"><div class="name">Gold shine</div><div class="hex">#FAEB6F</div></div></div>
+    </div>
+    <p class="sub" style="margin-top:8px">Retired, never reuse: the custard quad <code>#6E5414 · #B8902F · #F0D27A · #FFF6CF</code> (rejected by the founder 2026-07-03 and again 2026-10-10).</p>
+  </div>
+
+  <div class="grp">
+    <h3>Light / shadow gold (warm — interaction)</h3>
+    <p class="sub">Resting = light; hover/active walks toward the 3-primary mixed shadow (never black).</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#E8D9B5"></span><div class="meta"><div class="name">Gold highlight</div><div class="hex">#E8D9B5</div><div class="note">white-lightened</div></div></div>
+      <div class="sw"><span class="chip" style="background:#C9A24B"></span><div class="meta"><div class="name">Gold light</div><div class="hex">#C9A24B</div><div class="note">1–2 primaries</div></div></div>
+      <div class="sw"><span class="chip" style="background:#8B6F47"></span><div class="meta"><div class="name">Gold shadow</div><div class="hex">#8B6F47</div><div class="note">warm earth mix</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Solid text (on bone #F7F6F1)</h3>
+    <div class="textdemo">
+      <div class="td" style="background:#F7F6F1"><div class="big" style="color:#16233F">Heading ink</div><div class="sm" style="color:#16233F">14.4:1 AAA</div><div class="lbl">#16233F</div></div>
+      <div class="td" style="background:#F7F6F1"><div class="big" style="color:#29313D">Body ink</div><div class="sm" style="color:#29313D">12.1:1 AAA</div><div class="lbl">#29313D</div></div>
+      <div class="td" style="background:#F7F6F1"><div class="big" style="color:#7A5C0A">Gold-ink label</div><div class="sm" style="color:#7A5C0A">5.77:1 AA (small gold labels)</div><div class="lbl">#7A5C0A</div></div>
+      <div class="td" style="background:#C9A24B"><div class="big" style="color:#102347">Navy on gold</div><div class="sm" style="color:#102347">6.5:1 (button)</div><div class="lbl">#102347 on #C9A24B</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= BONE BRIDGE ========================= -->
+<section data-tab="bone">
+  <div class="site-h"><h2>bone / ivory</h2><span class="tag">The connector — the ONLY token shared by both identities</span></div>
+  <div class="grp">
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#F7F6F1"></span><div class="meta"><div class="name">Bone (solid ground)</div><div class="hex">#F7F6F1</div><div class="note">body copy passes AAA</div></div></div>
+      <div class="sw"><span class="chip" style="background:#E0DBCF"></span><div class="meta"><div class="name">Hairline</div><div class="hex">#E0DBCF</div><div class="note">dividers / borders only</div></div></div>
+    </div>
+    <div class="grad-row" style="margin-top:12px">
+      <div class="grad">
+        <span class="band" style="background:radial-gradient(circle at 40% 60%,#FAFAF8 0%,rgba(247,246,241,.2) 30%,#F7F6F1 100%)"></span>
+        <div class="gmeta"><div class="gname">Bone sheen (large surfaces only — never on text)</div>
+        <div class="gcss">radial-gradient(circle at 40% 60%, #FAFAF8 0%, rgba(247,246,241,0.2) 30%, #F7F6F1 100%)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== .app ============================== -->
+<section data-tab="app">
+  <div class="site-h"><h2>glumira.app</h2><span class="tag">Users · caregivers · children — GREEN resonance: sage world, sapphire jewel</span></div>
+
+  <div class="grp">
+    <h3>Sage canvas (solid surfaces)</h3>
+    <p class="sub">The butterfly-collage ground — muted sage → grey. The calm world the jewel sparkles against.</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#F4F5EF"></span><div class="meta"><div class="name">Paper</div><div class="hex">#F4F5EF</div></div></div>
+      <div class="sw"><span class="chip" style="background:#E6E7DB"></span><div class="meta"><div class="name">Card</div><div class="hex">#E6E7DB</div></div></div>
+      <div class="sw"><span class="chip" style="background:#E2E3D6"></span><div class="meta"><div class="name">Tint</div><div class="hex">#E2E3D6</div></div></div>
+      <div class="sw"><span class="chip" style="background:#D7D9C5"></span><div class="meta"><div class="name">Tint</div><div class="hex">#D7D9C5</div></div></div>
+      <div class="sw"><span class="chip" style="background:#D4D6C0"></span><div class="meta"><div class="name">Tint</div><div class="hex">#D4D6C0</div></div></div>
+      <div class="sw"><span class="chip" style="background:#BCC4AC"></span><div class="meta"><div class="name">Section</div><div class="hex">#BCC4AC</div></div></div>
+      <div class="sw"><span class="chip" style="background:#A6AD96"></span><div class="meta"><div class="name">Sage mid</div><div class="hex">#A6AD96</div></div></div>
+      <div class="sw"><span class="chip" style="background:#9EAB92"></span><div class="meta"><div class="name">Sage deep</div><div class="hex">#9EAB92</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Botanical green (the real green)</h3>
+    <p class="sub">True forest / botanical green.</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#4E6444"></span><div class="meta"><div class="name">Forest (darkest)</div><div class="hex">#4E6444</div><div class="note">secondary text 5.2:1</div></div></div>
+      <div class="sw"><span class="chip" style="background:#667F69"></span><div class="meta"><div class="name">Green</div><div class="hex">#667F69</div></div></div>
+      <div class="sw"><span class="chip" style="background:#738B6E"></span><div class="meta"><div class="name">Green</div><div class="hex">#738B6E</div></div></div>
+      <div class="sw"><span class="chip" style="background:#A2B095"></span><div class="meta"><div class="name">Soft sage-green</div><div class="hex">#A2B095</div></div></div>
+      <div class="sw"><span class="chip" style="background:#A9B69E"></span><div class="meta"><div class="name">Soft sage-green</div><div class="hex">#A9B69E</div></div></div>
+      <div class="sw"><span class="chip" style="background:#BAC7B4"></span><div class="meta"><div class="name">Soft sage-green</div><div class="hex">#BAC7B4</div></div></div>
+      <div class="sw"><span class="chip" style="background:#C4D0BF"></span><div class="meta"><div class="name">Soft sage-green</div><div class="hex">#C4D0BF</div></div></div>
+      <div class="sw"><span class="chip" style="background:#DDE2DB"></span><div class="meta"><div class="name">Soft sage-green</div><div class="hex">#DDE2DB</div></div></div>
+    </div>
+    <div class="grad-row" style="margin-top:12px">
+      <div class="grad">
+        <span class="band" style="background:linear-gradient(100deg,#33422C,#4E6444 30%,#738B6E 50%,#4E6444 70%,#33422C)"></span>
+        <div class="gmeta"><div class="gname">Botanical-green sheen (display)</div>
+        <div class="gcss">linear-gradient(100deg,#33422C,#4E6444 30%,#738B6E 50%,#4E6444 70%,#33422C)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Sapphire — VIVID (the sparkling stone → text + sparkle)</h3>
+    <p class="sub">Graded light → deep. <b>Body text = #0F52BA (LOCKED, 6.5:1).</b> Azures (#3E98FB +) are decorative only, never text.</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#0141AC"></span><div class="meta"><div class="name">Deep sapphire</div><div class="hex">#0141AC</div><div class="note">text 8.14:1</div></div></div>
+      <div class="sw"><span class="chip" style="background:#0D3EA6"></span><div class="meta"><div class="name">Deep sapphire</div><div class="hex">#0D3EA6</div><div class="note">text 8.49:1 (highest)</div></div></div>
+      <div class="sw"><span class="chip" style="background:#0D4CCF"></span><div class="meta"><div class="name">True sapphire</div><div class="hex">#0D4CCF</div><div class="note">text 6.49:1</div></div></div>
+      <div class="sw" style="outline:2px solid #0F52BA;outline-offset:-2px"><span class="chip" style="background:#0F52BA"></span><div class="meta"><div class="name">Canonical sapphire ★ LOCKED body text</div><div class="hex">#0F52BA</div><div class="note">6.5:1 paper / 5.7:1 card (AA)</div></div></div>
+      <div class="sw"><span class="chip" style="background:#1758DB"></span><div class="meta"><div class="name">Sapphire → sky</div><div class="hex">#1758DB</div><div class="note">text 5.54:1 (borderline)</div></div></div>
+      <div class="sw"><span class="chip" style="background:#1D60E8"></span><div class="meta"><div class="name">Sapphire → sky</div><div class="hex">#1D60E8</div><div class="note">large text only</div></div></div>
+      <div class="sw"><span class="chip" style="background:#2D78F2"></span><div class="meta"><div class="name">Sapphire → sky</div><div class="hex">#2D78F2</div><div class="note">large text only</div></div></div>
+      <div class="sw"><span class="chip" style="background:#3E98FB"></span><div class="meta"><div class="name">Azure (decorative)</div><div class="hex">#3E98FB</div><div class="note">never text</div></div></div>
+      <div class="sw"><span class="chip" style="background:#57B1FB"></span><div class="meta"><div class="name">Azure (decorative)</div><div class="hex">#57B1FB</div><div class="note">never text</div></div></div>
+    </div>
+    <div class="grp" style="margin-top:14px">
+      <p class="sub">Azure → highlight ramp (sparkle / hover only — decorative):</p>
+      <div class="row">
+        <div class="sw"><span class="chip" style="background:#0FA2F8"></span><div class="meta"><div class="hex">#0FA2F8</div></div></div>
+        <div class="sw"><span class="chip" style="background:#25B6F9"></span><div class="meta"><div class="hex">#25B6F9</div></div></div>
+        <div class="sw"><span class="chip" style="background:#30B3F9"></span><div class="meta"><div class="hex">#30B3F9</div></div></div>
+        <div class="sw"><span class="chip" style="background:#56C9F8"></span><div class="meta"><div class="hex">#56C9F8</div></div></div>
+        <div class="sw"><span class="chip" style="background:#69CCF8"></span><div class="meta"><div class="hex">#69CCF8</div></div></div>
+        <div class="sw"><span class="chip" style="background:#87D5F4"></span><div class="meta"><div class="hex">#87D5F4</div></div></div>
+        <div class="sw"><span class="chip" style="background:#A5DFF9"></span><div class="meta"><div class="hex">#A5DFF9</div></div></div>
+        <div class="sw"><span class="chip" style="background:#C2E8F9"></span><div class="meta"><div class="hex">#C2E8F9</div></div></div>
+        <div class="sw"><span class="chip" style="background:#DCEFF7"></span><div class="meta"><div class="hex">#DCEFF7</div></div></div>
+        <div class="sw"><span class="chip" style="background:#E4F2F8"></span><div class="meta"><div class="hex">#E4F2F8</div></div></div>
+      </div>
+    </div>
+    <div class="grad-row" style="margin-top:12px">
+      <div class="grad">
+        <span class="band" style="background:linear-gradient(100deg,#04065B,#0B2E8E 28%,#1042C7 44%,#1160F0 52%,#1042C7 60%,#0B2E8E 74%,#04065B)"></span>
+        <div class="gmeta"><div class="gname">Sapphire sheen (wordmark / hero / sparkle)</div>
+        <div class="gcss">linear-gradient(100deg,#04065B,#0B2E8E 28%,#1042C7 44%,#1160F0 52%,#1042C7 60%,#0B2E8E 74%,#04065B)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Slate-blue — MATTE (calm surfaces / deep sections)</h3>
+    <p class="sub">The calm slate the vivid sapphire sparkles on — distinct from the data line.</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#303F46"></span><div class="meta"><div class="hex">#303F46</div></div></div>
+      <div class="sw"><span class="chip" style="background:#3C4F5A"></span><div class="meta"><div class="hex">#3C4F5A</div></div></div>
+      <div class="sw"><span class="chip" style="background:#455865"></span><div class="meta"><div class="hex">#455865</div></div></div>
+      <div class="sw"><span class="chip" style="background:#2A445A"></span><div class="meta"><div class="hex">#2A445A</div></div></div>
+      <div class="sw"><span class="chip" style="background:#35516C"></span><div class="meta"><div class="name">deep</div><div class="hex">#35516C</div></div></div>
+      <div class="sw"><span class="chip" style="background:#415D7A"></span><div class="meta"><div class="hex">#415D7A</div></div></div>
+      <div class="sw"><span class="chip" style="background:#506A85"></span><div class="meta"><div class="hex">#506A85</div></div></div>
+      <div class="sw"><span class="chip" style="background:#778EA5"></span><div class="meta"><div class="hex">#778EA5</div></div></div>
+      <div class="sw"><span class="chip" style="background:#7F95AC"></span><div class="meta"><div class="hex">#7F95AC</div></div></div>
+      <div class="sw"><span class="chip" style="background:#788BA7"></span><div class="meta"><div class="hex">#788BA7</div></div></div>
+      <div class="sw"><span class="chip" style="background:#8E9DB0"></span><div class="meta"><div class="name">mid</div><div class="hex">#8E9DB0</div></div></div>
+      <div class="sw"><span class="chip" style="background:#9BADBD"></span><div class="meta"><div class="hex">#9BADBD</div></div></div>
+      <div class="sw"><span class="chip" style="background:#A3B4C5"></span><div class="meta"><div class="hex">#A3B4C5</div></div></div>
+      <div class="sw"><span class="chip" style="background:#AFBBCF"></span><div class="meta"><div class="hex">#AFBBCF</div></div></div>
+      <div class="sw"><span class="chip" style="background:#C7CFE0"></span><div class="meta"><div class="hex">#C7CFE0</div></div></div>
+      <div class="sw"><span class="chip" style="background:#CFD5E0"></span><div class="meta"><div class="hex">#CFD5E0</div></div></div>
+      <div class="sw"><span class="chip" style="background:#E9EDF8"></span><div class="meta"><div class="name">soft</div><div class="hex">#E9EDF8</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Light / shadow sapphire (cool — interaction)</h3>
+    <p class="sub">Resting = light; hover/active walks toward the cool violet-dark mixed shadow.</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#92C5E0"></span><div class="meta"><div class="name">Highlight</div><div class="hex">#92C5E0</div><div class="note">white-lightened</div></div></div>
+      <div class="sw"><span class="chip" style="background:#5B9BC8"></span><div class="meta"><div class="name">Light</div><div class="hex">#5B9BC8</div></div></div>
+      <div class="sw"><span class="chip" style="background:#0D3D52"></span><div class="meta"><div class="name">Shadow</div><div class="hex">#0D3D52</div><div class="note">cool violet-dark mix</div></div></div>
+    </div>
+    <p class="sub" style="margin-top:14px">Dark-mode Aegean (the .app 2am surface):</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#C4E8FA"></span><div class="meta"><div class="name">Highlight</div><div class="hex">#C4E8FA</div></div></div>
+      <div class="sw"><span class="chip" style="background:#8DD5F0"></span><div class="meta"><div class="name">Light</div><div class="hex">#8DD5F0</div></div></div>
+      <div class="sw"><span class="chip" style="background:#1B4A62"></span><div class="meta"><div class="name">Shadow</div><div class="hex">#1B4A62</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Page-colour groups — arsenic/muting method (research)</h3>
+    <p class="sub">Built in groups sharing one origin (the trio) + one muting, so any colour pairs with any other. Hexes derived from the method — pin to founder's physical mixes as truth.</p>
+    <p class="sub" style="margin-top:8px"><b>Blue group</b> — Cobalt-led, muted with Yellow Ochre (NOT Alizarin → no periwinkle):</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#DCE2E6"></span><div class="meta"><div class="hex">#DCE2E6</div><div class="note">3C : 1YO : 16W</div></div></div>
+      <div class="sw"><span class="chip" style="background:#C6D2DA"></span><div class="meta"><div class="hex">#C6D2DA</div><div class="note">4C : 1YO : 13W</div></div></div>
+      <div class="sw"><span class="chip" style="background:#B5C4D0"></span><div class="meta"><div class="hex">#B5C4D0</div><div class="note">4C : 1YO : 10W</div></div></div>
+      <div class="sw"><span class="chip" style="background:#A3B6C6"></span><div class="meta"><div class="hex">#A3B6C6</div><div class="note">4C : 1YO : 8W</div></div></div>
+      <div class="sw"><span class="chip" style="background:#93A8BC"></span><div class="meta"><div class="hex">#93A8BC</div><div class="note">5C : 1YO : 7W</div></div></div>
+      <div class="sw"><span class="chip" style="background:#8499AE"></span><div class="meta"><div class="hex">#8499AE</div><div class="note">5C : 1YO : 5W</div></div></div>
+    </div>
+    <p class="sub" style="margin-top:12px"><b>Green group</b> — Ochre-led, muted with Cobalt (pairs with the blue group):</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#DDE2DB"></span><div class="meta"><div class="hex">#DDE2DB</div></div></div>
+      <div class="sw"><span class="chip" style="background:#C4D0BF"></span><div class="meta"><div class="hex">#C4D0BF</div></div></div>
+      <div class="sw"><span class="chip" style="background:#BAC7B4"></span><div class="meta"><div class="hex">#BAC7B4</div></div></div>
+      <div class="sw"><span class="chip" style="background:#A9B69E"></span><div class="meta"><div class="hex">#A9B69E</div></div></div>
+      <div class="sw"><span class="chip" style="background:#A2B095"></span><div class="meta"><div class="hex">#A2B095</div></div></div>
+      <div class="sw"><span class="chip" style="background:#9EAB92"></span><div class="meta"><div class="hex">#9EAB92</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SHEEN ============================== -->
+<section data-tab="sheen">
+  <div class="site-h"><h2>Sheen</h2><span class="tag">Living-colour gradients · deep edge → bright centre → deep edge · DISPLAY surfaces only</span></div>
+  <p class="sub" style="margin-top:6px">The living-colour law in one place. These run as a <b>sheen gradient</b> on wordmark / headings / hero / dividers / accents via <code>background-clip:text</code> (or as a fill on display surfaces). <b>Never on body text or clinical data</b> — those stay solid + WCAG-AA. The big band shows each sheen as live text.</p>
+
+  <div class="sheen-big">
+    <span class="band" style="background-image:linear-gradient(180deg,rgba(255,255,255,0.00) 4.50%,rgba(255,255,255,0.50) 4.85%,rgba(255,255,255,1.00) 5.00%,rgba(255,255,255,0.50) 5.15%,rgba(255,255,255,0.00) 5.50%),linear-gradient(180deg,rgba(255,255,255,0.60) 0%,rgba(255,255,255,0.25) 38%,rgba(255,255,255,0.05) 49%,rgba(255,255,255,0.00) 50%,rgba(255,255,255,0.00) 100%),linear-gradient(180deg,#BEA106 0%,#C3A609 4%,#C9AD0E 8%,#D0B414 12%,#D7BC1C 16%,#DFC526 20%,#E6CD32 24%,#ECD53F 28%,#F1DC4C 32%,#F5E259 36%,#F8E663 40%,#F9E96B 44%,#FAEB6F 48%,#FAEB6F 52%,#F9E96B 56%,#F8E663 60%,#F5E259 64%,#F1DC4C 68%,#ECD53F 72%,#E6CD32 76%,#DFC526 80%,#D7BC1C 84%,#D0B414 88%,#C9AD0E 92%,#C3A609 96%,#BEA106 100%)"></span>
+    <div class="sbmeta"><div class="sbname">Shiny-gold sheen · LOCKED 2026-10-12 (both sites, one gold everywhere)</div>
+      <div class="sbuse">Feathered gold, clear coat, specular streak. Top to bottom. Wordmark / dividers / accents on navy or bone.</div>
+      <div class="sbcss">background-image: linear-gradient(180deg,rgba(255,255,255,0.00) 4.50%,rgba(255,255,255,0.50) 4.85%,rgba(255,255,255,1.00) 5.00%,rgba(255,255,255,0.50) 5.15%,rgba(255,255,255,0.00) 5.50%),linear-gradient(180deg,rgba(255,255,255,0.60) 0%,rgba(255,255,255,0.25) 38%,rgba(255,255,255,0.05) 49%,rgba(255,255,255,0.00) 50%,rgba(255,255,255,0.00) 100%),linear-gradient(180deg,#BEA106 0%,#C3A609 4%,#C9AD0E 8%,#D0B414 12%,#D7BC1C 16%,#DFC526 20%,#E6CD32 24%,#ECD53F 28%,#F1DC4C 32%,#F5E259 36%,#F8E663 40%,#F9E96B 44%,#FAEB6F 48%,#FAEB6F 52%,#F9E96B 56%,#F8E663 60%,#F5E259 64%,#F1DC4C 68%,#ECD53F 72%,#E6CD32 76%,#DFC526 80%,#D7BC1C 84%,#D0B414 88%,#C9AD0E 92%,#C3A609 96%,#BEA106 100%)</div>
+    </div>
+  </div>
+
+  <div class="sheen-big">
+    <span class="band" style="background:linear-gradient(100deg,#04065B,#0B2E8E 28%,#1042C7 44%,#1160F0 52%,#1042C7 60%,#0B2E8E 74%,#04065B)"></span>
+    <div class="sbmeta"><div class="sbname">.app — sapphire sheen</div>
+      <div class="sbuse">The blue of the stone, moving. Wordmark / hero / sparkle.</div>
+      <div class="sbcss">linear-gradient(100deg,#04065B,#0B2E8E 28%,#1042C7 44%,#1160F0 52%,#1042C7 60%,#0B2E8E 74%,#04065B)</div>
+    </div>
+  </div>
+
+  <div class="sheen-big">
+    <span class="band" style="background:linear-gradient(100deg,#33422C,#4E6444 30%,#738B6E 50%,#4E6444 70%,#33422C)"></span>
+    <div class="sbmeta"><div class="sbname">.app — botanical-green sheen</div>
+      <div class="sbuse">True forest green, moving. Secondary display accents.</div>
+      <div class="sbcss">linear-gradient(100deg,#33422C,#4E6444 30%,#738B6E 50%,#4E6444 70%,#33422C)</div>
+    </div>
+  </div>
+
+  <div class="sheen-big">
+    <span class="band" style="background:radial-gradient(circle at 40% 60%,#FAFAF8 0%,rgba(247,246,241,.2) 30%,#F7F6F1 100%)"></span>
+    <div class="sbmeta"><div class="sbname">bone — whisper sheen (large surfaces only)</div>
+      <div class="sbuse">A barely-there radial lift on large bone surfaces. Never on text.</div>
+      <div class="sbcss">radial-gradient(circle at 40% 60%, #FAFAF8 0%, rgba(247,246,241,0.2) 30%, #F7F6F1 100%)</div>
+    </div>
+  </div>
+
+  <p class="note-firewall" style="margin-top:18px"><b>Note:</b> these are the hand-authored multi-stop brand sheens. Every other swatch in the board also carries its own auto-derived sheen cell (deep → bright → deep). The sheen runs on display surfaces only; body text + clinical data stay solid + WCAG-AA.</p>
+</section>
+
+<!-- ===================== YELLOWS & REDS (resource) ===================== -->
+<section data-tab="resource">
+  <div class="site-h"><h2>Yellows &amp; Reds</h2><span class="tag">Resource · warm-hue pigments from the method (Yellow Ochre + Permanent Alizarin Crimson origin)</span></div>
+  <p class="sub" style="margin-top:6px">The warm side of the 3-primary origin, gathered as a working resource. Each shown flat · sheen · watercolour. Method-reference primaries are approximate to screen — pin to the founder's physical mixes as truth.</p>
+
+  <div class="grp">
+    <h3>Method primaries (origin)</h3>
+    <p class="sub">Two of the three origin pigments. Everything warm is mixed from these (+ Cobalt for muting).</p>
+    <div class="row">
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Yellow Ochre (W&amp;N)</div><div class="hex">#C7973F</div><div class="note">origin primary · approx</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Permanent Alizarin Crimson</div><div class="hex">#843135</div><div class="note">origin primary · approx</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Venetian Red (earth triad)</div><div class="hex">#8C3B2E</div><div class="note">earth-triad alt · approx</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Yellows</h3>
+    <p class="sub">From clinical gold through the gold-sheen stops to the graph-locked lemon.</p>
+    <div class="row">
+      <div class="sw" style="outline:2px solid #C9A24B;outline-offset:-2px"><span class="chip"></span><div class="meta"><div class="name">IOB gold ★ LOCKED (clinical)</div><div class="hex">#C9A24B</div><div class="note">data only · never chrome</div></div></div>
+      <div class="sw" style="outline:2px solid #C9A24B;outline-offset:-2px"><span class="chip"></span><div class="meta"><div class="name">Lemon yellow ★ LOCKED (graph head)</div><div class="hex">#EBD60A</div><div class="note">graph-only, off-method</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Ochre yellow (method-pure)</div><div class="hex">#E3C45B</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Gold highlight (warm)</div><div class="hex">#E8D9B5</div><div class="note">white-lightened</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Gold shine (sheen stop)</div><div class="hex">#FAEB6F</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Gold bright (sheen stop)</div><div class="hex">#F8E663</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Gold body (sheen stop)</div><div class="hex">#E6CD32</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Gold edge (sheen stop)</div><div class="hex">#BEA106</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Gold-ink label</div><div class="hex">#7A5C0A</div><div class="note">AA small text</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Gold shadow (warm earth mix)</div><div class="hex">#8B6F47</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Severity gold (safe)</div><div class="hex">#D4A229</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Amber (moderate)</div><div class="hex">#E8920A</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Reds</h3>
+    <p class="sub">Alizarin-led. Shadow muted with a whisper of Cobalt (never black). The severity tail lives here too.</p>
+    <div class="row">
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Orange (high)</div><div class="hex">#D35400</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Red (danger)</div><div class="hex">#C0392B</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Dark red (tail · shadow)</div><div class="hex">#6B2A2C</div><div class="note">8 Alizarin : 1 Ochre : ~0.3 Cobalt</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Crimson light</div><div class="hex">#B5505A</div><div class="note">Alizarin + white</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Crimson mid</div><div class="hex">#9E3B43</div></div></div>
+      <div class="sw"><span class="chip"></span><div class="meta"><div class="name">Crimson deep</div><div class="hex">#5E2329</div><div class="note">muted, no black</div></div></div>
+    </div>
+  </div>
+
+  <p class="note-firewall" style="margin-top:14px">Warm hues mute toward shadow with the <b>third primary (Cobalt)</b>, never black. Mute greens with a whisper of Alizarin; mute blues with Yellow Ochre — <b>never</b> Alizarin (Cobalt + Alizarin + white = periwinkle, despised). IOB gold <code>#C9A24B</code> + lemon <code>#EBD60A</code> are LOCKED — never become chrome.</p>
+</section>
+
+<!-- ============== STACKING SEVERITY RAMP (shared) ============== -->
+<section data-tab="stacking">
+  <div class="site-h"><h2>Stacking-pressure severity ramp</h2><span class="tag">SHARED by both profiles · IOB stacking / combined-activity pressure</span></div>
+
+  <div class="grp">
+    <h3>Locked canonical stops (4) — <code>--gm-iob-*</code> in src/index.css</h3>
+    <p class="sub">The real stacking-graph pressure system. A warm hue rotation 42°→8° as pressure rises. Insulin-Lock: these four tokens never move without <code>APPROVE-INSULIN-EDIT</code>.</p>
+    <div class="row">
+      <div class="sw" style="outline:1.5px solid #C9A24B;outline-offset:-1.5px"><span class="chip" style="background:#D4A229"></span><div class="meta"><div class="name">--gm-iob-safe · gold</div><div class="hex">#D4A229</div><div class="note">hsl(42 68% 49%) · low pressure</div></div></div>
+      <div class="sw" style="outline:1.5px solid #C9A24B;outline-offset:-1.5px"><span class="chip" style="background:#E8920A"></span><div class="meta"><div class="name">--gm-iob-moderate · amber</div><div class="hex">#E8920A</div><div class="note">hsl(35 87% 47%) · building</div></div></div>
+      <div class="sw" style="outline:1.5px solid #C9A24B;outline-offset:-1.5px"><span class="chip" style="background:#D35400"></span><div class="meta"><div class="name">--gm-iob-high · orange</div><div class="hex">#D35400</div><div class="note">hsl(25 72% 50%) · significant</div></div></div>
+      <div class="sw" style="outline:1.5px solid #C9A24B;outline-offset:-1.5px"><span class="chip" style="background:#C0392B"></span><div class="meta"><div class="name">--gm-iob-danger · red</div><div class="hex">#C0392B</div><div class="note">hsl(8 54% 47%) · hypo risk</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Derived extension stops (2) — by the 3-primary method, pending founder sign-off</h3>
+    <p class="sub">Mixed in the founder's system from <b>Yellow Ochre + Permanent Alizarin Crimson</b>, shadow muted with a whisper of <b>Cobalt Blue</b> (never black), white to lift value. Recipe is the truth; hex is an approximation — pin to the physical mix.</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:#E3C45B"></span><div class="meta"><div class="name">Ochre yellow (in-method · superseded by lemon)</div><div class="hex">#E3C45B</div><div class="note">≈hsl(46 71% 62%) · 6 Yellow Ochre : 2 White — kept as method reference</div></div></div>
+      <div class="sw"><span class="chip" style="background:#6B2A2C"></span><div class="meta"><div class="name">Dark red (tail · shadow)</div><div class="hex">#6B2A2C</div><div class="note">≈hsl(358 44% 29%) · 8 Alizarin : 1 Ochre : ~0.3 Cobalt (muted, no black)</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Graph-clarity exception — LEMON YELLOW ★ LOCKED (founder, 2026-06-14)</h3>
+    <p class="sub">Founder ruling 2026-06-14: graphs step <b>outside the 3-primary method</b> for on-screen legibility. <b>Lemon yellow <code>#EBD60A</code> is LOCKED as the ramp's yellow head</b> (graphs only); the method-pure Ochre yellow is retired from the ramp, kept here as the in-method reference.</p>
+    <div class="row">
+      <div class="sw" style="outline:2px solid #C9A24B;outline-offset:-2px"><span class="chip" style="background:#EBD60A"></span><div class="meta"><div class="name">Lemon yellow ★ LOCKED (ramp head)</div><div class="hex">#EBD60A</div><div class="note">≈hsl(55 89% 48%) · clear bright yellow, off-method, graph-only</div></div></div>
+      <div class="sw"><span class="chip" style="background:#E3C45B"></span><div class="meta"><div class="name">Ochre yellow (method-pure, retired from ramp)</div><div class="hex">#E3C45B</div><div class="note">in-method reference — not used in the ramp</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Full 6-band ramp (light) — yellow → dark red</h3>
+    <div class="grad-row">
+      <div class="grad">
+        <span class="band" style="background:linear-gradient(90deg,#EBD60A,#D4A229 20%,#E8920A 40%,#D35400 60%,#C0392B 80%,#6B2A2C)"></span>
+        <div class="gmeta"><div class="gname">Stacking severity (decorative band — bands are solid in charts)</div>
+        <div class="gcss">#EBD60A → #D4A229 → #E8920A → #D35400 → #C0392B → #6B2A2C</div></div>
+      </div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <div class="sw"><span class="chip" style="background:#EBD60A"></span><div class="meta"><div class="name">Lemon yellow</div><div class="hex">#EBD60A</div></div></div>
+      <div class="sw"><span class="chip" style="background:#D4A229"></span><div class="meta"><div class="name">Gold (safe)</div><div class="hex">#D4A229</div></div></div>
+      <div class="sw"><span class="chip" style="background:#E8920A"></span><div class="meta"><div class="name">Amber</div><div class="hex">#E8920A</div></div></div>
+      <div class="sw"><span class="chip" style="background:#D35400"></span><div class="meta"><div class="name">Orange</div><div class="hex">#D35400</div></div></div>
+      <div class="sw"><span class="chip" style="background:#C0392B"></span><div class="meta"><div class="name">Red</div><div class="hex">#C0392B</div></div></div>
+      <div class="sw"><span class="chip" style="background:#6B2A2C"></span><div class="meta"><div class="name">Dark red</div><div class="hex">#6B2A2C</div></div></div>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h3>Dark-mode equivalents (lightened for 2am surfaces)</h3>
+    <p class="sub">Locked stops use the index.css dark-mode lifts; derived stops follow the same +L pattern (pending sign-off).</p>
+    <div class="row">
+      <div class="sw"><span class="chip" style="background:hsl(55 89% 60%)"></span><div class="meta"><div class="name">Lemon yellow</div><div class="hex">hsl(55 89% 60%)</div></div></div>
+      <div class="sw"><span class="chip" style="background:hsl(42 68% 58%)"></span><div class="meta"><div class="name">Gold / safe</div><div class="hex">hsl(42 68% 58%)</div></div></div>
+      <div class="sw"><span class="chip" style="background:hsl(35 87% 58%)"></span><div class="meta"><div class="name">Amber / moderate</div><div class="hex">hsl(35 87% 58%)</div></div></div>
+      <div class="sw"><span class="chip" style="background:hsl(25 72% 62%)"></span><div class="meta"><div class="name">Orange / high</div><div class="hex">hsl(25 72% 62%)</div></div></div>
+      <div class="sw"><span class="chip" style="background:hsl(8 80% 65%)"></span><div class="meta"><div class="name">Red / danger</div><div class="hex">hsl(8 80% 65%)</div></div></div>
+      <div class="sw"><span class="chip" style="background:hsl(358 44% 42%)"></span><div class="meta"><div class="name">Dark red (derived)</div><div class="hex">hsl(358 44% 42%)</div></div></div>
+    </div>
+  </div>
+
+  <p class="note-firewall">These pressure colours are the <b>only</b> warm severity system in GluMira and are <b>shared by both .ai and .app</b> charts. They are <b>separate from RISK_*</b> (the green→red <code>riskColours.ts</code> set) and from the locked clinical data hues below — do not conflate. Chart bands render <b>solid</b>; the gradient above is for swatch viewing only.</p>
+</section>
+
+<!-- ====================== LOCKED CLINICAL ====================== -->
+<section data-tab="clinical">
+  <div class="locked">
+    <h3>Locked clinical — NEVER chrome (Non-Negotiable #1 + data-colour law)</h3>
+    <div class="row" style="margin-top:12px">
+      <div class="sw"><span class="chip" style="background:#C9A24B"></span><div class="meta"><div class="name">IOB gold</div><div class="hex">#C9A24B</div><div class="note">chart data only</div></div></div>
+      <div class="sw"><span class="chip" style="background:#1A5FB4"></span><div class="meta"><div class="name">Glucose line</div><div class="hex">#1A5FB4</div><div class="note">chart data only</div></div></div>
+    </div>
+    <p class="note-firewall"><b>Chart firewall:</b> site palette never enters a chart; clinical colour never becomes chrome.
+       The glucose line <code>#1A5FB4</code> sits between matte slate and vivid sapphire — chrome sapphire must stay a
+       clear step brighter/deeper so a user never confuses app chrome with the glucose data line. Resolve this separation
+       before any token wiring. Any engine/chart edit is Insulin-Lock-gated (<code>APPROVE-INSULIN-EDIT</code>).</p>
+  </div>
+</section>
+
+<footer>
+  <p>GluMira Colour Swatches v1.0 · 2026-06-14 · status: swatch values factual/locked, role mapping pending founder sign-off, <b>no code wired</b>.</p>
+  <p>Sources of truth: <code>docs/04_Brand/Living-Color-System_v1.0.md</code> ·
+     <code>docs/04_Brand/App-Locked-Palette_v1.0.md</code> ·
+     <code>docs/04_Brand/Living-Light-Shadow-Application_v1.0.md</code>.
+     This sheet visualises them — it does not redefine them. If a value disagrees, the .md canon wins.</p>
+</footer>
+</div>
+<script>
+(function(){
+  // ---- colour maths: build flat / sheen / watercolour from each hex ----
+  var BLACK=[0,0,0], WHITE=[255,255,255];
+  function hex2rgb(h){h=h.replace('#','');
+    if(h.length===3)h=h.split('').map(function(c){return c+c;}).join('');
+    return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+  function mix(c,t,p){return c.map(function(v,i){return v+(t[i]-v)*p;});}
+  function rgb(a){return 'rgb('+a.map(Math.round).join(',')+')';}
+  function rgba(a,al){return 'rgba('+a.map(Math.round).join(',')+','+al+')';}
+  function sheen(c){
+    var d=rgb(mix(c,BLACK,0.55)), m=rgb(c), b=rgb(mix(c,WHITE,0.62));
+    return 'linear-gradient(90deg,'+d+','+m+' 26%,'+b+' 50%,'+m+' 74%,'+d+')';
+  }
+  function water(c){
+    var base=rgb(mix(c,WHITE,0.58));
+    return 'radial-gradient(circle at 22% 26%,'+rgba(mix(c,BLACK,0.12),0.55)+',transparent 42%),'+
+           'radial-gradient(circle at 74% 36%,'+rgba(mix(c,WHITE,0.25),0.55)+',transparent 46%),'+
+           'radial-gradient(circle at 58% 78%,'+rgba(mix(c,BLACK,0.04),0.45)+',transparent 50%),'+
+           'radial-gradient(circle at 34% 62%,'+rgba(c,0.42)+',transparent 56%),'+
+           base;
+  }
+  var HEXRE=/^#([0-9a-f]{3}|[0-9a-f]{6})$/i;
+  [].slice.call(document.querySelectorAll('.sw')).forEach(function(sw){
+    var hexEl=sw.querySelector('.hex'), chip=sw.querySelector('.chip');
+    if(!hexEl||!chip)return;
+    var txt=hexEl.textContent.trim();
+    if(!HEXRE.test(txt))return;            // skip hsl()/gradient labels
+    var c=hex2rgb(txt);
+    chip.style.background='none';
+    chip.innerHTML=
+      '<span class="cell" style="background:'+txt+'"><i>flat</i></span>'+
+      '<span class="cell" style="background:'+sheen(c)+'"><i>sheen</i></span>'+
+      '<span class="cell" style="background:'+water(c)+'"><i>water</i></span>';
+  });
+
+  // ---- one texture card per colour group (muslin / dye-mottled backdrop) ----
+  // Each tile is a per-tile SVG: base hue + fractal-noise DARK pools + LIGHT pools,
+  // so a single swatch swings light→dark in organic clouds like the photographed cloth.
+  function seedOf(h){var s=0; for(var i=0;i<h.length;i++)s=(s*31+h.charCodeAt(i))>>>0; return s||1;}
+  // a filter that floods `color` masked by patchy alpha taken from turbulence
+  function cloud(id,color,flood,slope,inter,seed,freq,oct){
+    return "<filter id='"+id+"' x='0' y='0' width='100%' height='100%'>"+
+      "<feTurbulence type='fractalNoise' baseFrequency='"+freq+"' numOctaves='"+oct+
+        "' seed='"+seed+"' stitchTiles='stitch' result='t'/>"+
+      "<feColorMatrix in='t' type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "+
+        slope+" 0 0 0 "+inter+"' result='a'/>"+
+      "<feFlood flood-color='"+color+"' flood-opacity='"+flood+"'/>"+
+      "<feComposite in2='a' operator='in'/></filter>";
+  }
+  function texSVG(hex,seed){
+    var s1=seed%211, s2=(seed*7+31)%223, s3=(seed*13+5)%197;
+    var svg="<svg xmlns='http://www.w3.org/2000/svg' width='220' height='200' "+
+      "viewBox='0 0 220 200' preserveAspectRatio='none'><defs>"+
+      // large soft dye clouds (big structures) — dark then light
+      cloud('d1','black',0.55,1.05,-0.32,s1,'0.006 0.009',5)+
+      cloud('l1','white',0.50,1.05,-0.34,s2,'0.007 0.010',5)+
+      // medium mottle for grain between the big clouds
+      cloud('d2','black',0.35,1.2,-0.45,s3,'0.02 0.026',4)+
+      "</defs>"+
+      "<rect width='220' height='200' fill='"+hex+"'/>"+
+      "<rect width='220' height='200' filter='url(#d1)'/>"+
+      "<rect width='220' height='200' filter='url(#l1)'/>"+
+      "<rect width='220' height='200' filter='url(#d2)'/>"+
+      "</svg>";
+    return "url(\"data:image/svg+xml,"+encodeURIComponent(svg)+"\")";
+  }
+  [].slice.call(document.querySelectorAll('.grp')).forEach(function(grp){
+    // collect this group's own swatches (not those inside a nested .grp)
+    var sws=[].slice.call(grp.querySelectorAll('.sw')).filter(function(sw){
+      return sw.closest('.grp')===grp;
+    });
+    var hexes=[];
+    sws.forEach(function(sw){
+      var hexEl=sw.querySelector('.hex'); if(!hexEl)return;
+      var t=hexEl.textContent.trim(); if(!HEXRE.test(t))return;
+      hexes.push(t);
+    });
+    if(!hexes.length)return;
+    var label=document.createElement('div'); label.className='texlabel'; label.textContent='Texture card';
+    var card=document.createElement('div'); card.className='texcard';
+    hexes.forEach(function(t){
+      var tile=document.createElement('div'); tile.className='textile';
+      var tex=document.createElement('div'); tex.className='tex';
+      tex.style.backgroundImage=texSVG(t,seedOf(t));   // set as a property — no HTML-attribute quote clash
+      var lbl=document.createElement('div'); lbl.className='tlbl'; lbl.textContent=t.toUpperCase();
+      tile.appendChild(tex); tile.appendChild(lbl); card.appendChild(tile);
+    });
+    grp.appendChild(label); grp.appendChild(card);
+  });
+
+  var body=document.body, tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var sections=[].slice.call(document.querySelectorAll('section[data-tab]'));
+  function show(target){
+    body.classList.add('tabbed');
+    tabs.forEach(function(t){t.setAttribute('aria-selected', t.dataset.target===target);});
+    sections.forEach(function(s){
+      s.classList.toggle('active', target==='all' || s.dataset.tab===target);
+    });
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  tabs.forEach(function(t){t.addEventListener('click',function(){show(t.dataset.target);});});
+  show('all');
+})();
+</script>
+</body>
+</html>

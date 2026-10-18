@@ -1,0 +1,58 @@
+{
+  "page": "Page-Git-Design-System",
+  "layer": "Git",
+  "edition": "Original",
+  "status": "DONE",
+  "date": "2026-10-15",
+  "method": "git hash-object of every file in Page-Doc-Design-System and Page-Prog-Design-System. commit is the merge-base with origin/main when it ran. Check: git rev-parse HEAD:<path> equals blob.",
+  "sources": [
+    {
+      "repo": "Glumira-X-Technologies-cc/Glumira-7.2",
+      "branch": "main",
+      "commit": "6e444c9ffd14a27d98d788bd514ccdb0e4f54a0c",
+      "origin": "authored in this repo; commit is the base the files were filed on",
+      "files": [
+        {
+          "copy": "Page-Doc-Design-System/DECISIONS.md",
+          "source_path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/DECISIONS.md",
+          "blob": "2177c03df95765526c19b5a2213e7644fdc54f8c"
+        },
+        {
+          "copy": "Page-Doc-Design-System/LEDGER.md",
+          "source_path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/LEDGER.md",
+          "blob": "e9bb3586a134ca4be1e5a884933fae78bedcbd45"
+        },
+        {
+          "copy": "Page-Doc-Design-System/SYSTEM.md",
+          "source_path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/SYSTEM.md",
+          "blob": "db82d165ecbd557a9e9407d4aec12e9e2ea5ddc2"
+        },
+        {
+          "copy": "Page-Doc-Design-System/ledger.json",
+          "source_path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Doc-Design-System/ledger.json",
+          "blob": "e614a91f9862328133d123d93c5689a2525be389"
+        },
+        {
+          "copy": "Page-Prog-Design-System/bundle.css",
+          "source_path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/bundle.css",
+          "blob": "2cfa67ca2818000d6059fb2893de36cc44724901"
+        },
+        {
+          "copy": "Page-Prog-Design-System/ledger.mjs",
+          "source_path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/ledger.mjs",
+          "blob": "4ef62ee0093b1954f3dfc9df03c55612feecf099"
+        },
+        {
+          "copy": "Page-Prog-Design-System/tokens.css",
+          "source_path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/tokens.css",
+          "blob": "ec419aae7f3a1c8dd41b4369a525a4b7e1cf8869"
+        },
+        {
+          "copy": "Page-Prog-Design-System/tokens.json",
+          "source_path": "Vaults/4-Governance/Rows/4.8-Design-System/Books/Book-Design-System/Page-Prog-Design-System/tokens.json",
+          "blob": "9b77dc35feb8e058c74df18f5399ea2d6f3c6872"
+        }
+      ]
+    }
+  ]
+}
